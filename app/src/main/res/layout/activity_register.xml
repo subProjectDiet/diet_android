@@ -155,9 +155,11 @@
             android:layout_marginTop="80dp"
             android:layout_marginRight="40dp"
             android:backgroundTint="#000000"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="Button"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:text="다음"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:cornerRadius="20dp" />
 
     </LinearLayout>
