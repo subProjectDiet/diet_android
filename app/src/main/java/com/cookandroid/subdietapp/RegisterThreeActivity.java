@@ -5,29 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterThreeActivity extends AppCompatActivity {
 
-    TextView txtRegister;
+    Button btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register_three);
 
-        txtRegister = findViewById(R.id.txtRegister);
+        btnNext = findViewById(R.id.btnNext);
 
-        txtRegister.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterFirstActivity.class);
+                Intent intent = new Intent(RegisterThreeActivity.this, RegisterFourActivity.class);
                 startActivity(intent);
-
-                finish();
-
             }
         });
-
     }
 }

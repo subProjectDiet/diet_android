@@ -10,7 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".RegisterFiveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterFourActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterThreeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterTwoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterFirstActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
