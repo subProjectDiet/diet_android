@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="홈"
+        android:id="@+id/firstFragment"
+        android:icon="@drawable/baseline_home_24"/>
+
+
+    <item
+        android:title="다이어리"
+        android:id="@+id/secondFragment"
+        android:icon="@drawable/baseline_calendar_today_24"
+        />
+
+    <item
+        android:title="소통"
+        android:id="@+id/thirdFragment"
+        android:icon="@drawable/baseline_chat_24"/>
+
+    <item
+        android:title="내정보"
+        android:id="@+id/forthFragment"
+        android:icon="@drawable/baseline_person_24"/>
+</menu>
