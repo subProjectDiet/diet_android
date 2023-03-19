@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp">
         <activity
+            android:name=".ExerciseSearchEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseSearchAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectedExerciseSearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".SelectedExerciseActivity"
             android:exported="false" />
         <activity
