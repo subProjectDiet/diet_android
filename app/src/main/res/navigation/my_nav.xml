@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.cookandroid.subdietapp.FirstFragment"
+        android:name="com.cookandroid.subdietapp.fragment.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.cookandroid.subdietapp.SecondFragment"
+        android:name="com.cookandroid.subdietapp.fragment.SecondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" />
     <fragment
         android:id="@+id/thirdFragment"
-        android:name="com.cookandroid.subdietapp.ThirdFragment"
+        android:name="com.cookandroid.subdietapp.fragment.ThirdFragment"
         android:label="fragment_third"
         tools:layout="@layout/fragment_third" />
     <fragment
         android:id="@+id/forthFragment"
-        android:name="com.cookandroid.subdietapp.forthFragment"
+        android:name="com.cookandroid.subdietapp.fragment.forthFragment"
         android:label="fragment_forth"
         tools:layout="@layout/fragment_forth" />
 </navigation>

@@ -1,14 +1,14 @@
 package com.cookandroid.subdietapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class SelectedLunchFoodActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SelectedPostingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selected_lunch_food);
+        setContentView(R.layout.activity_selected_posting);
     }
 }

@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp;
+package com.cookandroid.subdietapp.food;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.SelectedDayActivity;
 
 public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 

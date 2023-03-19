@@ -1,8 +1,10 @@
-package com.cookandroid.subdietapp;
+package com.cookandroid.subdietapp.exercise;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.cookandroid.subdietapp.R;
 
 public class SelectedExerciseSearchActivity extends AppCompatActivity {
 

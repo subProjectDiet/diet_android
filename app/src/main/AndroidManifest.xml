@@ -10,37 +10,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp">
         <activity
-            android:name=".ExerciseSearchEditActivity"
+            android:name=".SelectedPostingActivity"
             android:exported="false" />
         <activity
-            android:name=".ExerciseSearchAddActivity"
+            android:name=".exercise.ExerciseSearchEditActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectedExerciseSearchActivity"
+            android:name=".exercise.ExerciseSearchAddActivity"
             android:exported="false" />
         <activity
-            android:name=".SelectedExerciseActivity"
+            android:name=".exercise.SelectedExerciseSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".exercise.SelectedExerciseActivity"
             android:exported="false" />
         <activity
             android:name=".SelectedDayActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterFiveActivity"
+            android:name=".login.RegisterFiveActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterFourActivity"
+            android:name=".login.RegisterFourActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterThreeActivity"
+            android:name=".login.RegisterThreeActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterTwoActivity"
+            android:name=".login.RegisterTwoActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterFirstActivity"
+            android:name=".login.RegisterFirstActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

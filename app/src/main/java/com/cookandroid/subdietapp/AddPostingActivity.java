@@ -1,14 +1,14 @@
 package com.cookandroid.subdietapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class ExerciseSearchEditActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AddPostingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise_search_edit);
+        setContentView(R.layout.activity_add_posting);
     }
 }

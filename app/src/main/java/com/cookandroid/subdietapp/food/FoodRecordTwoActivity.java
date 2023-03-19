@@ -1,8 +1,10 @@
-package com.cookandroid.subdietapp;
+package com.cookandroid.subdietapp.food;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.cookandroid.subdietapp.R;
 
 public class FoodRecordTwoActivity extends AppCompatActivity {
 

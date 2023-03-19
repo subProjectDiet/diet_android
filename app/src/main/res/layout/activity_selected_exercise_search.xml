@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectedExerciseSearchActivity">
+    tools:context=".exercise.SelectedExerciseSearchActivity">
 
     <LinearLayout
         android:layout_width="416dp"
         android:layout_height="681dp"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <ImageView

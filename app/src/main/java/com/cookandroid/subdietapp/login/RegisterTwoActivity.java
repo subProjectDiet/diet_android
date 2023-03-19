@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp;
+package com.cookandroid.subdietapp.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,26 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class RegisterFirstActivity extends AppCompatActivity {
+import com.cookandroid.subdietapp.R;
+
+public class RegisterTwoActivity extends AppCompatActivity {
 
     Button btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_first);
+        setContentView(R.layout.activity_register_two);
 
         btnNext = findViewById(R.id.btnNext);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterFirstActivity.this, RegisterTwoActivity.class);
+                Intent intent = new Intent(RegisterTwoActivity.this, RegisterThreeActivity.class);
                 startActivity(intent);
-
             }
         });
-
-
     }
 }

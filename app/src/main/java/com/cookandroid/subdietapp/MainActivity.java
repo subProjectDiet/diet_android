@@ -7,6 +7,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.cookandroid.subdietapp.fragment.FirstFragment;
+import com.cookandroid.subdietapp.fragment.SecondFragment;
+import com.cookandroid.subdietapp.fragment.ThirdFragment;
+import com.cookandroid.subdietapp.fragment.forthFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
