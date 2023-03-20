@@ -54,7 +54,8 @@
                     android:id="@+id/spinner10"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="3dp" />
+                    android:layout_marginLeft="8dp"
+                    />
 
             </LinearLayout>
 
