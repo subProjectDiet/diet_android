@@ -1,5 +1,7 @@
 package com.cookandroid.subdietapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -7,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.fragment.FirstFragment;
 import com.cookandroid.subdietapp.fragment.SecondFragment;
 import com.cookandroid.subdietapp.fragment.ThirdFragment;
 import com.cookandroid.subdietapp.fragment.forthFragment;
+import com.cookandroid.subdietapp.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -32,9 +36,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//        startActivity(intent);
-
+        // 억세스 토큰이 있는지 확인
+        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String accessToken = sp.getString(Config.ACCESS_TOKEN, "");
+        if(accessToken.isEmpty()){
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         navigationView = findViewById(R.id.bottomNavigationView);
 

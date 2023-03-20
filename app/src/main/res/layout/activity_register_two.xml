@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".login.RegisterTwoActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,23 +38,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView5"
+
+                <ImageView
+                    android:id="@+id/imgGirl"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/shape"
-                    android:gravity="center"
-                    android:text="👧"
-                    android:textSize="55sp" />
+                    app:srcCompat="@drawable/girl_no_selected" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/txtGirl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:layout_marginRight="10dp"
+                    android:gravity="center"
                     android:text="여성"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -65,24 +63,17 @@
                 android:layout_marginLeft="20dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView7"
+                <ImageView
+                    android:id="@+id/imgBoy"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/shape"
-                    android:gravity="center"
-                    android:text="👦"
-                    android:textSize="55sp" />
+                    app:srcCompat="@drawable/boy_no_selected" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/txtBoy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="10dp"
-
-
                     android:layout_marginTop="8dp"
                     android:text="남성"
                     android:textSize="16sp" />
@@ -112,7 +103,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName1"
+                    android:id="@+id/editAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -144,7 +135,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/editHeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -186,7 +177,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName12"
+                    android:id="@+id/editNowWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -219,7 +210,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName21"
+                    android:id="@+id/editHopeWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -244,7 +235,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:text="평소 활동량"
 
             android:textSize="16sp" />
@@ -253,6 +244,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="20dp"
 
             android:orientation="horizontal">
 
@@ -263,23 +255,13 @@
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/shape"
-                    android:gravity="center"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView12"
+                <ImageView
+                    android:id="@+id/activity1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="활동 적음"
-                    android:textColor="#000000" />
+                    app:srcCompat="@drawable/no_activity1" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -289,24 +271,15 @@
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/shape"
-
-                    android:gravity="center"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView124"
+                <ImageView
+                    android:id="@+id/activity2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:text="보통"
-                    android:textColor="#000000" />
+                    app:srcCompat="@drawable/no_activity2" />
+
+
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -316,24 +289,15 @@
                 android:layout_marginRight="10dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView115"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/shape"
-
-                    android:gravity="center"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView126"
+                <ImageView
+                    android:id="@+id/activity3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:text="활동 많음" />
+                    app:srcCompat="@drawable/no_activity3" />
+
+
+
+
             </LinearLayout>
 
         </LinearLayout>
@@ -358,5 +322,6 @@
 
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
