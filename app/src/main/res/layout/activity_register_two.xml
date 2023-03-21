@@ -33,53 +33,43 @@
 
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
 
-                <ImageView
-                    android:id="@+id/imgGirl"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    app:srcCompat="@drawable/girl_no_selected" />
+            <RadioGroup
+                android:id="@+id/radioGroup1"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/txtGirl"
+                <RadioButton
+                    android:id="@+id/radioGirl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:text="여성"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:background="@drawable/girl_no_selected"
+                    android:button="@null"
+                    android:layout_marginRight="25dp"
+                    />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-                android:layout_marginLeft="20dp"
-                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgBoy"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    app:srcCompat="@drawable/boy_no_selected" />
-
-                <TextView
-                    android:id="@+id/txtBoy"
+                <RadioButton
+                    android:id="@+id/radioBoy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:text="남성"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:button="@null"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/boy_no_selected" />
+            </RadioGroup>
+
+
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="여자                                        남자" />
         <LinearLayout
             android:gravity="center"
 
@@ -248,58 +238,40 @@
 
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/activity1"
-                    android:layout_width="match_parent"
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/no_activity1" />
+                    android:layout_margin="10dp"
+                    android:background="@drawable/no_activity1"
+                    android:button="@null" />
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/activity2"
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/no_activity2" />
+                    android:layout_margin="10dp"
+                    android:background="@drawable/no_activity2"
 
+                    android:button="@null" />
 
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/activity3"
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/no_activity3" />
+                    android:layout_margin="10dp"
+                    android:background="@drawable/no_activity3"
 
-
-
-
-            </LinearLayout>
-
+                    android:button="@null" />
+            </RadioGroup>
         </LinearLayout>
 
         <Button

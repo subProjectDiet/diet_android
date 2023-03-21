@@ -88,7 +88,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName3"
+                    android:id="@+id/editCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -109,7 +109,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/txtCarbs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -135,7 +135,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName31"
+                    android:id="@+id/editProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -156,7 +156,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/textView271"
+                    android:id="@+id/txtProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -183,7 +183,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName32"
+                    android:id="@+id/editFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -204,7 +204,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/textView272"
+                    android:id="@+id/txtFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -244,7 +244,7 @@
                 android:textSize="18sp"/>
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/txtKcal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
