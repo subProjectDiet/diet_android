@@ -68,7 +68,7 @@ public class RegisterFourActivity extends AppCompatActivity {
         // 먼저 editText 에 탄단지 계산결과 입력
         // txt 에는 editText 에서 나온 결과를 입력하는대로 바로 계산해서 보여주는 방식
 
-        txtKcal.setText("kcal");
+        txtKcal.setText(doubleGetKcal+"");
 
         // 탄수화물
         editCarbs.setText(Math.floor(doubleGetKcal * 0.5 / 4)+"");
@@ -94,7 +94,11 @@ public class RegisterFourActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 try {
+                    targetFat = Math.floor(Double.parseDouble(editFat.getText().toString().trim())* 9)  ;
                     targetCarbs = Math.floor(Double.parseDouble(editCarbs.getText().toString().trim()) * 4);
+                    targetProtein = Math.floor(Double.parseDouble(editProtein.getText().toString().trim()) * 4);
+
+                    txtKcal.setText(targetCarbs+targetFat+targetProtein+"");
                     txtCarbs.setText(targetCarbs +"");
 
                 } catch (Exception e){
@@ -117,7 +121,11 @@ public class RegisterFourActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 try {
+                    targetFat = Math.floor(Double.parseDouble(editFat.getText().toString().trim())* 9)  ;
+                    targetCarbs = Math.floor(Double.parseDouble(editCarbs.getText().toString().trim()) * 4);
                     targetProtein = Math.floor(Double.parseDouble(editProtein.getText().toString().trim()) * 4);
+
+                    txtKcal.setText(targetCarbs+targetFat+targetProtein+"");
                     txtProtein.setText(targetProtein +"");
 
                 } catch (Exception e){
@@ -140,9 +148,13 @@ public class RegisterFourActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 try {
-                    targetFat = Double.parseDouble(editFat.getText().toString().trim());
+                    targetFat = Math.floor(Double.parseDouble(editFat.getText().toString().trim())* 9)  ;
+                    targetCarbs = Math.floor(Double.parseDouble(editCarbs.getText().toString().trim()) * 4);
+                    targetProtein = Math.floor(Double.parseDouble(editProtein.getText().toString().trim()) * 4);
 
-                    txtFat.setText(Math.floor(targetFat * 9)+"");
+                    txtFat.setText(targetFat+"");
+
+                    txtKcal.setText(targetCarbs+targetFat+targetProtein+"");
 
 
                 } catch (Exception e){
@@ -160,16 +172,20 @@ public class RegisterFourActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                targetKcal = Double.parseDouble(txtKcal.getText().toString().trim());
+
+                targetCarbs = Double.parseDouble(txtCarbs.getText().toString().trim());
+                targetFat = Double.parseDouble(txtFat.getText().toString().trim());
+                targetProtein = Double.parseDouble(txtProtein.getText().toString().trim());
+
                 // 여기서 네트워크 통신
-
-
-                addNetworkData();
+                getNetworkData();
             }
         });
     }
 
 
-    void addNetworkData(){
+    void getNetworkData(){
         Retrofit retrofit = NetworkClient.getRetrofitClient(RegisterFourActivity.this);
         UserApi api = retrofit.create(UserApi.class); // 레트로핏으로 서버에 요청할 객체 생성
 
