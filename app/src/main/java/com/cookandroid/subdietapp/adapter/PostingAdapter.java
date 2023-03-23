@@ -2,6 +2,7 @@ package com.cookandroid.subdietapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,11 @@ import java.util.ArrayList;
 
 public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHolder>{
 
+    int postingId;
+
     Context context;
     ArrayList<Posting> postingList;
+
 
     public PostingAdapter(Context context, ArrayList<Posting> postingList) {
         this.context = context;
@@ -46,12 +50,12 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
 
         holder.txtNickName.setText(posting.getNickName());
         holder.txtContent.setText(posting.getContent());
-        holder.txtLike.setText(posting.getLikeCnt()+"");
+        holder.txtLike.setText(posting.getLikeCnt() +"");
 
 //        2023-03-08T14:55:10
         holder.txtDate.setText( posting.getCreatedAt().substring(0, 9+1) + " " + posting.getCreatedAt().substring(11, 18+1) );
 
-        Glide.with(context).load(posting.getImgurl())
+        Glide.with(context).load(posting.getImgurl().replace("http","https"))
                 .placeholder(R.drawable.outline_insert_photo_24)
                 .into(holder.imgPhoto);
 
@@ -62,7 +66,6 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
             holder.imgLike.setImageResource(R.drawable.baseline_favorite_border_24);
 
         }
-
 
     }
 
@@ -77,6 +80,9 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
         ImageView imgPhoto, imgLike;
         TextView txtLike, txtNickName, txtContent, txtDate;
         CardView cardView;
+
+
+
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -97,15 +103,20 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                     int index = getAdapterPosition();
                     Posting posting = postingList.get(index);
 
-                    int postingId = posting.getId();
+                    postingId = posting.getId();
 
+                    Log.i("POSTING_ID", postingId+"");
                     Intent intent = new Intent(context, SelectedPostingActivity.class);
                     intent.putExtra("postingId", postingId);
+                    intent.putExtra("userId", posting.getUserId());
                     context.startActivity(intent);
 
 
                 }
             });
+
+
+
 
 
         }

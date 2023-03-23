@@ -1,14 +1,22 @@
 package com.cookandroid.subdietapp.api;
 
+import com.cookandroid.subdietapp.model.Res;
+import com.cookandroid.subdietapp.model.posting.Coment;
 import com.cookandroid.subdietapp.model.posting.PostingInfoRes;
 import com.cookandroid.subdietapp.model.posting.PostingRes;
 import com.cookandroid.subdietapp.model.posting.RecommendRes;
 
 import java.io.Serializable;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -32,7 +40,18 @@ public interface PostingApi extends Serializable {
     Call<PostingInfoRes> getPostingInfo(@Header("Authorization") String token,
                                         @Path("postingId") int postingId);
 
+    // 포스팅 작성
+    @Multipart
+    @POST("/posting")
+    Call<Res> addPosting(@Header("Authorization") String token,
+                        @Part MultipartBody.Part photo,
+                        @Part("content")RequestBody content);
 
+    // 포스팅 댓글 작성
+    @POST("/posting/coment/{postingId}")
+    Call<Res> addComent(@Header("Authorization") String token,
+                        @Path("postingId") int postingId,
+                        @Body Coment coment);
 
 
 

@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
@@ -27,6 +28,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/baseline_keyboard_backspace_24" />
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="290dp"
+                android:visibility="invisible"
+
+                android:backgroundTint="#2C3E50"
+                android:text="수정" />
 
         </LinearLayout>
 
@@ -59,6 +70,7 @@
             android:layout_height="250dp"
             android:layout_gravity="center"
             android:layout_margin="7dp"
+            android:scaleType="fitXY"
             app:srcCompat="@drawable/outline_insert_photo_24" />
 
         <LinearLayout
@@ -99,7 +111,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="170dp"
             android:layout_margin="10dp" />
 
                 <ImageView
@@ -135,6 +147,7 @@
                 app:srcCompat="@drawable/baseline_arrow_upward_24" />
 
         </LinearLayout>
+
 
 
     </LinearLayout>
