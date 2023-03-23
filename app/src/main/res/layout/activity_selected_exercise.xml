@@ -22,7 +22,7 @@
             android:layout_margin="10dp">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/baseline_keyboard_backspace_24" />
@@ -48,7 +48,7 @@
             >
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/editSearch"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:padding="9dp"
@@ -59,7 +59,7 @@
                 android:hint="검색어를 입력하세요" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/brnSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_marginLeft="5dp"
@@ -99,7 +99,7 @@
                 android:text="(000kcal)" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btnCal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
@@ -111,9 +111,23 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp" />
+
+
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:background="@drawable/border_outline"
+            android:backgroundTint="#FAF0F0"
+            android:text="등록"
+            android:textColor="#BA1010" />
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
