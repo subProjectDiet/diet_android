@@ -4,18 +4,24 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cookandroid.subdietapp.api.LikeApi;
+import com.bumptech.glide.Glide;
 import com.cookandroid.subdietapp.api.NetworkClient;
+import com.cookandroid.subdietapp.api.PostingApi;
 import com.cookandroid.subdietapp.config.Config;
+import com.cookandroid.subdietapp.model.Res;
+import com.cookandroid.subdietapp.model.posting.Coment;
 import com.cookandroid.subdietapp.model.posting.PostingInfo;
+import com.cookandroid.subdietapp.model.posting.PostingInfoRes;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,8 +38,11 @@ public class SelectedPostingActivity extends AppCompatActivity {
     ImageButton imgComment;
     RecyclerView recyclerView;
 
+    Button btnEdit;
+
     private String accessToken;
     int postingId;
+    String getComent;
 
 
     PostingInfo postingInfo = new PostingInfo();
@@ -63,6 +72,10 @@ public class SelectedPostingActivity extends AppCompatActivity {
         // 선택한 알콜 아이디 뽑아내는 코드
         postingId = getIntent().getIntExtra("postingId", 0);
 
+
+        getNetworkData();
+
+        // 뒤로가기 버튼
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,76 +84,140 @@ public class SelectedPostingActivity extends AppCompatActivity {
         });
 
 
-        //  하트의 상태를 변화시킨다.
-        imgLike.setOnClickListener(new View.OnClickListener() {
+
+
+
+        //댓글 작성
+        imgComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getComent = editComment.getText().toString().trim();
 
-                SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
-                String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");// 액세스 토큰이 없으면 "" 리턴
-
-                if (imgLike.isSelected()) { // 하트가 채워져 있다면
-                    imgLike.setSelected(false); // 하트가 비워진다.
-
-                    imgLike.setImageResource(R.drawable.baseline_favorite_border_24);
-                    // 비동기로 네트워크 실행
-                    Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
-                    LikeApi api = retrofit.create(LikeApi.class);
-                    Call<Void> call = api.deleteLike(accessToken, postingId);
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (response.isSuccessful()) {
-                                // 상태가변화됨을 감지하는 변수
-                                state = 1;
-                                // txtLikeCnt 에도 하트가 눌렸을 때의 숫자를 반영한다.
-                                likeCnt = likeCnt - 1;
-                                txtLike.setText(Integer.toString(likeCnt));
-                                Log.i("하트", "하트가 눌렸습니다.");
-                                Log.i("액티비티스탯3", state + "");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            Log.i("하트", "하트가 눌리지 않았습니다.");
-                        }
-                    });
-
-
-                } else { // 하트가 비워져 있다면
-                    imgLike.setSelected(true); // 하트가 채워진다
-                    imgLike.setImageResource(R.drawable.baseline_favorite_24);
-                    // 비동기로 네트워크 실행
-                    Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
-                    LikeApi api = retrofit.create(LikeApi.class);
-                    Call<Void> call = api.postLike(accessToken, postingId);
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (response.isSuccessful()) {
-                                state = 1;
-                                // txtLikeCnt 에도 하트가 눌렸을 때의 숫자를 반영한다.
-                                likeCnt = likeCnt + 1;
-                                txtLike.setText(Integer.toString(likeCnt));
-                                Log.i("액티비티스탯2", state + "");
-                                Log.i("하트", "하트가 눌렸습니다.");
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            Log.i("하트", "하트가 눌리지 않았습니다.");
-                        }
-                    });
+                if (getComent.isEmpty()){
+                    return;
                 }
+
+                getCommentNetworkData();
+
+                editComment.setText("");
+
+            }
+        });
+
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNetworkData();
+    }
+
+    // 댓글 작성 함수
+    private void getCommentNetworkData() {
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
+        PostingApi api = retrofit.create(PostingApi.class); // 레트로핏으로 서버에 요청할 객체 생성
+
+        // 2-2. 토큰 가져오기
+        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+
+
+        // 3. 저장
+        Coment coment = new Coment(getComent);
+
+        Call<Res> call = api.addComent(accessToken, postingId,coment); // 서버에 요청
+        call.enqueue(new Callback<Res>() {
+            @Override
+            public void onResponse(@NonNull Call<Res> call, @NonNull Response<Res> response) {
+
+                if(response.isSuccessful()) {
+
+
+                }else{
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Res> call, Throwable t) {
             }
         });
 
 
 
 
+    }
 
+
+    private void getNetworkData() {
+        Retrofit retrofit = NetworkClient.getRetrofitClient(this);
+
+        PostingApi api = retrofit.create(PostingApi.class);
+
+
+        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");// 액세스 토큰이 없으면 "" 리턴
+
+        Call<PostingInfoRes> call = api.getPostingInfo(accessToken, postingId);
+
+        call.enqueue(new Callback<PostingInfoRes>() {
+
+            @Override
+            public void onResponse(Call<PostingInfoRes> call, Response<PostingInfoRes> response) {
+                if (response.isSuccessful()) {
+                    // 사용자가 너무빨리 뒤로가기를 눌렀을때 에러가 발생한다.
+                    // 이를 방지하기 위해 try catch문을 사용한다.
+                    try {
+
+
+                        postingInfo = response.body().getPostingInfo();
+
+                        txtNickName.setText(postingInfo.getNickName());
+
+
+                        // glide로 이미지 뿌려주기
+                        Glide.with(SelectedPostingActivity.this)
+                                .load(postingInfo.getImgurl().replace("http","https"))
+                                .placeholder(R.drawable.outline_insert_photo_24)
+                                .into(imgPhoto);
+
+
+
+                        if (postingInfo.getIsLike() == 1) {
+                            imgLike.setImageResource(R.drawable.baseline_favorite_24);
+                        }
+
+                        txtLike.setText(postingInfo.getLikeCnt() + "");
+                        txtDate.setText(postingInfo.getCreatedAt().substring(0, 9+1) + " " + postingInfo.getCreatedAt().substring(11, 18+1) + "");
+                        txtContent.setText(postingInfo.getContent());
+
+
+                        likeCnt = postingInfo.getLikeCnt();
+
+
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostingInfoRes> call, Throwable t) {
+                Log.i("포스팅 정보", t.getMessage());
+            }
+        });
+
+
+
+    
+        
     }
 
 }

@@ -2,6 +2,7 @@ package com.cookandroid.subdietapp.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.cookandroid.subdietapp.AddPostingActivity;
 import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.SelectedPostingActivity;
 import com.cookandroid.subdietapp.adapter.PostingAdapter;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.PostingApi;
@@ -31,6 +34,7 @@ import com.cookandroid.subdietapp.model.posting.Posting;
 import com.cookandroid.subdietapp.model.posting.PostingRes;
 import com.cookandroid.subdietapp.model.posting.Recommend;
 import com.cookandroid.subdietapp.model.posting.RecommendRes;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -79,6 +83,9 @@ public class ThirdFragment extends Fragment {
     ImageView imgPhoto;
 
     Recommend recommend = new Recommend();
+
+    FloatingActionButton fab;
+
 
 
 
@@ -137,6 +144,8 @@ public class ThirdFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        fab = view.findViewById(R.id.fab);
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -164,6 +173,17 @@ public class ThirdFragment extends Fragment {
 
             }
         });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddPostingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
         getRecommendNetworkData();
@@ -201,6 +221,12 @@ public class ThirdFragment extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getNetworkData();
     }
 
     private void getNetworkData() {
@@ -291,7 +317,6 @@ public class ThirdFragment extends Fragment {
 
     private void getRecommendNetworkData() {
 
-
         Retrofit retrofit = NetworkClient.getRetrofitClient(getActivity());
         PostingApi api = retrofit.create(PostingApi.class);
 
@@ -321,7 +346,7 @@ public class ThirdFragment extends Fragment {
 
                         // glide로 이미지 뿌려주기
                         Glide.with(getActivity())
-                                .load(recommend.getImgUrl())
+                                .load(recommend.getImgUrl().replace("http","https"))
                                 .placeholder(R.drawable.outline_insert_photo_24)
                                 .into(imgPhoto);
 
@@ -337,7 +362,18 @@ public class ThirdFragment extends Fragment {
                         txtLike.setText(recommend.getLikeCnt());
                         txtContent.setText(recommend.getContent());
 
-                        Log.i("TESTINGNICKNAME", recommend.getNickName());
+
+
+
+                        imgPhoto.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), SelectedPostingActivity.class);
+                                intent.putExtra("postingId", recommend.getPostingId());
+                                startActivity(intent);
+                            }
+                        });
+
 
 
                     } catch (Exception e) {
@@ -357,4 +393,6 @@ public class ThirdFragment extends Fragment {
 
 
     }
+
+
 }

@@ -23,7 +23,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgBack"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView57"
+                android:id="@+id/txtSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
@@ -61,7 +61,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imgPhoto"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
@@ -70,7 +70,7 @@
     </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextTextPersonName8"
+            android:id="@+id/editContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"

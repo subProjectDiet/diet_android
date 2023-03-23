@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="80dp"
-            android:text="계산해 드렸어요"
+            android:text="목표 탄단지 정하기"
             android:textColor="#000000"
             android:textSize="22sp"
             android:textStyle="bold" />
