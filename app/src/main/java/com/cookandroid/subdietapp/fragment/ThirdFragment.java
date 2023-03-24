@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cookandroid.subdietapp.AddPostingActivity;
 import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.SearchPostingActivity;
 import com.cookandroid.subdietapp.SelectedPostingActivity;
 import com.cookandroid.subdietapp.adapter.PostingAdapter;
 import com.cookandroid.subdietapp.api.NetworkClient;
@@ -66,6 +68,7 @@ public class ThirdFragment extends Fragment {
     Spinner spinner;
     EditText editSearch;
     ImageButton imgSearch;
+    CardView cardView;
 
     String order;
     // 페이징 처리를 위한 변수
@@ -85,6 +88,8 @@ public class ThirdFragment extends Fragment {
     Recommend recommend = new Recommend();
 
     FloatingActionButton fab;
+
+    String keyword;
 
 
 
@@ -140,6 +145,8 @@ public class ThirdFragment extends Fragment {
         imgSearch = view.findViewById(R.id.imgSearch);
         editSearch = view.findViewById(R.id.editSearch);
 
+        cardView = view.findViewById(R.id.cardView);
+
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -184,9 +191,24 @@ public class ThirdFragment extends Fragment {
         });
 
 
-
-
         getRecommendNetworkData();
+
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                keyword = editSearch.getText().toString().trim();
+
+                if (keyword.isEmpty()){
+                    return;
+                }
+
+                Intent intent1 = new Intent(getActivity(), SearchPostingActivity.class);
+                intent1.putExtra("keyword", keyword);
+                startActivity(intent1);
+
+
+            }
+        });
 
 
         // 스피너 처리 관련 코드
@@ -201,9 +223,9 @@ public class ThirdFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (position == 0) {
-                    order = "createdAt";
-                } else if (position == 1) {
                     order = "likeCnt";
+                } else if (position == 1) {
+                    order = "createdAt";
 
                 }
                 Log.i("SPINNER", position + "");
@@ -356,11 +378,10 @@ public class ThirdFragment extends Fragment {
                             imgLike.setImageResource(R.drawable.baseline_favorite_24);
                         }
 
-
+                        txtContent.setText(recommend.getContent());
                         txtLike.setText(recommend.getLikeCnt() + "");
                         txtDate.setText( recommend.getCreatedAt().substring(0, 9+1) + " " + recommend.getCreatedAt().substring(11, 18+1) );
                         txtLike.setText(recommend.getLikeCnt());
-                        txtContent.setText(recommend.getContent());
 
 
 
@@ -374,6 +395,14 @@ public class ThirdFragment extends Fragment {
                             }
                         });
 
+                        cardView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), SelectedPostingActivity.class);
+                                intent.putExtra("postingId", recommend.getPostingId());
+                                startActivity(intent);
+                            }
+                        });
 
 
                     } catch (Exception e) {

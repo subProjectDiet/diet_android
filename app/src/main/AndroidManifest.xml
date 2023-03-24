@@ -28,6 +28,12 @@
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".EditPostingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchPostingActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyLikePostingActivity"
             android:exported="false" />
 

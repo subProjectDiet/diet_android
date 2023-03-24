@@ -22,7 +22,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -83,6 +82,13 @@ public class AddPostingActivity extends AppCompatActivity {
                 // 고를 수 있또록 알러트 다이얼로그를 띄운다.
                 showDialog();
 
+            }
+        });
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
