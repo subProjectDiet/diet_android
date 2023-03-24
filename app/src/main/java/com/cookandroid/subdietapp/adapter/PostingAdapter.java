@@ -1,13 +1,17 @@
 package com.cookandroid.subdietapp.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -16,9 +20,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SelectedPostingActivity;
+import com.cookandroid.subdietapp.api.LikeApi;
+import com.cookandroid.subdietapp.api.NetworkClient;
+import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.model.posting.Posting;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHolder>{
 
@@ -27,8 +39,8 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
     Context context;
     ArrayList<Posting> postingList;
 
-
     public PostingAdapter(Context context, ArrayList<Posting> postingList) {
+
         this.context = context;
         this.postingList = postingList;
     }
@@ -96,6 +108,9 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
             cardView = itemView.findViewById(R.id.cardView);
 
 
+            SharedPreferences sp = context.getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+            String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -115,6 +130,80 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                 }
             });
 
+            imgLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int index = getAdapterPosition();
+                    Posting posting = postingList.get(index);
+
+
+
+                    // 2. 해당행의 좋아요가 이미 좋아요인지 아닌지 파악
+                    if (posting.getIsLike() == 0) {
+                        // 3. 해당 좋아요에 맞는 좋아요 API를 호출
+                        Retrofit retrofit = NetworkClient.getRetrofitClient(context);
+                        LikeApi api = retrofit.create(LikeApi.class);
+
+
+
+                        Call<Void> call = api.postLike(accessToken, posting.getId());
+
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if (response.isSuccessful()) {
+                                    // 4. 화면에 결과를 표시
+                                    posting.setIsLike(1);
+                                    posting.setLikeCnt(posting.getLikeCnt() + 1);
+                                    notifyDataSetChanged();
+
+//                                    adapter2.notifyDataSetChanged();
+
+                                } else {
+                                    Toast.makeText(context, "좋아요 처리에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(context, "서버와 통신이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    } else {
+                        // 3. 좋아요 해제 API를 호출
+                        // 3. 해당 좋아요에 맞는 좋아요 API를 호출
+                        Retrofit retrofit = NetworkClient.getRetrofitClient(context);
+                        LikeApi api = retrofit.create(LikeApi.class);
+
+                        Call<Void> call = api.deleteLike(accessToken, posting.getId());
+
+                        call.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if (response.isSuccessful()) {
+                                    // 4. 화면에 결과를 표시
+                                    posting.setIsLike(0);
+                                    posting.setLikeCnt(posting.getLikeCnt() - 1);
+//                                    adapter2.notifyDataSetChanged();
+
+                                    notifyDataSetChanged();
+
+                                } else {
+                                    Toast.makeText(context, "좋아요 해제에 실패했습니다.", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                Toast.makeText(context, "서버와 통신이 원활하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+        });
 
 
 

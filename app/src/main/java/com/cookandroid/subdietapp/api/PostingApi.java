@@ -2,6 +2,7 @@ package com.cookandroid.subdietapp.api;
 
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.posting.Coment;
+import com.cookandroid.subdietapp.model.posting.ComentRes;
 import com.cookandroid.subdietapp.model.posting.PostingInfoRes;
 import com.cookandroid.subdietapp.model.posting.PostingRes;
 import com.cookandroid.subdietapp.model.posting.RecommendRes;
@@ -47,11 +48,32 @@ public interface PostingApi extends Serializable {
                         @Part MultipartBody.Part photo,
                         @Part("content")RequestBody content);
 
-    // 포스팅 댓글 작성
+//    // 포스팅 수정
+//    // 메모 수정 API
+//    @PUT("/posting/edit/{postingId}")
+//    Call<Res> updateMemo(@Header("Authorization") String token,
+//                         @Path("postingId") int postingId,
+//                         @Body String content);
+
+    // 댓글 작성
     @POST("/posting/coment/{postingId}")
     Call<Res> addComent(@Header("Authorization") String token,
                         @Path("postingId") int postingId,
                         @Body Coment coment);
+
+    // 댓글 리스트 가져오기
+    @GET("/posting/coment/{postingId}")
+    Call<ComentRes> getComent(@Header("Authorization") String token,
+                              @Path("postingId") int postingId,
+                              @Query("offset") int offset,
+                              @Query("limit") int limit);
+
+    // 태그로 검색한 포스팅 가져오기
+    @GET("/posting/tag")
+    Call<PostingRes> getTagPosting(@Header("Authorization") String token,
+                                   @Query("offset") int offset,
+                                   @Query("limit") int limit,
+                                   @Query("Name") String Name);
 
 
 
