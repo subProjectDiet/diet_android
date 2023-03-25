@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp.model;
+package com.cookandroid.subdietapp.model.exercise;
 
 import java.io.Serializable;
 import java.util.List;

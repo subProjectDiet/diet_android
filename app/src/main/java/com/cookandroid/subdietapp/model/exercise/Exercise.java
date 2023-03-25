@@ -1,4 +1,6 @@
-package com.cookandroid.subdietapp.model;
+package com.cookandroid.subdietapp.model.exercise;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,8 +18,10 @@ public class Exercise implements Serializable {
 
     private int id;
     private int userId;
+
     private String exercise;
     private int exerciseTime;
+
     private double  totalKcalBurn;
     private String date;
     private int recordType;

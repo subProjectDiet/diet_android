@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp.model;
+package com.cookandroid.subdietapp.model.exercise;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class ExerciseRecord implements Serializable {
     private int userId;
     private String exerciseName;
     private int exerciseTime;
-    private Float totalKcalBurn;
+    private Double totalKcalBurn;
     private  String date;
     private  int recordType;
 
@@ -52,11 +52,11 @@ public class ExerciseRecord implements Serializable {
         this.exerciseTime = exerciseTime;
     }
 
-    public Float getTotalKcalBurn() {
+    public Double getTotalKcalBurn() {
         return totalKcalBurn;
     }
 
-    public void setTotalKcalBurn(Float totalKcalBurn) {
+    public void setTotalKcalBurn(Double totalKcalBurn) {
         this.totalKcalBurn = totalKcalBurn;
     }
 
