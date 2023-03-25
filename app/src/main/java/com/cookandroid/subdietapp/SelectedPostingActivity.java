@@ -11,8 +11,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +39,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class SelectedPostingActivity extends AppCompatActivity {
+
+    private int deleteIndex;
 
     TextView txtNickName, txtDate, txtLike, txtContent;
 
@@ -235,9 +239,25 @@ public class SelectedPostingActivity extends AppCompatActivity {
                         // 삭제
                         }else if (menuItem.getItemId() == R.id.action_menu2){
 
+                            // 알러트 다이얼로그를 띄움
+                            AlertDialog.Builder builder = new AlertDialog.Builder(SelectedPostingActivity.this);
+                            builder.setTitle("게시글 삭제");
+                            builder.setMessage("정말 삭제 하시겠습니까?");
+                            // 예 버튼을 누르면 삭제
+                            builder.setPositiveButton("예", (dialogInterface, i) -> { // 람다식
+                                // 서버에 로그아웃 요청
+                                getDeletePosting(postingId);
+
+                            });
+                            // 아니오 버튼을 누르면 아무일도 일어나지 않음
+                            builder.setNegativeButton("아니오", null);
+                            builder.show();
 
 
-                        }
+
+
+
+                }
 
                         return false;
                     }
@@ -247,6 +267,50 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
         });
     }
+
+    private void getDeletePosting(int index) {
+
+        // 네트워크로 메모 삭제하는 코드 작성
+
+        deleteIndex = index;
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
+        PostingApi api = retrofit.create(PostingApi.class);
+
+
+
+        postingInfo.getPostingId();
+
+
+
+        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+
+
+        Call<Res> call = api.deletePosting( accessToken, postingInfo.getPostingId()  );
+        call.enqueue(new Callback<Res>() {
+            @Override
+            public void onResponse(Call<Res> call, Response<Res> response) {
+                if (response.isSuccessful()){
+
+                    Toast.makeText(SelectedPostingActivity.this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT);
+                    finish();
+
+                }else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Res> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+
+
 
     void addComentListNetworkData() {
         Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
@@ -326,6 +390,11 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNetworkData();
+    }
 
     // 포스팅 정보 가져오는 API
     private void getNetworkData() {

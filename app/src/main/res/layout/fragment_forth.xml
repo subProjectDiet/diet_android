@@ -182,7 +182,7 @@
             app:srcCompat="@drawable/line" />
 
         <TextView
-            android:id="@+id/textView61"
+            android:id="@+id/txtMyPosting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -200,7 +200,7 @@
             app:srcCompat="@drawable/line" />
 
         <TextView
-            android:id="@+id/textView62"
+            android:id="@+id/txtLikePosting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"

@@ -57,6 +57,9 @@ public class SearchPostingActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchPostingActivity.this));
 
+
+        
+
         String getKeyword = getIntent().getStringExtra("keyword");
         Log.i("KEYWORD_POSTING", getKeyword);
         getNetworkData(getKeyword);

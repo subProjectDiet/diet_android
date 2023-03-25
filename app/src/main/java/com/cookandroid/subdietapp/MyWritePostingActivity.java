@@ -23,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MyLikePostingActivity extends AppCompatActivity {
+public class MyWritePostingActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
@@ -48,7 +48,14 @@ public class MyLikePostingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_like_posting);
+        setContentView(R.layout.activity_my_write_posting);
+
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MyWritePostingActivity.this));
+
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -79,22 +86,15 @@ public class MyLikePostingActivity extends AppCompatActivity {
         });
 
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MyLikePostingActivity.this));
 
         getNetworkData();
-
-
-
-
 
 
     }
 
     private void getNetworkData() {
 
-        Retrofit retrofit = NetworkClient.getRetrofitClient(MyLikePostingActivity.this);
+        Retrofit retrofit = NetworkClient.getRetrofitClient(MyWritePostingActivity.this);
 
         PostingApi api = retrofit.create(PostingApi.class);
 
@@ -104,7 +104,7 @@ public class MyLikePostingActivity extends AppCompatActivity {
         offset = 0;
         count = 0;
 
-        Call<PostingRes> call = api.getMyLikePosting(accessToken ,offset, limit);
+        Call<PostingRes> call = api.getMyPosting(accessToken, offset, limit);
         call.enqueue(new Callback<PostingRes>() {
             @Override
             public void onResponse(Call<PostingRes> call, Response<PostingRes> response) {
@@ -122,7 +122,7 @@ public class MyLikePostingActivity extends AppCompatActivity {
 
                     postingList.addAll(response.body().getItems());
 
-                    postingAdapter = new PostingAdapter(MyLikePostingActivity.this, postingList);
+                    postingAdapter = new PostingAdapter(MyWritePostingActivity.this, postingList);
 
                     recyclerView.setAdapter(postingAdapter);
 
@@ -142,14 +142,14 @@ public class MyLikePostingActivity extends AppCompatActivity {
 
     private void addNetworkData() {
 
-        Retrofit retrofit = NetworkClient.getRetrofitClient(MyLikePostingActivity.this);
+        Retrofit retrofit = NetworkClient.getRetrofitClient(MyWritePostingActivity.this);
 
         PostingApi api = retrofit.create(PostingApi.class);
 
         SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
         String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
 
-        Call<PostingRes> call = api.getMyLikePosting(accessToken, offset, limit);
+        Call<PostingRes> call = api.getMyPosting(accessToken, offset, limit);
         call.enqueue(new Callback<PostingRes>() {
             @Override
             public void onResponse(Call<PostingRes> call, Response<PostingRes> response) {
