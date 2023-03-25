@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.cookandroid.subdietapp.MyLikePostingActivity;
 import com.cookandroid.subdietapp.MyWritePostingActivity;
 import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.SelectedPostingActivity;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.UserApi;
 import com.cookandroid.subdietapp.config.Config;
@@ -49,6 +51,8 @@ public class forthFragment extends Fragment {
     ImageButton btnLogout;
 
     TextView txtLikePosting, txtMyPosting;
+
+    EditText editNickName;
 
 
 
@@ -95,6 +99,14 @@ public class forthFragment extends Fragment {
 
         txtLikePosting = view.findViewById(R.id.txtLikePosting);
         txtMyPosting = view.findViewById(R.id.txtMyPosting);
+
+        editNickName = view.findViewById(R.id.editNickName);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
+        String nickName = sharedPreferences.getString(Config.NICKNAME, "");
+
+
+        editNickName.setText(nickName);
 
 
 
