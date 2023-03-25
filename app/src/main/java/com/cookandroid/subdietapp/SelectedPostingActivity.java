@@ -265,12 +265,12 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
     private void addMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
         CommentDTO commentDTO = dataSnapshot.getValue(CommentDTO.class);
-        adapter.add(USER_NAME + "   " + commentDTO.getMessage());
+        adapter.add(commentDTO.getUserName() + "   " + commentDTO.getMessage());
     }
 
     private void removeMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
         CommentDTO commentDTO = dataSnapshot.getValue(CommentDTO.class);
-        adapter.remove(USER_NAME + "   " + commentDTO.getMessage());
+        adapter.remove(commentDTO.getUserName() + "   " + commentDTO.getMessage());
     }
 
     private void setComment(int postingId) {
