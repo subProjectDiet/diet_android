@@ -14,14 +14,36 @@ public class User implements Serializable {
     private String nickName;
 
     private String password;
-
+    // 계정 고유 토큰정보
+    private String idToken;
     public User() {
+    }
+
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
 
     public User(String email, String nickName, String password) {
         this.email = email;
         this.nickName = nickName;
         this.password = password;
+    }
+
+    public User(String email, String nickName, String password, String idToken) {
+        this.email = email;
+        this.nickName = nickName;
+        this.password = password;
+        this.idToken = idToken;
+    }
+
+    public String getIdToken() {
+        return idToken;
+    }
+
+    public void setIdToken(String idToken) {
+        this.idToken = idToken;
     }
 
     public String getEmail() {

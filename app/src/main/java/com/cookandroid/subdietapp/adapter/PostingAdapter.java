@@ -124,6 +124,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
                     Intent intent = new Intent(context, SelectedPostingActivity.class);
                     intent.putExtra("postingId", postingId);
                     intent.putExtra("userId", posting.getUserId());
+
                     context.startActivity(intent);
 
 

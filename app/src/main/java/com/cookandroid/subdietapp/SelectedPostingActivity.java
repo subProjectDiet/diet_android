@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,11 +26,17 @@ import com.cookandroid.subdietapp.api.LikeApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.PostingApi;
 import com.cookandroid.subdietapp.config.Config;
+import com.cookandroid.subdietapp.model.ChatDTO;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.posting.Coment;
 import com.cookandroid.subdietapp.model.posting.ComentRes;
 import com.cookandroid.subdietapp.model.posting.PostingInfo;
 import com.cookandroid.subdietapp.model.posting.PostingInfoRes;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -41,6 +48,21 @@ import retrofit2.Retrofit;
 public class SelectedPostingActivity extends AppCompatActivity {
 
     private int deleteIndex;
+
+
+    // 댓글 관련 변수
+    private String CHAT_NAME;
+    private String USER_NAME;
+
+    private ListView chatView;
+
+    // 파이어베이스
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+    ArrayAdapter<String> adapter;
+
+
 
     TextView txtNickName, txtDate, txtLike, txtContent;
 
@@ -70,7 +92,6 @@ public class SelectedPostingActivity extends AppCompatActivity {
     public static int state = 0;
     int likeCnt;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,45 +111,55 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
         btnMenu = findViewById(R.id.btnMenu);
 
+        chatView = findViewById(R.id.chatView);
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(SelectedPostingActivity.this));
+//        recyclerView = findViewById(R.id.recyclerView);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(SelectedPostingActivity.this));
 
         // 스크롤 내렸을 때 데이터 추가로 가져오는 코드
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                // 맨 마지막 데이터가 화면에 보이면!!
+//                // 네트워크 통해서 데이터를 추가로 받아와라!!
+//                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+//                int totalCount = recyclerView.getAdapter().getItemCount();
+//
+//                // 스크롤을 데이터 맨 끝까지 한 상태
+//                if (lastPosition + 1 == totalCount && !isloading) {
+//                    // 네트워크 통해서 데이터를 받아오고, 화면에 표시!
+//                    isloading = true;
+//                    addComentListNetworkData();
+//                }
+//            }
+//        });
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
 
-                // 맨 마지막 데이터가 화면에 보이면!!
-                // 네트워크 통해서 데이터를 추가로 받아와라!!
-                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                int totalCount = recyclerView.getAdapter().getItemCount();
-
-                // 스크롤을 데이터 맨 끝까지 한 상태
-                if (lastPosition + 1 == totalCount && !isloading) {
-                    // 네트워크 통해서 데이터를 받아오고, 화면에 표시!
-                    isloading = true;
-                    addComentListNetworkData();
-                }
-            }
-        });
-
-
-        // 선택한 알콜 아이디 뽑아내는 코드
+        // 선택한 포스팅 아이디 뽑아내는 코드
         postingId = getIntent().getIntExtra("postingId", 0);
+
+        // 댓글에 나타낼 닉네임을 sp 로 가져옴
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
+        USER_NAME = sharedPreferences.getString(Config.NICKNAME, "");
+
+
+//        chatName
+//        USER_NAME = Config.NICKNAME + "";
+        // 댓글 작성
+        setComment(postingId);
+
 
         // 포스팅 정보 나타내는 함수
         getNetworkData();
 
-        // 댓글 리스트 가져오는 함수
-        getComentListNetworkData();
 
 
         // 뒤로가기 버튼
@@ -143,13 +174,17 @@ public class SelectedPostingActivity extends AppCompatActivity {
         imgComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getComent = editComment.getText().toString().trim();
+                getComent = editComment.getText().toString();
 
                 if (getComent.isEmpty()) {
                     return;
                 }
 
-                getCommentNetworkData();
+//                getCommentNetworkData();
+
+
+                ChatDTO chat = new ChatDTO(USER_NAME, getComent); //ChatDTO를 이용하여 데이터를 묶는다.
+                databaseReference.child("chat").child(postingId + "").push().setValue(chat); // 데이터 푸쉬
 
                 editComment.setText("");
 
@@ -266,6 +301,56 @@ public class SelectedPostingActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void addMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
+        ChatDTO chatDTO = dataSnapshot.getValue(ChatDTO.class);
+        adapter.add(USER_NAME + " : " + chatDTO.getMessage());
+    }
+
+    private void removeMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
+        ChatDTO chatDTO = dataSnapshot.getValue(ChatDTO.class);
+        adapter.remove(USER_NAME + " : " + chatDTO.getMessage());
+    }
+
+    private void setComment(int postingId) {
+        // 리스트 어댑터 생성 및 세팅
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+        chatView.setAdapter(adapter);
+
+        // 데이터 받아오기 및 어댑터 데이터 추가 및 삭제 등..리스너 관리
+        databaseReference.child("chat").child(postingId+"").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                addMessage(dataSnapshot, adapter);
+                Log.i("CHATBOT_APP", "s:"+s);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                removeMessage(dataSnapshot, adapter);
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
     }
 
     private void getDeletePosting(int index) {
@@ -470,53 +555,53 @@ public class SelectedPostingActivity extends AppCompatActivity {
     }
 
     // 댓글 리스트 가져오는 API
-    void getComentListNetworkData() {
-
-        Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
-
-        PostingApi api = retrofit.create(PostingApi.class);
-
-        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
-        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
-
-        offset = 0;
-        count = 0;
-
-        Call<ComentRes> call = api.getComent(accessToken, postingId ,offset, limit);
-        call.enqueue(new Callback<ComentRes>() {
-            @Override
-            public void onResponse(Call<ComentRes> call, Response<ComentRes> response) {
-
-                // getNetworkData 함수는, 항상 처음에 데이터를 가져오는 동작이므로
-                // 초기화 코드가 필요.
-                comentList.clear();
-
-
-                if (response.isSuccessful()) {
-
-                    count = response.body().getCount();
-
-                    offset = offset + count;
-
-                    comentList.addAll(response.body().getItems());
-
-                    comentAdapter = new ComentAdapter(SelectedPostingActivity.this, comentList);
-
-                    recyclerView.setAdapter(comentAdapter);
-
-
-                } else {
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ComentRes> call, Throwable t) {
-
-            }
-        });
-    }
+//    void getComentListNetworkData() {
+//
+//        Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
+//
+//        PostingApi api = retrofit.create(PostingApi.class);
+//
+//        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+//        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+//
+//        offset = 0;
+//        count = 0;
+//
+//        Call<ComentRes> call = api.getComent(accessToken, postingId ,offset, limit);
+//        call.enqueue(new Callback<ComentRes>() {
+//            @Override
+//            public void onResponse(Call<ComentRes> call, Response<ComentRes> response) {
+//
+//                // getNetworkData 함수는, 항상 처음에 데이터를 가져오는 동작이므로
+//                // 초기화 코드가 필요.
+//                comentList.clear();
+//
+//
+//                if (response.isSuccessful()) {
+//
+//                    count = response.body().getCount();
+//
+//                    offset = offset + count;
+//
+//                    comentList.addAll(response.body().getItems());
+//
+//                    comentAdapter = new ComentAdapter(SelectedPostingActivity.this, comentList);
+//
+//                    recyclerView.setAdapter(comentAdapter);
+//
+//
+//                } else {
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ComentRes> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
 
 
