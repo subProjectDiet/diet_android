@@ -88,11 +88,11 @@
                 android:id="@+id/txtContent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:padding="7dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/border_outline"
+                android:padding="10dp"
                 android:text="TextView"
                 android:textSize="18sp" />
 
@@ -125,18 +125,24 @@
                  />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="10dp" />
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:layout_margin="10dp" />-->
 
-                <ImageView
+        <ListView
+            android:id="@+id/chatView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="390dp"
             android:layout_height="1dp"
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/line" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

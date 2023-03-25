@@ -196,6 +196,7 @@ public class RegisterFirstActivity extends AppCompatActivity {
                             editor.putString(Config.NICKNAME, editNickName.getText().toString().trim());
                             editor.apply(); // 저장
 
+
                             Intent intent = new Intent(RegisterFirstActivity.this, RegisterTwoActivity.class);
                             startActivity(intent);
                             finish();
@@ -214,11 +215,8 @@ public class RegisterFirstActivity extends AppCompatActivity {
                 });
 
 
-
-
             }
         });
-
 
     }
 
