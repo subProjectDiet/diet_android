@@ -1,6 +1,4 @@
-package com.cookandroid.subdietapp;
-
-import static android.content.Context.MODE_PRIVATE;
+package com.cookandroid.subdietapp.adapter;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -18,16 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.api.ExerciseApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.exercise.ExerciseSearchAddActivity;
-import com.cookandroid.subdietapp.model.Exercise;
-import com.cookandroid.subdietapp.model.ExerciseRes;
+import com.cookandroid.subdietapp.model.exercise.Exercise;
+import com.cookandroid.subdietapp.model.exercise.ExerciseRes;
 
-
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,6 +42,9 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
 
     private Context mContext;
     private SharedPreferences mSharedPreferences;
+
+    private double totalKcalBurn;
+    private String exerciseName;
 
 
     public ExerciseSearchAdapter(Context context, ArrayList<Exercise> exercisesList) {
@@ -91,6 +91,7 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
                     Exercise exercise = exercisesList.get(index);
                     exerciseId = exercise.getId();
 
+                    //검색한 내용 바로 추가버튼으로 연결시켜주기
                     searchNetworkData();
 
                 }
@@ -101,7 +102,7 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
         }
     }
 
-    // TODO: 날짜를 포함해서 서버로 요청을 못하는중
+    // 검색한 결과에서 클릭한 운동의 데이터를 가지고오는 api
     private void searchNetworkData() {
         Calendar calendar = Calendar.getInstance();
         Date date = calendar.getTime();
@@ -120,29 +121,33 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
         String accessToken = "Bearer " + mSharedPreferences.getString(Config.ACCESS_TOKEN, "");
 
         Log.i(TAG,"토큰확인"+accessToken);
-        Call<Exercise> call = api.searchExerciseSelect(accessToken,exerciseId,dateString);
+        Call<ExerciseRes> call = api.searchExerciseSelect(accessToken,exerciseId,dateString);
         Log.i(TAG,"콜확인"+call);
-        call.enqueue(new Callback<Exercise>() {
+        call.enqueue(new Callback<ExerciseRes>() {
             @Override
-            public void onResponse(Call<Exercise> call, Response<Exercise> response) {
+            public void onResponse(Call<ExerciseRes> call, Response<ExerciseRes> response) {
                 if (response.isSuccessful()){
-                    Log.i(TAG,"주소"+response);
+                    Log.i(TAG,"주소"+response.body());
 
-                    String exercise = response.body().getExercise();
-                    double totalKcalBurn = response.body().getTotalKcalBurn();
+
+                    exerciseName = response.body().getItems().get(0).getExercise();
+                    totalKcalBurn = response.body().getItems().get(0).getTotalKcalBurn();
+                    int id = response.body().getItems().get(0).getId();
 
 
                     Intent intent = new Intent(context, ExerciseSearchAddActivity.class);
-                    intent.putExtra("exercise",exercise);
+                    intent.putExtra("exercise",exerciseName);
                     intent.putExtra("totalKcalBurn",totalKcalBurn);
-                    Log.i(TAG,"가저갈께요"+exercise+"칼로리"+totalKcalBurn);
+                    intent.putExtra("id",id);
+                    Log.i(TAG,"가저갈께요"+exerciseName+"칼로리"+totalKcalBurn+"id"+id);
                     context.startActivity(intent);
+
 
                 }
             }
 
             @Override
-            public void onFailure(Call<Exercise> call, Throwable t) {
+            public void onFailure(Call<ExerciseRes> call, Throwable t) {
                 Log.d("TAG", "onFailure: " + t.getMessage());
             }
         });
