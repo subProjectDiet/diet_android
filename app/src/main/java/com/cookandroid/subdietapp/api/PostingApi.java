@@ -3,6 +3,7 @@ package com.cookandroid.subdietapp.api;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.posting.Coment;
 import com.cookandroid.subdietapp.model.posting.ComentRes;
+import com.cookandroid.subdietapp.model.posting.PostingInfo;
 import com.cookandroid.subdietapp.model.posting.PostingInfoRes;
 import com.cookandroid.subdietapp.model.posting.PostingRes;
 import com.cookandroid.subdietapp.model.posting.RecommendRes;
@@ -13,10 +14,12 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -48,12 +51,16 @@ public interface PostingApi extends Serializable {
                         @Part MultipartBody.Part photo,
                         @Part("content")RequestBody content);
 
-//    // 포스팅 수정
-//    // 메모 수정 API
-//    @PUT("/posting/edit/{postingId}")
-//    Call<Res> updateMemo(@Header("Authorization") String token,
-//                         @Path("postingId") int postingId,
-//                         @Body String content);
+    // 포스팅 수정
+    @PUT("/posting/edit/{postingId}")
+    Call<Res> updatePosting(@Header("Authorization") String token,
+                         @Path("postingId") int postingId,
+                         @Body PostingInfo postingInfo);
+
+    // 포스팅 삭제
+    @DELETE("/posting/edit/{postingId}")
+    Call<Res> deletePosting (@Header("Authorization") String token,
+                         @Path("postingId") int postingId);
 
     // 댓글 작성
     @POST("/posting/coment/{postingId}")
@@ -75,6 +82,17 @@ public interface PostingApi extends Serializable {
                                    @Query("limit") int limit,
                                    @Query("Name") String Name);
 
+    // 내가 좋아요한 게시글 가져오기
+    @GET("/posting/like/me")
+    Call<PostingRes> getMyLikePosting(@Header("Authorization") String token,
+                                   @Query("offset") int offset,
+                                   @Query("limit") int limit);
+
+    // 내가 작성한 게시글 가져오기
+    @GET("/posting/me")
+    Call<PostingRes> getMyPosting(@Header("Authorization") String token,
+                                      @Query("offset") int offset,
+                                      @Query("limit") int limit);
 
 
 }

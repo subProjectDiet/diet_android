@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.cookandroid.subdietapp.MyLikePostingActivity;
+import com.cookandroid.subdietapp.MyWritePostingActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.UserApi;
@@ -44,6 +47,9 @@ public class forthFragment extends Fragment {
     private String accessToken;
 
     ImageButton btnLogout;
+
+    TextView txtLikePosting, txtMyPosting;
+
 
 
     public forthFragment() {
@@ -87,6 +93,10 @@ public class forthFragment extends Fragment {
 
         btnLogout = view.findViewById(R.id.btnLogout);
 
+        txtLikePosting = view.findViewById(R.id.txtLikePosting);
+        txtMyPosting = view.findViewById(R.id.txtMyPosting);
+
+
 
         // 로그아웃 버튼을 누르면 "정말 로그아웃 하시겠습니까?" 알러트 다이얼로그를 띄움
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +117,25 @@ public class forthFragment extends Fragment {
 
             }
         });
+
+        // 내가 좋아요한 게시글 보기로 이동
+        txtLikePosting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(getActivity(), MyLikePostingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        txtMyPosting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(getActivity(), MyWritePostingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

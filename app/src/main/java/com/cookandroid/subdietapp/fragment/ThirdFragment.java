@@ -381,7 +381,7 @@ public class ThirdFragment extends Fragment {
                         txtContent.setText(recommend.getContent());
                         txtLike.setText(recommend.getLikeCnt() + "");
                         txtDate.setText( recommend.getCreatedAt().substring(0, 9+1) + " " + recommend.getCreatedAt().substring(11, 18+1) );
-                        txtLike.setText(recommend.getLikeCnt());
+                        txtLike.setText(recommend.getLikeCnt()+"");
 
 
 
@@ -399,7 +399,7 @@ public class ThirdFragment extends Fragment {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), SelectedPostingActivity.class);
-                                intent.putExtra("postingId", recommend.getPostingId());
+                                intent.putExtra("postingId", recommend.getPostingId()+"");
                                 startActivity(intent);
                             }
                         });

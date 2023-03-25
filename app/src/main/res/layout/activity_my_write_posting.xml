@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyLikePostingActivity">
+    tools:context=".MyWritePostingActivity">
 
     <LinearLayout
         android:layout_width="410dp"
@@ -24,17 +24,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:text="내가 좋아요한 게시글 목록"
                 android:id="@+id/editSearch"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/border_outline"
-                android:backgroundTint="#99FFFFFF" />
+                android:backgroundTint="#99FFFFFF"
+                android:gravity="center_vertical"
+                android:text="내가 작성한 게시글 목록"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
