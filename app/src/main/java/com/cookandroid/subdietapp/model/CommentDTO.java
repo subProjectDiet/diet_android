@@ -1,12 +1,12 @@
 package com.cookandroid.subdietapp.model;
 
-public class ChatDTO {
+public class CommentDTO {
 
     private String userName;
     private String message;
 
-    public ChatDTO() {}
-    public ChatDTO(String userName, String message) {
+    public CommentDTO() {}
+    public CommentDTO(String userName, String message) {
         this.userName = userName;
         this.message = message;
     }

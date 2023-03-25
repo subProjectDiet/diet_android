@@ -26,7 +26,7 @@ import com.cookandroid.subdietapp.api.LikeApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.PostingApi;
 import com.cookandroid.subdietapp.config.Config;
-import com.cookandroid.subdietapp.model.ChatDTO;
+import com.cookandroid.subdietapp.model.CommentDTO;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.posting.Coment;
 import com.cookandroid.subdietapp.model.posting.ComentRes;
@@ -183,8 +183,8 @@ public class SelectedPostingActivity extends AppCompatActivity {
 //                getCommentNetworkData();
 
 
-                ChatDTO chat = new ChatDTO(USER_NAME, getComent); //ChatDTO를 이용하여 데이터를 묶는다.
-                databaseReference.child("chat").child(postingId + "").push().setValue(chat); // 데이터 푸쉬
+                CommentDTO chat = new CommentDTO(USER_NAME, getComent); //CommentDTO 를 이용하여 데이터를 묶는다.
+                databaseReference.child("chat").child( "postingId"+ postingId + "comment").push().setValue(chat); // 데이터 푸쉬
 
                 editComment.setText("");
 
@@ -304,22 +304,22 @@ public class SelectedPostingActivity extends AppCompatActivity {
     }
 
     private void addMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
-        ChatDTO chatDTO = dataSnapshot.getValue(ChatDTO.class);
-        adapter.add(USER_NAME + " : " + chatDTO.getMessage());
+        CommentDTO commentDTO = dataSnapshot.getValue(CommentDTO.class);
+        adapter.add(USER_NAME + "   " + commentDTO.getMessage());
     }
 
     private void removeMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
-        ChatDTO chatDTO = dataSnapshot.getValue(ChatDTO.class);
-        adapter.remove(USER_NAME + " : " + chatDTO.getMessage());
+        CommentDTO commentDTO = dataSnapshot.getValue(CommentDTO.class);
+        adapter.remove(USER_NAME + "   " + commentDTO.getMessage());
     }
 
     private void setComment(int postingId) {
         // 리스트 어댑터 생성 및 세팅
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+        adapter = new ArrayAdapter<String>(this, R.layout.coment_row, R.id.txtContent);
         chatView.setAdapter(adapter);
 
         // 데이터 받아오기 및 어댑터 데이터 추가 및 삭제 등..리스너 관리
-        databaseReference.child("chat").child(postingId+"").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("chat").child("postingId"+ postingId + "comment").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 addMessage(dataSnapshot, adapter);
