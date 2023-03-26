@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp.model;
+package com.cookandroid.subdietapp.model.user;
 
 import java.io.Serializable;
 

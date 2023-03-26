@@ -15,10 +15,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.cookandroid.subdietapp.MyLikePostingActivity;
-import com.cookandroid.subdietapp.MyWritePostingActivity;
+import com.cookandroid.subdietapp.posting.MyLikePostingActivity;
+import com.cookandroid.subdietapp.posting.MyWritePostingActivity;
 import com.cookandroid.subdietapp.R;
-import com.cookandroid.subdietapp.SelectedPostingActivity;
+import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.UserApi;
 import com.cookandroid.subdietapp.config.Config;

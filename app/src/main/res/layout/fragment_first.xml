@@ -58,8 +58,9 @@
 
                 android:layout_weight="2"
                 android:gravity="center_horizontal"
-                android:text="TextView"
-                android:textSize="17sp"
+                android:text="🙂오늘"
+                android:textSize="18sp"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <ImageButton
@@ -80,55 +81,55 @@
             android:layout_margin="10dp">
 
             <LinearLayout
+                android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="20dp">
 
                 <LinearLayout
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textView45"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
                         android:layout_gravity="center"
+                        android:text="몸무게"
                         android:textColor="#FFFFFF"
-                        android:text="몸무게" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/textView46"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp"
-                        android:textStyle="bold"
-                        android:gravity="center"
                         android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="00kg"
                         android:textColor="#FFFFFF"
+                        android:textSize="30sp"
 
-                        android:text="00kg" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/textView47"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@drawable/shape_outline"
                     android:gravity="center"
-                    android:layout_marginLeft="40dp"
+                    android:text="000kcal\n먹었어요"
                     android:textColor="#FFFFFF"
-                    android:textStyle="bold"
                     android:textSize="20dp"
 
-                    android:text="000kcal\n먹었어요" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout

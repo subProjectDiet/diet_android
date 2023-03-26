@@ -9,10 +9,12 @@ import retrofit2.http.Path;
 public interface LikeApi {
     // 포스팅 좋아요
     @POST("/posting/{postingId}/like")
-    Call<Void> postLike(@Header("Authorization") String token, @Path("postingId") int postingId);
+    Call<Void> postLike(@Header("Authorization") String token,
+                        @Path("postingId") int postingId);
     // 포스팅 좋아요 취소
     @DELETE("/posting/{postingId}/like")
-    Call<Void> deleteLike(@Header("Authorization") String token, @Path("postingId") int postingId);
+    Call<Void> deleteLike(@Header("Authorization") String token,
+                          @Path("postingId") int postingId);
 
 
 }

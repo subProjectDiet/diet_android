@@ -1,10 +1,10 @@
 package com.cookandroid.subdietapp.api;
 
 import com.cookandroid.subdietapp.model.Res;
-import com.cookandroid.subdietapp.model.User;
-import com.cookandroid.subdietapp.model.UserInfo;
-import com.cookandroid.subdietapp.model.UserRes;
-import com.cookandroid.subdietapp.model.UserTarget;
+import com.cookandroid.subdietapp.model.user.User;
+import com.cookandroid.subdietapp.model.user.UserInfo;
+import com.cookandroid.subdietapp.model.user.UserRes;
+import com.cookandroid.subdietapp.model.user.UserTarget;
 
 import java.io.Serializable;
 

@@ -20,8 +20,8 @@ import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.UserApi;
 import com.cookandroid.subdietapp.config.Config;
-import com.cookandroid.subdietapp.model.User;
-import com.cookandroid.subdietapp.model.UserRes;
+import com.cookandroid.subdietapp.model.user.User;
+import com.cookandroid.subdietapp.model.user.UserRes;
 
 import java.util.regex.Pattern;
 
