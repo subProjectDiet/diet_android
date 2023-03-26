@@ -111,6 +111,12 @@ public class RegisterTwoActivity extends AppCompatActivity {
                 hopeWeight = editHopeWeight.getText().toString().trim();
 
 
+                SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString(Config.HOPE_WEIGHT, editHopeWeight.getText().toString().trim());
+                editor.apply(); // 저장
+
+
 //                남자 66.47+(13.75X체중)+(5X키)–(6.76X나이)
 //                여자 655.1+(9.56X체중)+(1.85X키)–(4.68X나이)
 

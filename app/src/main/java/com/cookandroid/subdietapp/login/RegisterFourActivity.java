@@ -178,6 +178,11 @@ public class RegisterFourActivity extends AppCompatActivity {
                 targetFat = Double.parseDouble(txtFat.getText().toString().trim());
                 targetProtein = Double.parseDouble(txtProtein.getText().toString().trim());
 
+                SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString(Config.TARGET_KCAL, txtKcal.getText().toString().trim());
+                editor.apply(); // 저장
+
                 // 여기서 네트워크 통신
                 getNetworkData();
             }

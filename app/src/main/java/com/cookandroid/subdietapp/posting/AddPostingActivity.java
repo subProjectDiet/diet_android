@@ -134,6 +134,8 @@ public class AddPostingActivity extends AppCompatActivity {
 
                         } else {
 
+                            Toast.makeText(AddPostingActivity.this, "사진과 내용을 작성해주세요", Toast.LENGTH_SHORT).show();
+                            return;
 
                         }
 

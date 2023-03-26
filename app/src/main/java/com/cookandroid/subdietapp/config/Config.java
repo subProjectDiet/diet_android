@@ -9,4 +9,7 @@ public class Config {
     public static final String ACCESS_TOKEN = "access_token";
     public static final String NICKNAME = "nickName";
 
+    public static final String HOPE_WEIGHT = "hopeWeight";
+    public static final String TARGET_KCAL = "targetKcal";
+
 }

@@ -71,7 +71,7 @@
                 android:text="Name" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btnNickName"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:backgroundTint="#E74C3C"
@@ -85,15 +85,30 @@
             android:layout_width="390dp"
             android:layout_height="1dp"
             android:layout_gravity="center_horizontal"
+
             app:srcCompat="@drawable/line" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="10dp"
+            android:text="나의 목표" />
+
         <LinearLayout
+            android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:layout_margin="20dp"
-            android:background="#EEEEEE"
-            android:gravity="center">
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#EFEFEF"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -108,17 +123,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:textSize="16sp"
-                    android:text="목표 체중" />
+                    android:text="목표 체중"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView60"
+                    android:id="@+id/txtHopeWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:text="00 kg"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:text="TextView" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,21 +146,23 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView591"
+                    android:id="@+id/txt123"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:textSize="16sp"
-                    android:text="칼로리" />
+                    android:text="칼로리"
+                    android:textStyle="bold"
+
+                    android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView610"
+                    android:id="@+id/txtTargetKcal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:text="00 kcal"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:text="TextView" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -160,17 +178,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:textSize="16sp"
-                    android:text="탄단지" />
+                    android:text="탄단지"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textView620"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
+                    android:text="50:30:20"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:text="TextView" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 

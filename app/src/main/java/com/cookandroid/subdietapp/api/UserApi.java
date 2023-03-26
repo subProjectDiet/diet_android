@@ -7,11 +7,13 @@ import com.cookandroid.subdietapp.model.user.UserRes;
 import com.cookandroid.subdietapp.model.user.UserTarget;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface UserApi extends Serializable {
 
@@ -32,5 +34,10 @@ public interface UserApi extends Serializable {
     @POST("/user/logout")
     Call<Res> logout(@Header("Authorization") String token);
 
+
+    // 닉네임 수정
+    @PUT("/user/edit/nickname")
+    Call<Res> editNickname(@Header("Authorization") String token,
+                           @Body Map<String, String> nicknameMap);
 
 }
