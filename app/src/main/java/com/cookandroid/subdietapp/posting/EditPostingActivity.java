@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp;
+package com.cookandroid.subdietapp.posting;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.PostingApi;
 import com.cookandroid.subdietapp.config.Config;

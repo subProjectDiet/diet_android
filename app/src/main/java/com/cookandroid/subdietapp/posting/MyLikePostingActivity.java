@@ -1,4 +1,4 @@
-package com.cookandroid.subdietapp;
+package com.cookandroid.subdietapp.posting;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.adapter.PostingAdapter;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.PostingApi;

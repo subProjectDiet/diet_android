@@ -28,16 +28,16 @@
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MyWritePostingActivity"
+            android:name=".posting.MyWritePostingActivity"
             android:exported="false" />
         <activity
-            android:name=".EditPostingActivity"
+            android:name=".posting.EditPostingActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchPostingActivity"
+            android:name=".posting.SearchPostingActivity"
             android:exported="false" />
         <activity
-            android:name=".MyLikePostingActivity"
+            android:name=".posting.MyLikePostingActivity"
             android:exported="false" />
 
         <provider
@@ -51,10 +51,10 @@
         </provider>
 
         <activity
-            android:name=".SelectedPostingActivity"
+            android:name=".posting.SelectedPostingActivity"
             android:exported="false" />
         <activity
-            android:name=".AddPostingActivity"
+            android:name=".posting.AddPostingActivity"
             android:exported="false" />
         <activity
             android:name=".exercise.ExerciseSearchEditActivity"

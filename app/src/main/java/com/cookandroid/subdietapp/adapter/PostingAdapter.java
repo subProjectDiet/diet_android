@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cookandroid.subdietapp.R;
-import com.cookandroid.subdietapp.SelectedPostingActivity;
+import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 import com.cookandroid.subdietapp.api.LikeApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;

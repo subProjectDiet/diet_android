@@ -24,10 +24,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.cookandroid.subdietapp.AddPostingActivity;
+import com.cookandroid.subdietapp.posting.AddPostingActivity;
 import com.cookandroid.subdietapp.R;
-import com.cookandroid.subdietapp.SearchPostingActivity;
-import com.cookandroid.subdietapp.SelectedPostingActivity;
+import com.cookandroid.subdietapp.posting.SearchPostingActivity;
+import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 import com.cookandroid.subdietapp.adapter.PostingAdapter;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.PostingApi;

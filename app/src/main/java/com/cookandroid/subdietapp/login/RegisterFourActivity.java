@@ -18,7 +18,7 @@ import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.UserApi;
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.model.Res;
-import com.cookandroid.subdietapp.model.UserTarget;
+import com.cookandroid.subdietapp.model.user.UserTarget;
 
 import retrofit2.Call;
 import retrofit2.Callback;
