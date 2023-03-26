@@ -28,6 +28,9 @@
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".AddKcalDirectActivity"
+            android:exported="false" />
+        <activity
             android:name=".posting.MyWritePostingActivity"
             android:exported="false" />
         <activity

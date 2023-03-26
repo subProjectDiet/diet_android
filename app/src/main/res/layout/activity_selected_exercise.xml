@@ -120,13 +120,17 @@
 
         <Button
             android:id="@+id/btnNext"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:background="@drawable/border_outline"
-            android:backgroundTint="#FAF0F0"
+            android:layout_marginTop="10dp"
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:backgroundTint="#FFFFFF"
             android:text="등록"
-            android:textColor="#BA1010" />
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+
+            android:textColor="#F47474"
+            android:textSize="16sp"
+            app:iconTint="#BDA9A9" />
 
 
     </LinearLayout>
