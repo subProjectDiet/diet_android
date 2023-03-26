@@ -1,8 +1,6 @@
 package com.cookandroid.subdietapp.api;
 
 import com.cookandroid.subdietapp.model.Res;
-import com.cookandroid.subdietapp.model.posting.Coment;
-import com.cookandroid.subdietapp.model.posting.ComentRes;
 import com.cookandroid.subdietapp.model.posting.PostingInfo;
 import com.cookandroid.subdietapp.model.posting.PostingInfoRes;
 import com.cookandroid.subdietapp.model.posting.PostingRes;
@@ -62,18 +60,18 @@ public interface PostingApi extends Serializable {
     Call<Res> deletePosting (@Header("Authorization") String token,
                          @Path("postingId") int postingId);
 
-    // 댓글 작성
-    @POST("/posting/coment/{postingId}")
-    Call<Res> addComent(@Header("Authorization") String token,
-                        @Path("postingId") int postingId,
-                        @Body Coment coment);
-
-    // 댓글 리스트 가져오기
-    @GET("/posting/coment/{postingId}")
-    Call<ComentRes> getComent(@Header("Authorization") String token,
-                              @Path("postingId") int postingId,
-                              @Query("offset") int offset,
-                              @Query("limit") int limit);
+//    // 댓글 작성
+//    @POST("/posting/coment/{postingId}")
+//    Call<Res> addComent(@Header("Authorization") String token,
+//                        @Path("postingId") int postingId,
+//                        @Body Coment coment);
+//
+//    // 댓글 리스트 가져오기
+//    @GET("/posting/coment/{postingId}")
+//    Call<ComentRes> getComent(@Header("Authorization") String token,
+//                              @Path("postingId") int postingId,
+//                              @Query("offset") int offset,
+//                              @Query("limit") int limit);
 
     // 태그로 검색한 포스팅 가져오기
     @GET("/posting/tag")

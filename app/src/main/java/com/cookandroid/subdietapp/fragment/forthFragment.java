@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,15 +16,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.cookandroid.subdietapp.posting.MyLikePostingActivity;
-import com.cookandroid.subdietapp.posting.MyWritePostingActivity;
 import com.cookandroid.subdietapp.R;
-import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.api.UserApi;
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.login.LoginActivity;
 import com.cookandroid.subdietapp.model.Res;
+import com.cookandroid.subdietapp.posting.MyLikePostingActivity;
+import com.cookandroid.subdietapp.posting.MyWritePostingActivity;
+import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +55,13 @@ public class forthFragment extends Fragment {
 
     EditText editNickName;
 
+    TextView txtHopeWeight,txtTargetKcal;
 
+    // 닉네임 수정버튼
+   Button btnNickName;
+
+
+    String nickname;
 
     public forthFragment() {
         // Required empty public constructor
@@ -102,11 +109,25 @@ public class forthFragment extends Fragment {
 
         editNickName = view.findViewById(R.id.editNickName);
 
+        txtHopeWeight = view.findViewById(R.id.txtHopeWeight);
+        txtTargetKcal = view.findViewById(R.id.txtTargetKcal);
+        btnNickName = view.findViewById(R.id.btnNickName);
+
+
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
         String nickName = sharedPreferences.getString(Config.NICKNAME, "");
+        String targetKcal = sharedPreferences.getString(Config.TARGET_KCAL, "");
+        String hopeWeight = sharedPreferences.getString(Config.HOPE_WEIGHT, "");
+
+        Log.i("TEXTTEST", targetKcal + " " + hopeWeight);
 
 
         editNickName.setText(nickName);
+        txtHopeWeight.setText(hopeWeight + " kg");
+        txtTargetKcal.setText(targetKcal + " kcal");
+
+
 
 
 
@@ -148,8 +169,18 @@ public class forthFragment extends Fragment {
             }
         });
 
+        // 닉네임 수정을 누르면
+        btnNickName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
         return view;
     }
+
 
 
     private void getNetworkData(){

@@ -252,7 +252,6 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
 
 
-
                 }
 
                         return false;
@@ -263,6 +262,15 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getNetworkData();
+    }
+
+
+
 
     private void addMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
         CommentDTO commentDTO = dataSnapshot.getValue(CommentDTO.class);
@@ -318,8 +326,6 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
     private void getDeletePosting(int index) {
 
-        // 네트워크로 메모 삭제하는 코드 작성
-
         deleteIndex = index;
 
         Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedPostingActivity.this);
@@ -329,13 +335,11 @@ public class SelectedPostingActivity extends AppCompatActivity {
 
         postingInfo.getPostingId();
 
-
-
         SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
         String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
 
 
-        Call<Res> call = api.deletePosting( accessToken, postingInfo.getPostingId()  );
+        Call<Res> call = api.deletePosting(accessToken, postingInfo.getPostingId());
         call.enqueue(new Callback<Res>() {
             @Override
             public void onResponse(Call<Res> call, Response<Res> response) {
@@ -352,17 +356,14 @@ public class SelectedPostingActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Res> call, Throwable t) {
 
+
             }
         });
     }
 
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getNetworkData();
-    }
+
 
     // 포스팅 정보 가져오는 API
     private void getNetworkData() {

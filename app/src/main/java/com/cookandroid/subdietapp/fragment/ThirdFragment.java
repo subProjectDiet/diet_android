@@ -223,9 +223,9 @@ public class ThirdFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (position == 0) {
-                    order = "likeCnt";
-                } else if (position == 1) {
                     order = "createdAt";
+                } else if (position == 1) {
+                    order = "likeCnt";
 
                 }
                 Log.i("SPINNER", position + "");

@@ -8,6 +8,9 @@ public class Diary implements Serializable {
 //        "nowWeight": 50,
 //            "date": "2023-03-05"
 //    }
+
+    private int id;
+    private int userId;
     private String nowWeight;
     private String date;
 
@@ -18,6 +21,22 @@ public class Diary implements Serializable {
     public Diary(String nowWeight, String date) {
         this.nowWeight = nowWeight;
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getNowWeight() {
