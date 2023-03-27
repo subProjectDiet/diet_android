@@ -71,15 +71,15 @@ public class RegisterFourActivity extends AppCompatActivity {
         txtKcal.setText(doubleGetKcal+"");
 
         // 탄수화물
-        editCarbs.setText(Math.floor(doubleGetKcal * 0.5 / 4)+"");
-        txtCarbs.setText(Math.floor(doubleGetKcal * 0.5)+"");
+        editCarbs.setText(Math.round(doubleGetKcal * 0.5 / 4)+"");
+        txtCarbs.setText(Math.round(doubleGetKcal * 0.5)+"");
 
         // 단백질
-        editProtein.setText(Math.floor(doubleGetKcal * 0.3 / 4) +"");
-        txtProtein.setText(Math.floor(doubleGetKcal * 0.3) +"");
+        editProtein.setText(Math.round(doubleGetKcal * 0.3 / 4) +"");
+        txtProtein.setText(Math.round(doubleGetKcal * 0.3) +"");
         // 지방
-        editFat.setText(Math.floor(doubleGetKcal * 0.2 / 9) +"");
-        txtFat.setText(Math.floor(doubleGetKcal * 0.2) +"");
+        editFat.setText(Math.round(doubleGetKcal * 0.2 / 9) +"");
+        txtFat.setText(Math.round(doubleGetKcal * 0.2) +"");
 
         editCarbs.addTextChangedListener(new TextWatcher() {
             @Override
@@ -94,9 +94,9 @@ public class RegisterFourActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 try {
-                    targetFat = Math.floor(Double.parseDouble(editFat.getText().toString().trim())* 9)  ;
-                    targetCarbs = Math.floor(Double.parseDouble(editCarbs.getText().toString().trim()) * 4);
-                    targetProtein = Math.floor(Double.parseDouble(editProtein.getText().toString().trim()) * 4);
+                    targetFat = Double.valueOf(Math.round(Double.parseDouble(editFat.getText().toString().trim())* 9));
+                    targetCarbs = Double.valueOf(Math.round(Double.parseDouble(editCarbs.getText().toString().trim()) * 4));
+                    targetProtein = Double.valueOf(Math.round(Double.parseDouble(editProtein.getText().toString().trim()) * 4));
 
                     txtKcal.setText(targetCarbs+targetFat+targetProtein+"");
                     txtCarbs.setText(targetCarbs +"");
@@ -121,9 +121,9 @@ public class RegisterFourActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 try {
-                    targetFat = Math.floor(Double.parseDouble(editFat.getText().toString().trim())* 9)  ;
-                    targetCarbs = Math.floor(Double.parseDouble(editCarbs.getText().toString().trim()) * 4);
-                    targetProtein = Math.floor(Double.parseDouble(editProtein.getText().toString().trim()) * 4);
+                    targetFat = Double.valueOf(Math.round(Double.parseDouble(editFat.getText().toString().trim())* 9));
+                    targetCarbs = Double.valueOf(Math.round(Double.parseDouble(editCarbs.getText().toString().trim()) * 4));
+                    targetProtein = Double.valueOf(Math.round(Double.parseDouble(editProtein.getText().toString().trim()) * 4));
 
                     txtKcal.setText(targetCarbs+targetFat+targetProtein+"");
                     txtProtein.setText(targetProtein +"");
@@ -148,9 +148,9 @@ public class RegisterFourActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {
 
                 try {
-                    targetFat = Math.floor(Double.parseDouble(editFat.getText().toString().trim())* 9)  ;
-                    targetCarbs = Math.floor(Double.parseDouble(editCarbs.getText().toString().trim()) * 4);
-                    targetProtein = Math.floor(Double.parseDouble(editProtein.getText().toString().trim()) * 4);
+                    targetFat = Double.valueOf(Math.round(Double.parseDouble(editFat.getText().toString().trim())* 9));
+                    targetCarbs = Double.valueOf(Math.round(Double.parseDouble(editCarbs.getText().toString().trim()) * 4));
+                    targetProtein = Double.valueOf(Math.round(Double.parseDouble(editProtein.getText().toString().trim()) * 4));
 
                     txtFat.setText(targetFat+"");
 
@@ -172,11 +172,11 @@ public class RegisterFourActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                targetKcal = Double.parseDouble(txtKcal.getText().toString().trim());
+                targetKcal = Double.valueOf(Math.round(Double.parseDouble(txtKcal.getText().toString().trim())));
 
-                targetCarbs = Double.parseDouble(txtCarbs.getText().toString().trim());
-                targetFat = Double.parseDouble(txtFat.getText().toString().trim());
-                targetProtein = Double.parseDouble(txtProtein.getText().toString().trim());
+                targetCarbs = Double.valueOf(Math.round(Double.parseDouble(txtCarbs.getText().toString().trim())));
+                targetFat = Double.valueOf(Math.round(Double.parseDouble(txtFat.getText().toString().trim())));
+                targetProtein = Double.valueOf(Math.round(Double.parseDouble(txtProtein.getText().toString().trim())));
 
                 SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
