@@ -27,6 +27,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
+
+
+
+        <activity
+            android:name=".SearchFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".food.SelectedBreakfastFoodActivity"
+            android:exported="false" />
         <activity
             android:name=".AddKcalDirectActivity"
             android:exported="false" />

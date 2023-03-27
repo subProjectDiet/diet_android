@@ -1,6 +1,7 @@
 package com.cookandroid.subdietapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.cookandroid.subdietapp.api.DiaryApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
+import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.diary.Diary;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
@@ -32,6 +34,8 @@ public class SelectedDayActivity extends AppCompatActivity {
     String getWeight;
     TextView txtDate, txtMonth, txtWeight, txtTargetKcal;
 
+    TextView txtBreakfast;
+
     Diary diary = new Diary();
 
 
@@ -47,9 +51,12 @@ public class SelectedDayActivity extends AppCompatActivity {
 
         txtTargetKcal = findViewById(R.id.txtTargetKcal);
 
+        txtBreakfast = findViewById(R.id.txtBreakfast);
         // 요일 정보 받아오기
         // 2023-03-26
         date = getIntent().getStringExtra("date");
+
+
 
         Log.i("NOWDATE_DIARY", date);
 
@@ -66,7 +73,7 @@ public class SelectedDayActivity extends AppCompatActivity {
         String targetKcal = sharedPreferences.getString(Config.TARGET_KCAL, "");
         txtTargetKcal.setText("/"+targetKcal);
 
-
+        // 몸무게 입력
         txtWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +95,18 @@ public class SelectedDayActivity extends AppCompatActivity {
                     }
                 });
                 builder.show();
+            }
+        });
+
+        // 아침 버튼 클릭시
+        // 아침 음식 화면으로 이동
+        // 해당 다이어리의 날짜 데이터를 넘겨준다
+        txtBreakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SelectedDayActivity.this, SelectedBreakfastFoodActivity.class);
+                intent.putExtra("date", date);
+                startActivity(intent);
             }
         });
 
@@ -146,7 +165,7 @@ public class SelectedDayActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DiaryRes> call, Throwable t) {
-                Log.i("포스팅 정보", t.getMessage());
+                Log.i("다이어리", t.getMessage());
             }
         });
 
