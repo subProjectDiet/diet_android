@@ -43,6 +43,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
 
     String date;
     int mealtime;
+    int mealtimeLunch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
