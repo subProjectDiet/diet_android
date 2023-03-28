@@ -42,6 +42,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
     String foodName, gram;
 
     String date;
+    int mealtime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
 
         // 요일 데이터 받아오기
         date = getIntent().getStringExtra("date");
+        mealtime = Integer.parseInt(getIntent().getStringExtra("mealtime"));
 
         foodName = editFoodName.getText().toString().trim();
         gram = editGram.getText().toString().trim();
@@ -118,9 +120,9 @@ public class AddKcalDirectActivity extends AppCompatActivity {
                     //칼로리 계산
                     Double Setkcal =  Double.parseDouble(editKcal.getText().toString().trim());
 //                    long excutekcal2 = Math.round(excutekcal1 * 100);
-                    txtCarbs.setText(Math.round(Setkcal * 0.25 / 4) + "");
-                    txtProtein.setText(Math.round(Setkcal * 0.25 / 4) + "");
-                    txtFat.setText(Math.round(Setkcal * 0.5 / 9 )+ "");
+                    txtCarbs.setText(Math.round(Setkcal * 0.5 / 4) + "");
+                    txtProtein.setText(Math.round(Setkcal * 0.3 / 4) + "");
+                    txtFat.setText(Math.round(Setkcal * 0.2 / 9 )+ "");
 
                 }catch (Exception e){
 
@@ -177,7 +179,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
 //            "date": "2023-03-27"
 //    }
 
-        FoodAdd foodAdd = new FoodAdd(foodName, Double.parseDouble(gram), Double.parseDouble(kcal), 0 ,date );
+        FoodAdd foodAdd = new FoodAdd(foodName, Double.parseDouble(gram), Double.parseDouble(kcal), mealtime ,date );
 
 
         // recordType 은 유저가 칼로리 데이터를 직접 추가했으면 1

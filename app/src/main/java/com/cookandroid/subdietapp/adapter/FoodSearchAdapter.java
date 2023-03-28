@@ -1,6 +1,8 @@
 package com.cookandroid.subdietapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cookandroid.subdietapp.FoodAddActivity;
 import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
 import com.cookandroid.subdietapp.model.food.Food;
 
 import java.util.ArrayList;
@@ -75,17 +79,43 @@ public class FoodSearchAdapter extends RecyclerView.Adapter<FoodSearchAdapter.Vi
                 @Override
                 public void onClick(View view) {
 
-                    int index = getAdapterPosition();
+//                    {
+//                        "foodName": "파맛첵스",
+//                            "gram": 50,
+//                            "kcal": 30,
+//                            "carbs": 50,
+//                            "protein": 20,
+//                            "fat": 10,
+//                            "mealtime": 0
+//                    }
+
+                        // 액티비티에서 mealtime 과 date 데이터를 받아온다
+                        int mealtime = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).mealtime;
+                        String date = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).date;
+
+                        int index = getAdapterPosition();
+
+                        Food food = foodList.get(index);
+                        int foodId = food.getFoodId();
 
 
-                }
-            });
+                        Log.i("GETDATA", "foodId : " + foodId + " date : "+date + " mealtime : " + mealtime);
+                        Intent intent = new Intent(context, FoodAddActivity.class);
+                        intent.putExtra("foodId", foodId+"");
+                        intent.putExtra("date", date);
+                        intent.putExtra("mealtime", mealtime + "");
+
+                        context.startActivity(intent);
+
+
+
+                    }
+                });
 
 
 
 
 
 
-        }
-    }
-}
+            }
+        }}

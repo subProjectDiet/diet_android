@@ -107,10 +107,10 @@
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="17dp"
+                android:layout_marginLeft="7dp"
                 android:text="총 섭취 칼로리 "
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -120,7 +120,8 @@
                 android:layout_marginLeft="5dp"
                 android:text="(000kcal)"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical"
                 android:textStyle="bold" />
 
             <Button

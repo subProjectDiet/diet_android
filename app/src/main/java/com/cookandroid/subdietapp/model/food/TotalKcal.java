@@ -14,4 +14,10 @@ public class TotalKcal implements Serializable {
     public void setTotalKcal(String totalKcal) {
         this.totalKcal = totalKcal;
     }
+
+
+
+
+
+
 }

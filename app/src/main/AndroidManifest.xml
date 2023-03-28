@@ -27,9 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
-
-
-
+        <activity
+            android:name=".FoodEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodAddActivity"
+            android:exported="false" />
         <activity
             android:name=".SearchFoodActivity"
             android:exported="false" />

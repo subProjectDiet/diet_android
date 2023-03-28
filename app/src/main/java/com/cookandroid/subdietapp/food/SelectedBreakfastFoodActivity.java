@@ -1,5 +1,6 @@
 package com.cookandroid.subdietapp.food;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FoodAdapter foodAdapter;
     ArrayList<Food> foodList = new ArrayList<>();
-    String date;
+    public String date;
 
     TotalKcal totalKcal = new TotalKcal();
 
@@ -53,6 +54,9 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
     int offset = 0;
     int limit = 25;
 
+    public int mealtime = 0;
+
+    public static Context mContext;
 
     private boolean isloading = false;
 
@@ -78,7 +82,8 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(new DividerItemDecoration(SelectedBreakfastFoodActivity.this, 1));
 
-
+        // 어댑터로 데이터를 보내기 위한 변수
+        mContext = this;
 
         // 다이어리 페이지에서 요일 정보 받아오기
         // 2023-03-26
@@ -96,6 +101,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SelectedBreakfastFoodActivity.this, AddKcalDirectActivity.class);
                 intent.putExtra("date", date);
+                intent.putExtra("mealtime", mealtime + "");
                 startActivity(intent);
             }
         });
@@ -149,8 +155,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
         getKcalNetworkData();
     }
 
-    // 이부분 수정하기
-    // 몸무게를 나타내는 텍스트뷰에 나타내기 위한 용도
+    // 아침에 섭취한 칼로리 데이터를 가져온다
     private void getKcalNetworkData() {
 
         Log.i("DATETEST", date);
@@ -173,13 +178,16 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
 
+
                     // 사용자가 너무빨리 뒤로가기를 눌렀을때 에러가 발생한다.
                     // 이를 방지하기 위해 try catch문을 사용한다.
 
 
                     try {
 
-                        txtTotalKcal.setText(totalKcal.getTotalKcal());
+//                        response.body().getTotalKcal().getTotalKcal();
+
+                        txtTotalKcal.setText("("+response.body().getTotalKcal().getTotalKcal() + "kcal)");
 
                     } catch (Exception e) {
                         e.printStackTrace();

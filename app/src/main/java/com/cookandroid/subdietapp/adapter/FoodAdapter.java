@@ -1,6 +1,8 @@
 package com.cookandroid.subdietapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cookandroid.subdietapp.FoodEditActivity;
 import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
 import com.cookandroid.subdietapp.model.food.Food;
 
 import java.util.ArrayList;
@@ -77,7 +81,25 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder>{
                 @Override
                 public void onClick(View view) {
 
+
+                    // 액티비티에서 mealtime 과 date 데이터를 받아온다
+                    int mealtime = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).mealtime;
+                    String date = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).date;
+
                     int index = getAdapterPosition();
+
+                    Food food = foodList.get(index);
+                    int foodRecordId = food.getId();
+
+
+                    Log.i("GETDATA", "foodRecordId : " + foodRecordId + " date : "+date + " mealtime : " + mealtime);
+                    Intent intent = new Intent(context, FoodEditActivity.class);
+                    intent.putExtra("foodRecordId", foodRecordId+"");
+                    intent.putExtra("food", food);
+                    intent.putExtra("date", date);
+                    intent.putExtra("mealtime", mealtime + "");
+
+                    context.startActivity(intent);
 
 
                 }
