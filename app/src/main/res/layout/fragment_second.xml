@@ -6,8 +6,102 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SecondFragment">
 
-    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:id="@+id/calendarview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/calendar_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mcv_showOtherDates="all" />
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cv_158688"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarview">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:drawableBottom="@drawable/underline"
+                android:gravity="bottom|left"
+                android:text="오늘 체중"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/txtWeight"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableBottom="@drawable/underline"
+                android:gravity="left"
+                android:text="Text 1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:drawableBottom="@drawable/underline"
+                android:gravity="bottom|left"
+                android:text="오늘 먹은 총 칼로리"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/txtKcal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableBottom="@drawable/underline"
+                android:gravity="left"
+                android:text="Text 1"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:drawableBottom="@drawable/underline"
+                android:gravity="bottom|left"
+                android:text="오늘 한 총 운동량"
+                android:textColor="@android:color/black" />
 
 
+            <TextView
+                android:id="@+id/txtExercise"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:drawableBottom="@drawable/underline"
+                android:gravity="left"
+                android:text="Text 1"
+                android:textColor="@android:color/black" />
+
+
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>
