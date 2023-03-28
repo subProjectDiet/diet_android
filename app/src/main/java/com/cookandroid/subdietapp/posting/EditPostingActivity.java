@@ -37,6 +37,8 @@ public class EditPostingActivity extends AppCompatActivity {
     File photoFile;
     String content;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

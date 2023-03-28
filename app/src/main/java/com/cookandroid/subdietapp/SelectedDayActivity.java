@@ -1,5 +1,6 @@
 package com.cookandroid.subdietapp;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,14 +14,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.cookandroid.subdietapp.api.DiaryApi;
+import com.cookandroid.subdietapp.api.FoodApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.diary.Diary;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
+import com.cookandroid.subdietapp.model.food.TotalKcalRes;
 import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 
 import retrofit2.Call;
@@ -37,6 +41,7 @@ public class SelectedDayActivity extends AppCompatActivity {
     TextView txtBreakfast;
 
     Diary diary = new Diary();
+//    Context context;
 
 
 
@@ -51,7 +56,9 @@ public class SelectedDayActivity extends AppCompatActivity {
 
         txtTargetKcal = findViewById(R.id.txtTargetKcal);
 
+
         txtBreakfast = findViewById(R.id.txtBreakfast);
+
         // 요일 정보 받아오기
         // 2023-03-26
         date = getIntent().getStringExtra("date");
@@ -65,8 +72,19 @@ public class SelectedDayActivity extends AppCompatActivity {
 
         txtWeight.setPaintFlags(txtWeight.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-        // 몸무게 입력란에 유저가 입력한 정보가 있다면 미리 셋팅
-        getWeightNetworkData();
+
+
+
+
+        // 아침에 섭취한 칼로리가 있다면 불러온 후 textview 에 데이터셋팅
+        // 데이터가 있을 경우 drawable 로 textview 의 색을 바꾼다
+        // 글자색은 하얀색으로
+
+
+
+
+
+
 
         // 유저 목표 칼로리 (회원가입할때 입력한 kcal 정보임) 텍스트뷰에 나타내기
         SharedPreferences sharedPreferences = getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
@@ -114,6 +132,72 @@ public class SelectedDayActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWeightNetworkData();
+        getKcalNetworkData();
+    }
+
+    private void getKcalNetworkData() {
+
+        Log.i("DATETEST", date);
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(this);
+
+        FoodApi api = retrofit.create(FoodApi.class);
+
+
+        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+
+        Call<TotalKcalRes> call = api.getTotalBreakfastKcal(accessToken, date);
+
+        call.enqueue(new Callback<TotalKcalRes>() {
+
+            @SuppressLint({"ResourceAsColor", "ResourceType"})
+            @Override
+            public void onResponse(Call<TotalKcalRes> call, Response<TotalKcalRes> response) {
+
+
+                if (response.isSuccessful()) {
+                    // 사용자가 너무빨리 뒤로가기를 눌렀을때 에러가 발생한다.
+                    // 이를 방지하기 위해 try catch문을 사용한다.
+
+
+                    try {
+                        String getBreakfastKcal =  response.body().getTotalKcal().getTotalKcal();
+
+                        if (getBreakfastKcal.isEmpty()){
+                            return;
+                        } else {
+                            txtBreakfast.setText(getBreakfastKcal + "\nkcal");
+                            txtBreakfast.setBackground(ContextCompat.getDrawable(SelectedDayActivity.this, R.drawable.color_shape));
+                            txtBreakfast.setTextColor(ContextCompat.getColor(SelectedDayActivity.this, R.color.white));
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TotalKcalRes> call, Throwable t) {
+                Log.i("다이어리", t.getMessage());
+            }
+        });
+
+
+
+
+
+
+    }
+
 
     // 특정날짜에 입력한 몸무게 데이터 가져오기
     // 몸무게를 나타내는 텍스트뷰에 나타내기 위한 용도

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cookandroid.subdietapp.adapter.FoodAdapter;
+import com.cookandroid.subdietapp.adapter.FoodSearchAdapter;
 import com.cookandroid.subdietapp.api.FoodApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
@@ -37,7 +37,7 @@ public class SearchFoodActivity extends AppCompatActivity {
     ImageView imgBack;
 
     RecyclerView recyclerView;
-    FoodAdapter foodAdapter;
+    FoodSearchAdapter foodSearchAdapter;
     ArrayList<Food> foodList = new ArrayList<>();
 
     // 페이징 처리를 위한 변수
@@ -73,6 +73,7 @@ public class SearchFoodActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String searchKeyword = editSearch.getText().toString().trim();
                 getNetworkData(searchKeyword);
+                finish();
 
 
 
@@ -131,8 +132,8 @@ public class SearchFoodActivity extends AppCompatActivity {
 
                     foodList.addAll(response.body().getItems());
 
-                    foodAdapter = new FoodAdapter(SearchFoodActivity.this, foodList);
-                    recyclerView.setAdapter(foodAdapter);
+                    foodSearchAdapter = new FoodSearchAdapter(SearchFoodActivity.this, foodList);
+                    recyclerView.setAdapter(foodSearchAdapter);
 
 
                 } else {
@@ -199,7 +200,7 @@ public class SearchFoodActivity extends AppCompatActivity {
 
                     foodList.addAll(response.body().getItems());
 
-                    foodAdapter.notifyDataSetChanged();
+                    foodSearchAdapter.notifyDataSetChanged();
                     isloading = false;
 
 

@@ -18,6 +18,7 @@ public class Food implements Serializable {
 //            "recordType": 2
 //    }
 
+    private int foodId;
     private int id;
     private int userId;
     private String foodName;
@@ -30,6 +31,14 @@ public class Food implements Serializable {
     private String date;
     private int recordType;
 
+
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
 
     public int getId() {
         return id;
