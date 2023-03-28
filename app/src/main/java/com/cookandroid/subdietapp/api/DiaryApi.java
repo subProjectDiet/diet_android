@@ -2,6 +2,7 @@ package com.cookandroid.subdietapp.api;
 
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.diary.Diary;
+import com.cookandroid.subdietapp.model.diary.DiaryMonthRes;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
 
 import retrofit2.Call;
@@ -28,6 +29,13 @@ public interface DiaryApi {
     @GET("diary")
     Call<DiaryRes> setDiaryWeight(@Header("Authorization") String token,
                                   @Query("date") String date);
+
+    //유저가 특정날 몸무게-칼로리-운동 가저오는API
+    @GET("/diary/month")
+    Call<DiaryMonthRes> getDiaryMonth(@Header("Authorization") String token,
+                                      @Query("date") String date);
+
+
 
 
 
