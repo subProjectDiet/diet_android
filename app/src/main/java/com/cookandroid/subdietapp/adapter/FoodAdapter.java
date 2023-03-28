@@ -86,6 +86,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder>{
                     int mealtime = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).mealtime;
                     String date = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).date;
 
+
                     int index = getAdapterPosition();
 
                     Food food = foodList.get(index);

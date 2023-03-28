@@ -21,6 +21,7 @@ import com.cookandroid.subdietapp.api.FoodApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
+import com.cookandroid.subdietapp.food.SelectedLunchFoodActivity;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.diary.Diary;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
@@ -38,7 +39,7 @@ public class SelectedDayActivity extends AppCompatActivity {
     String getWeight;
     TextView txtDate, txtMonth, txtWeight, txtTargetKcal;
 
-    TextView txtBreakfast;
+    TextView txtBreakfast, txtLunch, txtDinner;
 
     Diary diary = new Diary();
 //    Context context;
@@ -58,6 +59,8 @@ public class SelectedDayActivity extends AppCompatActivity {
 
 
         txtBreakfast = findViewById(R.id.txtBreakfast);
+        txtLunch = findViewById(R.id.txtLunch);
+        txtDinner = findViewById(R.id.txtDinner);
 
         // 요일 정보 받아오기
         // 2023-03-26
@@ -128,6 +131,17 @@ public class SelectedDayActivity extends AppCompatActivity {
             }
         });
 
+        txtLunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SelectedDayActivity.this, SelectedLunchFoodActivity.class);
+                intent.putExtra("date", date);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 
 
@@ -164,7 +178,6 @@ public class SelectedDayActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // 사용자가 너무빨리 뒤로가기를 눌렀을때 에러가 발생한다.
                     // 이를 방지하기 위해 try catch문을 사용한다.
-
 
                     try {
                         String getBreakfastKcal =  response.body().getTotalKcal().getTotalKcal();

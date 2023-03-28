@@ -80,8 +80,18 @@ public interface FoodApi {
                                  @Path("foodRecordId") int foodRecordId);
 
 
+    // 점심에 섭취한 총 칼로리 합 가져오기
+    @GET("/foodRecord/total/lunch")
+    Call<TotalKcalRes> getTotalLunchKcal(@Header("Authorization") String token,
+                                             @Query("date") String date);
 
 
+    // 점심 섭취 칼로리 리스트 가져오기
+    @GET("/foodRecord/breakfast")
+    Call<FoodRes> getLunchKcal(@Header("Authorization") String token,
+                                   @Query("date") String date,
+                                   @Query("offset") int offset,
+                                   @Query("limit") int limit);
 
 
 }

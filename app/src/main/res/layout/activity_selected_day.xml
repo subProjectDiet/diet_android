@@ -359,7 +359,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView382"
+                        android:id="@+id/txtLunch"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:background="@drawable/shape"
@@ -386,7 +386,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView383"
+                        android:id="@+id/txtDinner"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:background="@drawable/shape"

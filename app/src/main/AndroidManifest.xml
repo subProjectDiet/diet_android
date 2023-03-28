@@ -27,6 +27,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".food.SelectedLunchFoodActivity"
+            android:exported="false" />
+
         <activity
             android:name=".FoodEditActivity"
             android:exported="false" />
