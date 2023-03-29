@@ -12,10 +12,10 @@ public class DiaryMonth implements Serializable {
 
 
     private int userId;
-    private  double nowWeight;
+    private  String nowWeight;
     private String date;
-    private  double foodKcal;
-    private double exerciseKcal;
+    private  String foodKcal;
+    private String exerciseKcal;
 
     public int getUserId() {
         return userId;
@@ -25,11 +25,11 @@ public class DiaryMonth implements Serializable {
         this.userId = userId;
     }
 
-    public double getNowWeight() {
+    public String getNowWeight() {
         return nowWeight;
     }
 
-    public void setNowWeight(double nowWeight) {
+    public void setNowWeight(String nowWeight) {
         this.nowWeight = nowWeight;
     }
 
@@ -41,19 +41,19 @@ public class DiaryMonth implements Serializable {
         this.date = date;
     }
 
-    public double getFoodKcal() {
+    public String getFoodKcal() {
         return foodKcal;
     }
 
-    public void setFoodKcal(double foodKcal) {
+    public void setFoodKcal(String foodKcal) {
         this.foodKcal = foodKcal;
     }
 
-    public double getExerciseKcal() {
+    public String getExerciseKcal() {
         return exerciseKcal;
     }
 
-    public void setExerciseKcal(double exerciseKcal) {
+    public void setExerciseKcal(String exerciseKcal) {
         this.exerciseKcal = exerciseKcal;
     }
 }
