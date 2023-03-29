@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.subdietapp.FoodAddActivity;
 import com.cookandroid.subdietapp.R;
-import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
+import com.cookandroid.subdietapp.SearchFoodActivity;
 import com.cookandroid.subdietapp.model.food.Food;
 
 import java.util.ArrayList;
@@ -90,8 +90,9 @@ public class FoodSearchAdapter extends RecyclerView.Adapter<FoodSearchAdapter.Vi
 //                    }
 
                         // 액티비티에서 mealtime 과 date 데이터를 받아온다
-                        int mealtime = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).mealtime;
-                        String date = ((SelectedBreakfastFoodActivity)SelectedBreakfastFoodActivity.mContext).date;
+                    // 액티비티에서 mealtime 과 date 데이터를 받아온다
+                    int mealtime = ((SearchFoodActivity)SearchFoodActivity.searchContext).mealtime;
+                    String date = ((SearchFoodActivity)SearchFoodActivity.searchContext).date;
 
                         int index = getAdapterPosition();
 

@@ -31,6 +31,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
 
     EditText editFoodName, editGram, editKcal;
 
+    ImageView imgBack;
     Button btnSave;
 
     ImageButton imgBtnMinus;
@@ -62,7 +63,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
         txtProtein = findViewById(R.id.txtProtein);
         txtFat = findViewById(R.id.txtFat);
 
-
+        imgBack = findViewById(R.id.imgBack);
 //        "foodName": "닭볶음탕",
 //                "gram": 50,
 //                "kcal": 500,
@@ -99,6 +100,13 @@ public class AddKcalDirectActivity extends AppCompatActivity {
                 Double timeplus = Double.parseDouble(editKcal.getText().toString());
                 timeplus = timeplus + 50;
                 editKcal.setText(String.valueOf(timeplus));
+            }
+        });
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 

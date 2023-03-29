@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cookandroid.subdietapp.AddKcalDirectActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SearchFoodActivity;
-import com.cookandroid.subdietapp.adapter.FoodAdapter;
+import com.cookandroid.subdietapp.adapter.FoodLunchAdapter;
 import com.cookandroid.subdietapp.api.FoodApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
@@ -41,7 +41,7 @@ public class SelectedLunchFoodActivity extends AppCompatActivity {
     TextView txtTotalKcal;
     EditText editSearch;
     RecyclerView recyclerView;
-    FoodAdapter foodAdapter;
+    FoodLunchAdapter foodAdapter;
     ArrayList<Food> foodList = new ArrayList<>();
     public String date;
 
@@ -55,7 +55,7 @@ public class SelectedLunchFoodActivity extends AppCompatActivity {
 
     public int mealtime = 1;
 
-    public static Context mContext;
+    public static Context lunchContext;
 
     private boolean isloading = false;
 
@@ -81,7 +81,7 @@ public class SelectedLunchFoodActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(SelectedLunchFoodActivity.this, 1));
 
         // 어댑터로 데이터를 보내기 위한 변수
-        mContext = this;
+        lunchContext = this;
 
         // 다이어리 페이지에서 요일 정보 받아오기
         // 2023-03-26
@@ -105,8 +105,17 @@ public class SelectedLunchFoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String keyword = editSearch.getText().toString().trim();
+
+                if (keyword.isEmpty()){
+                    return;
+                }
+
+
                 Intent intent = new Intent(SelectedLunchFoodActivity.this, SearchFoodActivity.class);
                 intent.putExtra("keyword", keyword);
+                intent.putExtra("mealtime", mealtime + "");
+                intent.putExtra("date", date);
+
                 startActivity(intent);
 
             }
@@ -222,7 +231,7 @@ public class SelectedLunchFoodActivity extends AppCompatActivity {
 
                     foodList.addAll(response.body().getItems());
 
-                    foodAdapter = new FoodAdapter(SelectedLunchFoodActivity.this, foodList);
+                    foodAdapter = new FoodLunchAdapter(SelectedLunchFoodActivity.this, foodList);
                     recyclerView.setAdapter(foodAdapter);
 
 

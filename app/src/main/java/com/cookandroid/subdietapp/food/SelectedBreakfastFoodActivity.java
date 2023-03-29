@@ -111,8 +111,15 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String keyword = editSearch.getText().toString().trim();
+
+                if (keyword.isEmpty()){
+                    return;
+                }
                 Intent intent = new Intent(SelectedBreakfastFoodActivity.this, SearchFoodActivity.class);
+                intent.putExtra("mealtime", mealtime + "");
                 intent.putExtra("keyword", keyword);
+                intent.putExtra("date", date);
+
                 startActivity(intent);
 
             }
