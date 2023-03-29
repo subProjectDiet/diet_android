@@ -2,8 +2,10 @@ package com.cookandroid.subdietapp.api;
 
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.diary.Diary;
+import com.cookandroid.subdietapp.model.diary.DiaryExerciseBurnRes;
 import com.cookandroid.subdietapp.model.diary.DiaryMonthRes;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
+import com.cookandroid.subdietapp.model.diary.TotalKcalRes;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -34,6 +36,19 @@ public interface DiaryApi {
     @GET("/diary/month")
     Call<DiaryMonthRes> getDiaryMonth(@Header("Authorization") String token,
                                       @Query("date") String date);
+
+
+    // 유저의 특정날 섭취 칼로리 가져오는 API
+    @GET("/foodRecord/total/kcal")
+    Call<TotalKcalRes> getTotalKcal (@Header("Authorization") String token,
+                                      @Query("date") String date);
+
+    // 특정날 소모한 칼로리 합 가져오기
+    @GET("/exercise/date")
+    Call<DiaryExerciseBurnRes> getExerciseBurnTotalKcal (@Header("Authorization") String token,
+                                                         @Query("date") String date);
+
+
 
 
 

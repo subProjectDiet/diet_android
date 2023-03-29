@@ -40,4 +40,8 @@ public interface UserApi extends Serializable {
     Call<Res> editNickname(@Header("Authorization") String token,
                            @Body Map<String, String> nicknameMap);
 
+    // 로그인
+//    @POST("/user/login")
+//    Call<UserRes> login(@Body User user);
+
 }
