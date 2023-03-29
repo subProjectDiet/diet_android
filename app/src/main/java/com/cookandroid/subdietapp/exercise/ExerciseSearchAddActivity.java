@@ -19,13 +19,8 @@ import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.api.ExerciseApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
-import com.cookandroid.subdietapp.model.exercise.ExerciseRecord;
-
 import com.cookandroid.subdietapp.model.Res;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import com.cookandroid.subdietapp.model.exercise.ExerciseRecord;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +42,7 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
     private double excutekcal;
     private double realWeight;
     private int exerciseId;
+    private String date;
 
 
     @Override
@@ -61,6 +57,9 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
         btnplus=findViewById(R.id.btnplus);
         btnminus=findViewById(R.id.btnminus);
         imgBack=findViewById(R.id.imgBack);
+
+
+        date = getIntent().getStringExtra("date");
 
         //검색을통해 온경우 + 버튼눌러서 직접온경우 if문으로 나눠놈
 
@@ -158,6 +157,8 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
             totalKcalBurn=0.0;
             recordType = 1;
 
+
+
             //유저가 칼로리 직접 입력시 소숫점 못적게 만듬
             editKcalBurn.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
 
@@ -204,10 +205,7 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
 
     // 운동 칼로리 추가하는 api
     void getNetworkData(){
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format(date);
+
 
 
 
@@ -229,7 +227,8 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
         exerciseRecord.setExerciseName(exerciseName);
         exerciseRecord.setExerciseTime(exerciseTime);
         exerciseRecord.setTotalKcalBurn(totalKcalBurn);
-        exerciseRecord.setDate(dateString);
+        exerciseRecord.setDate(date);
+        Log.i(TAG,"확인용"+exerciseName+exerciseTime+"날짜"+date);
 
 
 

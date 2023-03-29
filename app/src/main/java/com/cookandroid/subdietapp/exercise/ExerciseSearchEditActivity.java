@@ -2,11 +2,6 @@ package com.cookandroid.subdietapp.exercise;
 
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,20 +15,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.cookandroid.subdietapp.R;
-import com.cookandroid.subdietapp.adapter.ExerciseAdapter;
 import com.cookandroid.subdietapp.api.ExerciseApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.exercise.ExerciseRecord;
 
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,12 +46,10 @@ public class ExerciseSearchEditActivity extends AppCompatActivity {
 
     private double excutekcal;
     private double realWeight;
-    private String accessToken;
+
     private int exerciseRecordId;
     ArrayList<ExerciseRecord> exerciseRecordsList = new ArrayList<>();
-    private int deleteIndex;
-    ExerciseAdapter exerciseAdapter;
-    private Context context;
+    private String date;
 
 
     @Override
@@ -85,6 +75,7 @@ public class ExerciseSearchEditActivity extends AppCompatActivity {
         editExerciseTime.setText(String.valueOf(exerciseTime));
         editKcalBurn.setText(String.valueOf(totalKcalBurn));
 
+        date = getIntent().getStringExtra("date");
 
         //검색을통해 받은데이터로 저장한경우 + 버튼눌러서 직접작성한 경우 if문으로 나눠놈
         //1.검색을통한 테이블내 데이터로 작성한거 수정
@@ -269,12 +260,7 @@ public class ExerciseSearchEditActivity extends AppCompatActivity {
     private void getNetworkData() {
 
         Log.i(TAG,"수정화면 진입");
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format(date);
-
-
+        
 
         Retrofit retrofit = NetworkClient.getRetrofitClient(ExerciseSearchEditActivity.this);
 
@@ -294,7 +280,7 @@ public class ExerciseSearchEditActivity extends AppCompatActivity {
         exerciseRecord.setExerciseName(exerciseName);
         exerciseRecord.setExerciseTime(exerciseTime);
         exerciseRecord.setTotalKcalBurn(totalKcalBurn);
-        exerciseRecord.setDate(dateString);
+        exerciseRecord.setDate(date);
 
 
 

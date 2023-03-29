@@ -20,6 +20,7 @@ import com.cookandroid.subdietapp.api.DiaryApi;
 import com.cookandroid.subdietapp.api.FoodApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
+import com.cookandroid.subdietapp.exercise.SelectedExerciseActivity;
 import com.cookandroid.subdietapp.food.SelectedBreakfastFoodActivity;
 import com.cookandroid.subdietapp.food.SelectedDinnerFoodActivity;
 import com.cookandroid.subdietapp.food.SelectedLunchFoodActivity;
@@ -38,7 +39,7 @@ public class SelectedDayActivity extends AppCompatActivity {
 
     String date;
     String getWeight;
-    TextView txtDate, txtMonth, txtWeight, txtTargetKcal;
+    TextView txtDate, txtMonth, txtWeight, txtTargetKcal ,txtExercise;
 
     TextView txtBreakfast, txtLunch, txtDinner;
 
@@ -57,7 +58,7 @@ public class SelectedDayActivity extends AppCompatActivity {
         txtMonth = findViewById(R.id.txtMonth);
 
         txtTargetKcal = findViewById(R.id.txtTargetKcal);
-
+        txtExercise=findViewById(R.id.txtExercise);
 
         txtBreakfast = findViewById(R.id.txtBreakfast);
         txtLunch = findViewById(R.id.txtLunch);
@@ -138,7 +139,14 @@ public class SelectedDayActivity extends AppCompatActivity {
             }
         });
 
-
+        txtExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SelectedDayActivity.this, SelectedExerciseActivity.class);
+                intent.putExtra("date", date);
+                startActivity(intent);
+            }
+        });
 
 
 
