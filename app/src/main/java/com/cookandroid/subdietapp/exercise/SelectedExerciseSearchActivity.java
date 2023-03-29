@@ -1,5 +1,6 @@
 package com.cookandroid.subdietapp.exercise;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,6 +44,10 @@ public class SelectedExerciseSearchActivity extends AppCompatActivity {
     int offset = 0;
     int limit = 30;
 
+    public static Context ExerContext;
+    public String date;
+
+
     RecyclerView recyclerView;
     ArrayList<Exercise> exercisesList = new ArrayList<>();
     ExerciseSearchAdapter exercisSearchAdapter;
@@ -62,6 +67,10 @@ public class SelectedExerciseSearchActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(SelectedExerciseSearchActivity.this));
         recyclerView.setHasFixedSize(true);
+
+        ExerContext=this;
+
+        date = getIntent().getStringExtra("date");
 
         // 전페이지에서(selectedexerciseactivity) 검색했던거 바로 띄워줌
         keyword = getIntent().getStringExtra("keyword");
@@ -116,6 +125,7 @@ public class SelectedExerciseSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SelectedExerciseSearchActivity.this, ExerciseSearchAddActivity.class);
+                intent.putExtra("date",date);
                 startActivity(intent);
             }
         });

@@ -2,12 +2,6 @@ package com.cookandroid.subdietapp.exercise;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,25 +12,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cookandroid.subdietapp.adapter.ExerciseAdapter;
-import com.cookandroid.subdietapp.adapter.ExerciseSearchAdapter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SelectedDayActivity;
+import com.cookandroid.subdietapp.adapter.ExerciseAdapter;
 import com.cookandroid.subdietapp.api.ExerciseApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
-import com.cookandroid.subdietapp.model.exercise.Exercise;
 import com.cookandroid.subdietapp.model.exercise.ExerciseRecord;
-import com.cookandroid.subdietapp.model.exercise.ExerciseRes;
-import com.cookandroid.subdietapp.model.exercise.ExerciseTotalkcal;
 import com.cookandroid.subdietapp.model.exercise.ExerciseTotalkcalRes;
 import com.cookandroid.subdietapp.model.exercise.ExerciserRecordRes;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,14 +69,20 @@ public class SelectedExerciseActivity extends AppCompatActivity {
         txtTotalkcal=findViewById(R.id.txtTotalkcal);
 
 
-        //칼로리계산산
-       TotalkcalNetworkData();
-
-
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(SelectedExerciseActivity.this));
         recyclerView.setHasFixedSize(true);
 
+
+
+        // 요일 정보 받아오기
+        // 2023-03-26
+        date = getIntent().getStringExtra("date");
+
+        //칼로리계산산
+        TotalkcalNetworkData();
+
+        //운동리스트가저오기
         NetworkData();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -129,6 +126,7 @@ public class SelectedExerciseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SelectedExerciseActivity.this, ExerciseSearchAddActivity.class);
+                intent.putExtra("date",date);
                 startActivity(intent);
             }
         });
@@ -140,6 +138,7 @@ public class SelectedExerciseActivity extends AppCompatActivity {
                 keyword=editSearch.getText().toString().trim();
                 Intent intent = new Intent(SelectedExerciseActivity.this, SelectedExerciseSearchActivity.class);
                 intent.putExtra("keyword", keyword);
+                intent.putExtra("date",date);
                 startActivity(intent);
                 finish();
 
@@ -175,11 +174,6 @@ public class SelectedExerciseActivity extends AppCompatActivity {
 
         Log.i(TAG,"시작합니다");
 
-        // 임시 오늘날짜
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format(date);
 
         offset = 0;
         count = 0;
@@ -192,7 +186,7 @@ public class SelectedExerciseActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
         String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
 
-        Call<ExerciserRecordRes> call = api.dailyExercise(accessToken,dateString,offset,limit);
+        Call<ExerciserRecordRes> call = api.dailyExercise(accessToken,date,offset,limit);
         call.enqueue(new Callback<ExerciserRecordRes>() {
             @Override
             public void onResponse(Call<ExerciserRecordRes> call, Response<ExerciserRecordRes> response) {
@@ -229,12 +223,6 @@ public class SelectedExerciseActivity extends AppCompatActivity {
     private  void TotalkcalNetworkData(){
         Log.i(TAG,"토탈칼로리입니다");
 
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format(date);
-
-
         Retrofit retrofit = NetworkClient.getRetrofitClient(SelectedExerciseActivity.this);
 
         ExerciseApi api = retrofit.create(ExerciseApi.class);
@@ -243,7 +231,7 @@ public class SelectedExerciseActivity extends AppCompatActivity {
         String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
 
 
-        Call<ExerciseTotalkcalRes> call =api.ExerciseTotalkcal(accessToken,dateString);
+        Call<ExerciseTotalkcalRes> call =api.ExerciseTotalkcal(accessToken,date);
         call.enqueue(new Callback<ExerciseTotalkcalRes>() {
             @Override
             public void onResponse(Call<ExerciseTotalkcalRes> call, Response<ExerciseTotalkcalRes> response) {

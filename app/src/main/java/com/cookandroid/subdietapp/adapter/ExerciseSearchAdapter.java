@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.Calendar;
-import java.util.Date;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,14 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.api.ExerciseApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
-
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.exercise.ExerciseSearchAddActivity;
+import com.cookandroid.subdietapp.exercise.SelectedExerciseSearchActivity;
 import com.cookandroid.subdietapp.model.exercise.Exercise;
 import com.cookandroid.subdietapp.model.exercise.ExerciseRes;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -45,6 +42,7 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
 
     private double totalKcalBurn;
     private String exerciseName;
+
 
 
     public ExerciseSearchAdapter(Context context, ArrayList<Exercise> exercisesList) {
@@ -104,12 +102,12 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
 
     // 검색한 결과에서 클릭한 운동의 데이터를 가지고오는 api
     private void searchNetworkData() {
-        Calendar calendar = Calendar.getInstance();
-        Date date = calendar.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = format.format(date);
 
-        Log.i("날짜",dateString+"포맷"+format+"데이트"+date);
+
+        String date = ((SelectedExerciseSearchActivity)SelectedExerciseSearchActivity.ExerContext).date;
+        Log.i(TAG,"가저왔다날짜"+date);
+
+
 
 
         Retrofit retrofit = NetworkClient.getRetrofitClient(context);
@@ -121,7 +119,7 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
         String accessToken = "Bearer " + mSharedPreferences.getString(Config.ACCESS_TOKEN, "");
 
         Log.i(TAG,"토큰확인"+accessToken);
-        Call<ExerciseRes> call = api.searchExerciseSelect(accessToken,exerciseId,dateString);
+        Call<ExerciseRes> call = api.searchExerciseSelect(accessToken,exerciseId,date);
         Log.i(TAG,"콜확인"+call);
         call.enqueue(new Callback<ExerciseRes>() {
             @Override
@@ -139,6 +137,7 @@ public class ExerciseSearchAdapter extends RecyclerView.Adapter<ExerciseSearchAd
                     intent.putExtra("exercise",exerciseName);
                     intent.putExtra("totalKcalBurn",totalKcalBurn);
                     intent.putExtra("id",id);
+                    intent.putExtra("date",date);
                     Log.i(TAG,"가저갈께요"+exerciseName+"칼로리"+totalKcalBurn+"id"+id);
                     context.startActivity(intent);
 
