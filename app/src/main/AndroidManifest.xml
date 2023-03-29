@@ -29,9 +29,12 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".food.SelectedLunchFoodActivity"
+            android:name=".food.SelectedDinnerFoodActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".food.SelectedLunchFoodActivity"
+            android:exported="false" />
         <activity
             android:name=".FoodEditActivity"
             android:exported="false" />

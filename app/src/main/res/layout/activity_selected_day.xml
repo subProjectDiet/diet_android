@@ -36,14 +36,10 @@
             android:background="#E0E0E0"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#00FFFFFF"
-                app:srcCompat="@drawable/baseline_navigate_before_24" />
+
 
             <TextView
+                android:padding="9dp"
                 android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,13 +51,7 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
-                android:backgroundTint="#00FFFFFF"
-                app:srcCompat="@drawable/baseline_navigate_next_24" />
+
 
         </LinearLayout>
 

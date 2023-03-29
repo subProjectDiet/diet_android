@@ -87,11 +87,23 @@ public interface FoodApi {
 
 
     // 점심 섭취 칼로리 리스트 가져오기
-    @GET("/foodRecord/breakfast")
+    @GET("/foodRecord/lunch")
     Call<FoodRes> getLunchKcal(@Header("Authorization") String token,
                                    @Query("date") String date,
                                    @Query("offset") int offset,
                                    @Query("limit") int limit);
+
+    // 저녁 섭취 칼로리 리스트 가져오기
+    @GET("/foodRecord/dinner")
+    Call<FoodRes> getDinnerKcal(@Header("Authorization") String token,
+                               @Query("date") String date,
+                               @Query("offset") int offset,
+                               @Query("limit") int limit);
+
+    // 저녁에 섭취한 총 칼로리 합 가져오기
+    @GET("/foodRecord/total/dinner")
+    Call<TotalKcalRes> getTotalDinnerKcal(@Header("Authorization") String token,
+                                         @Query("date") String date);
 
 
 }

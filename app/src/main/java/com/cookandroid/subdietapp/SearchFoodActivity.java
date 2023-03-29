@@ -1,5 +1,7 @@
 package com.cookandroid.subdietapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,8 +46,12 @@ public class SearchFoodActivity extends AppCompatActivity {
     int count;
     int offset = 0;
     int limit = 25;
+
+    public String date;
     private boolean isloading = false;
 
+    public int mealtime;
+    public static Context searchContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,10 @@ public class SearchFoodActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(SearchFoodActivity.this));
         recyclerView.addItemDecoration(new DividerItemDecoration(SearchFoodActivity.this, 1));
 
+        searchContext = this;
+
+        date = getIntent().getStringExtra("date");
+        mealtime = Integer.parseInt(getIntent().getStringExtra("mealtime" + ""));
         keyword = getIntent().getStringExtra("keyword");
         Log.i("KEYWORDTEST", keyword + "");
 
@@ -73,13 +83,23 @@ public class SearchFoodActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String searchKeyword = editSearch.getText().toString().trim();
                 getNetworkData(searchKeyword);
-                finish();
 
 
 
             }
         });
 
+        // 칼로리 직접 추가로 이동
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchFoodActivity.this, AddKcalDirectActivity.class);
+                intent.putExtra("date", date);
+                intent.putExtra("mealtime", mealtime + "");
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 
