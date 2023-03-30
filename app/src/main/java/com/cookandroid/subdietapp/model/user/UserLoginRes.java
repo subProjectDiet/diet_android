@@ -19,7 +19,7 @@ public class UserLoginRes {
     @SerializedName("userInfo_list")
     private UserLogin userLogin;
 
-    private int access_token;
+    private String access_token;
 
 
     public String getResult() {
@@ -38,11 +38,11 @@ public class UserLoginRes {
         this.userLogin = userLogin;
     }
 
-    public int getAccess_token() {
+    public String getAccess_token() {
         return access_token;
     }
 
-    public void setAccess_token(int access_token) {
+    public void setAccess_token(String access_token) {
         this.access_token = access_token;
     }
 }

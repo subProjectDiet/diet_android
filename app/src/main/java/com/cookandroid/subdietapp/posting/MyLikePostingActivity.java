@@ -3,7 +3,6 @@ package com.cookandroid.subdietapp.posting;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,33 +50,33 @@ public class MyLikePostingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_like_posting);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                // 맨 마지막 데이터가 화면에 보이면!!
-                // 네트워크 통해서 데이터를 추가로 받아와라!!
-                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                int totalCount = recyclerView.getAdapter().getItemCount();
-
-                // 스크롤을 데이터 맨 끝까지 한 상태
-                if (lastPosition + 1 == totalCount && !isloading) {
-                    // 네트워크 통해서 데이터를 받아오고, 화면에 표시!
-                    isloading = true;
-                    addNetworkData();
-
-
-                }
-
-
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                // 맨 마지막 데이터가 화면에 보이면!!
+//                // 네트워크 통해서 데이터를 추가로 받아와라!!
+//                int lastPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
+//                int totalCount = recyclerView.getAdapter().getItemCount();
+//
+//                // 스크롤을 데이터 맨 끝까지 한 상태
+//                if (lastPosition + 1 == totalCount && !isloading) {
+//                    // 네트워크 통해서 데이터를 받아오고, 화면에 표시!
+//                    isloading = true;
+//                    addNetworkData();
+//
+//
+//                }
+//
+//
+//            }
+//        });
 
 
         recyclerView = findViewById(R.id.recyclerView);

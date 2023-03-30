@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.exercise.ExerciseSearchEditActivity;
-import com.cookandroid.subdietapp.model.exercise.Exercise;
 import com.cookandroid.subdietapp.model.exercise.ExerciseRecord;
-
 
 import java.util.ArrayList;
 
@@ -43,16 +41,16 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         ExerciseRecord exerciseRecord = exercisesList.get(position);
 
         holder.txtName.setText(exerciseRecord.getExerciseName());
-        holder.txtTime.setText(String.valueOf((int) exerciseRecord.getExerciseTime()));
+        holder.txtTime.setText(String.valueOf((int) exerciseRecord.getExerciseTime()) + " 분");
 
             //소숫점이 있는지 확인
-            //유저가 직접 입력과 테이블 데이터 구분하기위해
+            //유저가 직접 입력과 테이블분데이터 구분하기위해
         if(exerciseRecord.getTotalKcalBurn() %1 !=0 ) {
             //있으면 소수점 표현
-            holder.txtCal.setText(String.format("%.2f", exerciseRecord.getTotalKcalBurn()));
+            holder.txtCal.setText(String.format("%.2f", exerciseRecord.getTotalKcalBurn()) + " kcal");
         }else {
             //없으면 생략
-            holder.txtCal.setText(String.format("%.0f", exerciseRecord.getTotalKcalBurn()));
+            holder.txtCal.setText(String.format("%.0f", exerciseRecord.getTotalKcalBurn()) + "kcal");
         }
 
 
