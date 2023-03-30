@@ -3,6 +3,7 @@ package com.cookandroid.subdietapp.api;
 import com.cookandroid.subdietapp.model.Res;
 import com.cookandroid.subdietapp.model.user.User;
 import com.cookandroid.subdietapp.model.user.UserInfo;
+import com.cookandroid.subdietapp.model.user.UserLoginRes;
 import com.cookandroid.subdietapp.model.user.UserRes;
 import com.cookandroid.subdietapp.model.user.UserTarget;
 
@@ -41,7 +42,7 @@ public interface UserApi extends Serializable {
                            @Body Map<String, String> nicknameMap);
 
     // 로그인
-//    @POST("/user/login")
-//    Call<UserRes> login(@Body User user);
+    @POST("/user/login")
+    Call<UserLoginRes> login(@Body User user);
 
 }

@@ -18,7 +18,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="15dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -90,14 +92,15 @@
 
 
             <Button
+
                 android:id="@+id/btnCal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:layout_marginLeft="150dp"
                 android:backgroundTint="#FFFFFF"
                 android:text="운동직접입력 +"
-
                 android:textColor="#F47474"
+                android:textStyle="bold"
                 android:textSize="16sp"
                 app:iconTint="#BDA9A9" />
         </LinearLayout>

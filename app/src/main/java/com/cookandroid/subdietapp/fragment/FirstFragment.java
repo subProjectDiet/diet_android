@@ -198,7 +198,7 @@ public class FirstFragment extends Fragment {
 
                         Log.i("NOWWEIGHT_TEST", nowWeight);
 
-                        txtWeight.setText(nowWeight);
+                        txtWeight.setText(nowWeight + "kg");
 
 
                     } catch (Exception e) {

@@ -5,7 +5,10 @@ import com.cookandroid.subdietapp.model.diary.Diary;
 import com.cookandroid.subdietapp.model.diary.DiaryExerciseBurnRes;
 import com.cookandroid.subdietapp.model.diary.DiaryMonthRes;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
+import com.cookandroid.subdietapp.model.diary.FoodEatDataRes;
 import com.cookandroid.subdietapp.model.diary.TotalKcalRes;
+import com.cookandroid.subdietapp.model.diary.UserTargetGetRes;
+import com.cookandroid.subdietapp.model.exercise.ExerciseTotalkcalRes;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -43,14 +46,27 @@ public interface DiaryApi {
     Call<TotalKcalRes> getTotalKcal (@Header("Authorization") String token,
                                       @Query("date") String date);
 
-    // 특정날 소모한 칼로리 합 가져오기
+    // 특정날 소모한 칼로리 합 가져오기(운동 칼로리 데이터)
     @GET("/exercise/date")
     Call<DiaryExerciseBurnRes> getExerciseBurnTotalKcal (@Header("Authorization") String token,
                                                          @Query("date") String date);
 
 
+    // 특정날 섭취한 탄단지 칼로리 데이터 가져오기
+    @GET("/foodRecord/total/kcal/data")
+    Call<FoodEatDataRes> getFoodEatData (@Header("Authorization") String token,
+                                                   @Query("date") String date);
+
+    // 유저의 목표 탄단지 데이터 가져오기
+    @GET("/user/target/data")
+    Call<UserTargetGetRes> getUserTargetGet (@Header("Authorization") String token);
 
 
+
+    // 특정날 운동한 칼로리 데이터 총합 가져오기
+    @GET("/exercise/date")
+    Call<ExerciseTotalkcalRes> getExerciseTotalKcal (@Header("Authorization") String token,
+                                                     @Query("date") String date);
 
 
 
