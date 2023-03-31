@@ -9,11 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.cookandroid.subdietapp.EdaActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SelectedDayActivity;
 import com.cookandroid.subdietapp.api.DiaryApi;
@@ -23,8 +26,12 @@ import com.cookandroid.subdietapp.model.diary.Diary;
 import com.cookandroid.subdietapp.model.diary.DiaryExerciseBurn;
 import com.cookandroid.subdietapp.model.diary.DiaryExerciseBurnRes;
 import com.cookandroid.subdietapp.model.diary.DiaryRes;
+import com.cookandroid.subdietapp.model.diary.FoodEatData;
+import com.cookandroid.subdietapp.model.diary.FoodEatDataRes;
 import com.cookandroid.subdietapp.model.diary.TotalKcal;
 import com.cookandroid.subdietapp.model.diary.TotalKcalRes;
+import com.cookandroid.subdietapp.model.diary.UserTargetGet;
+import com.cookandroid.subdietapp.model.diary.UserTargetGetRes;
 import com.cookandroid.subdietapp.posting.SelectedPostingActivity;
 
 import java.text.SimpleDateFormat;
@@ -62,6 +69,17 @@ public class FirstFragment extends Fragment {
     TextView txtWeight, txtTargetKcal, txtGetTotalKcal,txtBurnKcal,txtSetText, txtEatKcal;
     String getTotalKcal = "0";
     String targetKcal = "0";
+
+    ProgressBar progressBarCarbs,progressBarProtein,progressBarFat;
+
+    TextView txtGetCarbs ,txtGetProtein,txtGetFat;
+    FoodEatData foodEatData = new FoodEatData();
+    UserTargetGet userTargetGet = new UserTargetGet();
+
+    int eatTotalCarbs ,eatTotalProtein ,eatTotalFat;
+    int targetCarbs, targetProtein, targetFat;
+
+    ImageView imgEda;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -109,6 +127,15 @@ public class FirstFragment extends Fragment {
         txtSetText = view.findViewById(R.id.txtSetText);
         txtEatKcal = view.findViewById(R.id.txtEatKcal);
 
+        progressBarCarbs = view.findViewById(R.id.progressBarCarbs);
+        progressBarProtein = view.findViewById(R.id.progressBarProtein);
+        progressBarFat = view.findViewById(R.id.progressBarFat);
+
+        txtGetCarbs = view.findViewById(R.id.txtGetCarbs);
+        txtGetProtein = view.findViewById(R.id.txtGetProtein);
+        txtGetFat = view.findViewById(R.id.txtGetFat);
+
+        imgEda = view.findViewById(R.id.imgEda);
 
         // 유저가 회원가입할때 작성했던 targetkcal 데이터를 sp 에서 가져온다
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
@@ -131,7 +158,13 @@ public class FirstFragment extends Fragment {
         Log.i("NOWDATE", nowDate+"");
 
 
-
+        imgEda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EdaActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         // 첫번째 레이아웃 클릭시 다이어리 화면으로 이동
@@ -163,6 +196,9 @@ public class FirstFragment extends Fragment {
         getWeightNetworkData();
         getTotalKcalNetworkData();
         getBurnKcalNetworkData();
+
+        getFoodEatData();
+        getUserTargetNetwork();
     }
     // 오늘 몸무게 가져오는 API
     private void getWeightNetworkData() {
@@ -342,6 +378,122 @@ public class FirstFragment extends Fragment {
 
 
 
+
+    }
+
+    // 유저가 섭취한 탄단지와 칼로리 합 가져오기
+
+    void getFoodEatData() {
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(getActivity());
+
+        DiaryApi api = retrofit.create(DiaryApi.class);
+
+
+        SharedPreferences sp = getActivity().getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+
+        Call<FoodEatDataRes> call = api.getFoodEatData(accessToken, nowDate);
+
+        call.enqueue(new Callback<FoodEatDataRes>() {
+
+            @Override
+            public void onResponse(Call<FoodEatDataRes> call, Response<FoodEatDataRes> response) {
+
+
+                if (response.isSuccessful()) {
+                    // 사용자가 너무빨리 뒤로가기를 눌렀을때 에러가 발생한다.
+                    // 이를 방지하기 위해 try catch문을 사용한다.
+
+                    try {
+
+                        foodEatData = response.body().getFoodEatData();
+
+                        eatTotalCarbs = foodEatData.getTotalCarbs();
+                        eatTotalProtein = foodEatData.getTotalProtein();
+                        eatTotalFat = foodEatData.getTotalFat();
+
+                        Log.i("EATDATATEST", eatTotalCarbs + " " + eatTotalProtein + " " + eatTotalFat);
+
+
+                        txtGetCarbs.setText(eatTotalCarbs + "g");
+                        txtGetProtein.setText(eatTotalProtein + "g");
+                        txtGetFat.setText(eatTotalFat + "g");
+
+                        progressBarCarbs.setProgress(eatTotalCarbs);
+                        progressBarProtein.setProgress(eatTotalProtein);
+                        progressBarFat.setProgress(eatTotalFat);
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FoodEatDataRes> call, Throwable t) {
+                Log.i("다이어리", t.getMessage());
+            }
+        });
+
+    }
+
+
+    // 유저 목표 탄단지 데이터 가져오기
+    void getUserTargetNetwork(){
+        // 유저 목표 탄단지 데이터 가져오기
+        Retrofit retrofit = NetworkClient.getRetrofitClient(getActivity());
+
+        DiaryApi api = retrofit.create(DiaryApi.class);
+
+
+        SharedPreferences sp = getActivity().getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
+
+        Call<UserTargetGetRes> call1 = api.getUserTargetGet(accessToken);
+
+        call1.enqueue(new Callback<UserTargetGetRes>() {
+
+            @Override
+            public void onResponse(Call<UserTargetGetRes> call1, Response<UserTargetGetRes> response) {
+
+
+                if (response.isSuccessful()) {
+                    // 사용자가 너무빨리 뒤로가기를 눌렀을때 에러가 발생한다.
+                    // 이를 방지하기 위해 try catch문을 사용한다.
+
+                    try {
+
+                        userTargetGet = response.body().getUserTargetGet();
+
+
+                        targetCarbs = userTargetGet.getTargetCarbs();
+                        targetProtein = userTargetGet.getTargetProtein();
+                        targetFat = userTargetGet.getTargetFat();
+
+                        Log.i("TARGETDATATEST", targetCarbs + " " + targetProtein + " " + targetFat + " " + eatTotalFat);
+
+                        progressBarCarbs.setMax(targetCarbs);
+                        progressBarProtein.setMax(targetProtein);
+                        progressBarFat.setMax(targetFat);
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserTargetGetRes> call, Throwable t) {
+                Log.i("다이어리", t.getMessage());
+            }
+        });
 
     }
 
