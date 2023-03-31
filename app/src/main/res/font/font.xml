@@ -3,14 +3,19 @@
 
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/puradak_gentle_gothic"/>
+        android:font="@font/nanumb"/>
 
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/kai_gen_gothic_kr_bold"/>
+        android:font="@font/nanumeb"/>
 
     <font android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/kai_gen_gothic_kr_light"/>
+        android:font="@font/nanuml"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/nanumr"/>
+
 
 </font-family>

@@ -27,11 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".EdaActivity"
+            android:exported="false" />
         <activity
             android:name=".food.SelectedDinnerFoodActivity"
             android:exported="false" />
-
         <activity
             android:name=".food.SelectedLunchFoodActivity"
             android:exported="false" />

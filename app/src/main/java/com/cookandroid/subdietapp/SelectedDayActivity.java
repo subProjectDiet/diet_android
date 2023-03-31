@@ -568,7 +568,7 @@ public class SelectedDayActivity extends AppCompatActivity {
                         txtGetProtein.setText(eatTotalProtein + "g");
                         txtGetFat.setText(eatTotalFat + "g");
 
-                        progressBarCarbs.setProgress(eatTotalKcal);
+                        progressBarCarbs.setProgress(eatTotalCarbs);
                         progressBarProtein.setProgress(eatTotalProtein);
                         progressBarFat.setProgress(eatTotalFat);
 

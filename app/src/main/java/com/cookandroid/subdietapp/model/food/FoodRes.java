@@ -7,8 +7,8 @@ public class FoodRes {
 
     private String result;
 
-
     private List<Food> items;
+
 
     private int count;
 

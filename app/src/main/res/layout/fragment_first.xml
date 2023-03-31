@@ -46,7 +46,7 @@
 
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/imgEda"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:src="@drawable/pngegg" />
@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="24dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -106,7 +106,7 @@
                     android:id="@+id/txtEatKcal"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginLeft="35dp"
                     android:background="@drawable/shape_outline"
                     android:gravity="center"
                     android:text="000kcal\n먹었어요"
