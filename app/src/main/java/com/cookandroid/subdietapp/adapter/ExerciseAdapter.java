@@ -41,16 +41,16 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         ExerciseRecord exerciseRecord = exercisesList.get(position);
 
         holder.txtName.setText(exerciseRecord.getExerciseName());
-        holder.txtTime.setText(String.valueOf((int) exerciseRecord.getExerciseTime()) + " 분");
+        holder.txtTime.setText(String.valueOf((int) exerciseRecord.getExerciseTime()));
 
             //소숫점이 있는지 확인
             //유저가 직접 입력과 테이블분데이터 구분하기위해
         if(exerciseRecord.getTotalKcalBurn() %1 !=0 ) {
             //있으면 소수점 표현
-            holder.txtCal.setText(String.format("%.2f", exerciseRecord.getTotalKcalBurn()) + " kcal");
+            holder.txtCal.setText(String.format("%.2f", exerciseRecord.getTotalKcalBurn()));
         }else {
             //없으면 생략
-            holder.txtCal.setText(String.format("%.0f", exerciseRecord.getTotalKcalBurn()) + "kcal");
+            holder.txtCal.setText(String.format("%.0f", exerciseRecord.getTotalKcalBurn()));
         }
 
 

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -65,9 +66,10 @@ public class SecondFragment extends Fragment {
     private String dayexercise;
     private String dayfood;
     private String dayweight;
-    Button btndiary;
+    LinearLayout btndiary;
     private String selectedMonth;
 
+    TextView txtDate;
 
     public SecondFragment() {
         // Required empty public constructor
@@ -109,6 +111,8 @@ public class SecondFragment extends Fragment {
         txtKcal=rootView.findViewById(R.id.txtKcal);
         txtExercise=rootView.findViewById(R.id.txtExercise);
         btndiary=rootView.findViewById(R.id.btndiary);
+
+        txtDate = rootView.findViewById(R.id.txtDate);
 
         //일요일 색칠
         SundayDecor sundayDecor = new SundayDecor(context);

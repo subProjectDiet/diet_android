@@ -152,8 +152,14 @@ public class SelectedExerciseActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SelectedExerciseActivity.this, SelectedDayActivity.class);
-                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });

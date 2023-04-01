@@ -2,6 +2,8 @@ package com.cookandroid.subdietapp.exercise;
 
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
+import static com.cookandroid.subdietapp.R.color.*;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,8 +16,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.cookandroid.subdietapp.R;
+import com.cookandroid.subdietapp.SelectedDayActivity;
 import com.cookandroid.subdietapp.api.ExerciseApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
 import com.cookandroid.subdietapp.config.Config;
@@ -119,7 +123,7 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     int timeminus = Integer.parseInt(editExerciseTime.getText().toString());
                     if (timeminus > 0) {
-                        timeminus--;
+                        timeminus = timeminus - 5;
                         editExerciseTime.setText(String.valueOf(timeminus));
                     }
                 }
@@ -129,7 +133,7 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     int timeplus = Integer.parseInt(editExerciseTime.getText().toString());
-                    timeplus++;
+                    timeplus = timeplus + 5;
                     editExerciseTime.setText(String.valueOf(timeplus));
                 }
             });
@@ -152,10 +156,14 @@ public class ExerciseSearchAddActivity extends AppCompatActivity {
         // 단순히 intent로 온거라 당연히 exerciseId값이 없음
         else if(exerciseId == 0){
             Log.i(TAG,"두번째 경우 진입");
+
+
             //초기화
             exerciseName = "";
             totalKcalBurn=0.0;
             recordType = 1;
+
+
 
 
 

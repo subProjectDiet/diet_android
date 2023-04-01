@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#6a7686"
+            android:background="#494848"
             android:layout_margin="10dp">
 
             <LinearLayout
@@ -150,8 +150,8 @@
                     <ProgressBar
                         android:id="@+id/progressBarCarbs"
                         style="@android:style/Widget.ProgressBar.Horizontal"
-                        android:progressBackgroundTint="#8f8e94"
-                        android:progressTint="@color/white"
+                        android:progressBackgroundTint="@color/white"
+                        android:progressTint="#FF7285"
                         android:layout_width="90dp"
                         android:layout_marginTop="7dp"
                         android:layout_marginBottom="7dp"
@@ -191,8 +191,8 @@
                     <ProgressBar
                         android:id="@+id/progressBarProtein"
                         style="@android:style/Widget.ProgressBar.Horizontal"
-                        android:progressBackgroundTint="#8f8e94"
-                        android:progressTint="@color/white"
+                        android:progressBackgroundTint="@color/white"
+                        android:progressTint="#FF7285"
                         android:layout_width="90dp"
                         android:layout_marginTop="7dp"
                         android:layout_marginBottom="7dp"
@@ -233,8 +233,8 @@
                         android:layout_marginBottom="7dp"
                         android:id="@+id/progressBarFat"
                         style="@android:style/Widget.ProgressBar.Horizontal"
-                        android:progressBackgroundTint="#8f8e94"
-                        android:progressTint="@color/white"
+                        android:progressBackgroundTint="@color/white"
+                        android:progressTint="#FF7285"
                         android:layout_width="90dp"
                         android:layout_height="8dp" />
 
@@ -265,7 +265,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="210dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/border_main">
+                    android:background="@drawable/border_dark_gray">
 
                     <LinearLayout
                         android:gravity="center"
@@ -276,7 +276,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:orientation="vertical"
-                        android:background="@drawable/border_main">
+                        android:background="@drawable/border_dark_gray">
 
                         <TextView
                             android:id="@+id/txtSetText"
