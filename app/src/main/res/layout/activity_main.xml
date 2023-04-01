@@ -12,9 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#fff"
         app:menu="@menu/bottom_menu"
-        app:labelVisibilityMode="labeled"/>
+        app:itemIconSize="32dp"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
+        app:labelVisibilityMode="unlabeled"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"

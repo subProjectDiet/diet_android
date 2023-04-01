@@ -141,7 +141,7 @@ public class FirstFragment extends Fragment {
 
         // 유저가 회원가입할때 작성했던 targetkcal 데이터를 sp 에서 가져온다
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
-        targetKcal = sharedPreferences.getString(Config.TARGET_KCAL, "");
+        targetKcal = sharedPreferences.getString(Config.TARGET_KCAL, "1.1");
 
         Log.i("TEXTTEST", targetKcal + " " );
 

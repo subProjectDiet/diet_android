@@ -70,6 +70,25 @@ public class RegisterTwoActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
 
 
+        int radioGender = radioGroup1.getCheckedRadioButtonId();
+
+        if (radioGender == R.id.radioGirl){
+            gender = 0;
+        } else if (radioGender == R.id.radioBoy) {
+            gender = 1;
+        }
+
+        int radioActivity = radioGroup2.getCheckedRadioButtonId();
+
+
+        if (radioActivity == R.id.radio1){
+            activity = 1;
+        } else if (radioActivity == R.id.radio2) {
+            activity = 2;
+        } else if (radioActivity == R.id.radio3) {
+            activity = 3;
+        }
+
         // # 0:남자, 1:여자
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,29 +97,22 @@ public class RegisterTwoActivity extends AppCompatActivity {
                 int radioGender = radioGroup1.getCheckedRadioButtonId();
 
                 if (radioGender == R.id.radioGirl){
-                    radioGirl.setBackgroundResource(R.drawable.girl_selected);
                     gender = 0;
                 } else if (radioGender == R.id.radioBoy) {
-                    radioBoy.setBackgroundResource(R.drawable.boy_selected);
                     gender = 1;
                 } else {
-                    Toast.makeText(RegisterTwoActivity.this, "성별을 선택하세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 int radioActivity = radioGroup2.getCheckedRadioButtonId();
 
                 if (radioActivity == R.id.radio1){
-                    radio1.setBackgroundResource(R.drawable.activity1);
                     activity = 1;
                 } else if (radioActivity == R.id.radio2) {
-                    radio2.setBackgroundResource(R.drawable.activity2);
                     activity = 2;
                 } else if (radioActivity == R.id.radio3) {
-                    radio3.setBackgroundResource(R.drawable.activity3);
                     activity = 3;
                 } else {
-                    Toast.makeText(RegisterTwoActivity.this, "활동량을 선택하세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

@@ -4,22 +4,22 @@
     <item
         android:title="홈"
         android:id="@+id/firstFragment"
-        android:icon="@drawable/baseline_home_24"/>
+        android:icon="@drawable/fragment_outline_home_24"/>
 
 
     <item
         android:title="다이어리"
         android:id="@+id/secondFragment"
-        android:icon="@drawable/baseline_calendar_today_24"
+        android:icon="@drawable/fragment_outline_calendar_month_24"
         />
 
     <item
         android:title="소통"
         android:id="@+id/thirdFragment"
-        android:icon="@drawable/baseline_chat_24"/>
+        android:icon="@drawable/fragment_outline_chat_24"/>
 
     <item
         android:title="내정보"
         android:id="@+id/forthFragment"
-        android:icon="@drawable/baseline_person_24"/>
+        android:icon="@drawable/fragment_baseline_person_outline_24"/>
 </menu>

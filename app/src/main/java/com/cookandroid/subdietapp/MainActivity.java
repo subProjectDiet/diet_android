@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 fragment = null;
 
+
                 if (itemId == R.id.firstFragment){
                     fragment = firstFragment;
 
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment != null){
             // 화면 바뀌게 하는 코드
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragment).commit();
+
             return true;
         } else {
             return false;

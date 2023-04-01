@@ -46,7 +46,7 @@
                     android:id="@+id/radioGirl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/girl_no_selected"
+                    android:background="@drawable/selector_girl"
                     android:button="@null"
                     android:layout_marginRight="25dp"
                     />
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:button="@null"
                     android:layout_marginLeft="25dp"
-                    android:background="@drawable/boy_no_selected" />
+                    android:background="@drawable/selector_boy" />
             </RadioGroup>
 
 
@@ -251,7 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/no_activity1"
+                    android:background="@drawable/selector_radio1"
                     android:button="@null" />
 
                 <RadioButton
@@ -259,7 +259,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/no_activity2"
+                    android:background="@drawable/selector_radio2"
 
                     android:button="@null" />
 
@@ -268,7 +268,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:background="@drawable/no_activity3"
+                    android:background="@drawable/selector_radio3"
 
                     android:button="@null" />
             </RadioGroup>
