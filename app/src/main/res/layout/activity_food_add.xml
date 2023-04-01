@@ -7,9 +7,8 @@
     tools:context=".FoodAddActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,30 +19,30 @@
 
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center_vertical"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="24dp"
+
+            android:layout_marginBottom="7dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imgBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/baseline_keyboard_backspace_24" />
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/undo" />
 
             <TextView
-                android:id="@+id/textView33"
-                android:layout_width="match_parent"
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:fontFamily="@font/nanumb"
                 android:text="음식 정보"
-                android:textColor="#000000"
-                android:textSize="17sp"
-
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,11 +59,14 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
+
                 android:background="@drawable/border_outline"
+                android:fontFamily="@font/nanumb"
+
                 android:gravity="center"
                 android:hint="음식명을 입력하세요."
-                android:padding="10dp"
+                android:padding="17dp"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -72,7 +74,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="65dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -80,7 +82,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/nanumb"
                     android:text="1회 제공량(g)"
+
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -92,6 +96,8 @@
                     android:layout_marginLeft="74dp"
                     android:background="@drawable/border_outline"
                     android:ems="7"
+
+                    android:fontFamily="@font/nanumb"
                     android:gravity="center"
                     android:inputType="number"
                     android:padding="10dp"
@@ -103,7 +109,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="17dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -111,7 +117,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
+                    android:fontFamily="@font/nanumb"
                     android:text="칼로리(kcal)"
+
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -133,6 +141,8 @@
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/border_outline"
                     android:ems="7"
+
+                    android:fontFamily="@font/nanumb"
                     android:gravity="center"
                     android:hint="kcal"
                     android:inputType="number"
@@ -154,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="17dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -162,7 +172,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/nanumb"
                     android:text="탄수화물(g)"
+
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -174,6 +186,8 @@
                     android:layout_marginLeft="78dp"
                     android:background="@drawable/border_outline"
                     android:ems="7"
+                    android:fontFamily="@font/nanumb"
+
                     android:gravity="center"
                     android:inputType="number"
                     android:padding="10dp"
@@ -186,7 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="17dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -194,7 +208,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/nanumb"
                     android:text="단백질(g)"
+
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -203,14 +219,15 @@
                     android:id="@+id/editProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
+                    android:layout_marginLeft="88dp"
                     android:background="@drawable/border_outline"
                     android:ems="7"
+                    android:fontFamily="@font/nanumb"
                     android:gravity="center"
                     android:inputType="number"
+
                     android:padding="10dp"
                     android:textSize="18sp" />
-
 
 
             </LinearLayout>
@@ -219,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="17dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -227,7 +244,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
+                    android:fontFamily="@font/nanumb"
                     android:text="지방(g)"
+
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -236,31 +255,41 @@
                     android:id="@+id/editFat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="95.5dp"
+                    android:layout_marginLeft="92.5dp"
                     android:background="@drawable/border_outline"
                     android:ems="7"
+                    android:fontFamily="@font/nanumb"
                     android:gravity="center"
                     android:inputType="number"
+
                     android:padding="10dp"
                     android:textSize="18sp" />
 
 
-
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="170dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="60dp"
-                android:backgroundTint="#FFFFFF"
-                android:padding="10dp"
-                android:text="등록"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="160dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="80dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/nanumb"
+                    android:padding="10dp"
+                    android:text="등록"
+                    android:textColor="#F47474"
+                    android:textSize="16sp"
 
-                android:textColor="#F47474"
-                android:textSize="16sp"
-                app:iconTint="#BDA9A9" />
+                    android:textStyle="bold"
+                    app:iconTint="#BDA9A9" />
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -28,6 +28,8 @@
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:windowSoftInputMode="adjustPan"
+
             android:name=".EdaActivity"
             android:exported="false" />
         <activity
