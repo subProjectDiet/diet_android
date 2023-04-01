@@ -60,6 +60,8 @@ public class FirstFragment extends Fragment {
 
     LinearLayout layout1;
     String nowDate;
+    String nowMonth;
+
     Diary diary = new Diary();
 
     TotalKcal totalKcal = new TotalKcal();
@@ -152,16 +154,21 @@ public class FirstFragment extends Fragment {
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
 
         nowDate = sdf.format(date);
+        nowMonth = sdf1.format(date);
+
 
         Log.i("NOWDATE", nowDate+"");
+        Log.i("NOWMoNTH", nowMonth+"");
 
 
         imgEda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EdaActivity.class);
+                intent.putExtra("nowMonth", nowMonth);
                 startActivity(intent);
             }
         });
