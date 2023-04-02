@@ -27,9 +27,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="5dp"
                 android:orientation="horizontal">
 
                 <EditText
@@ -37,8 +37,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#99FFFFFF"
-                    android:ems="10"
+                    android:ems="11"
                     android:hint="검색어를 입력하세요"
+                    android:fontFamily="@font/nanumb"
 
                     android:layout_gravity="center"
                     android:background="@drawable/border_outline"
