@@ -1,7 +1,9 @@
 package com.cookandroid.subdietapp.CalendarDecor;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
@@ -22,14 +24,14 @@ public class BoldDecor  implements DayViewDecorator {
     @Override
     public boolean shouldDecorate(CalendarDay day) {
         day.copyTo(calendar);
-        int month = calendar.get(Calendar.MONTH);
-        return month == currentMonth;
+        int dayOfWeek = day.getCalendar().get(Calendar.DAY_OF_WEEK);
+        return dayOfWeek >= Calendar.MONDAY && dayOfWeek <= Calendar.FRIDAY;
 
     }
 
     @Override
     public void decorate(DayViewFacade view) {
-
+        view.addSpan(new ForegroundColorSpan(Color.BLACK));
         view.addSpan(new StyleSpan(Typeface.BOLD));
         view.addSpan(new RelativeSizeSpan(1.4f));
 

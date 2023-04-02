@@ -3,6 +3,7 @@ package com.cookandroid.subdietapp.CalendarDecor;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -27,13 +28,14 @@ public class SatDecor  implements DayViewDecorator {
         //이번달토요일에만 색칠
         int weekDay = day.getCalendar().get(Calendar.DAY_OF_WEEK);
         int month = day.getMonth();
-        return weekDay == Calendar.SATURDAY && month == Calendar.getInstance().get(Calendar.MONTH);
+        return weekDay == Calendar.SATURDAY;
 
 
     }
 
     @Override
     public void decorate(DayViewFacade view) {
+        view.addSpan(new RelativeSizeSpan(1.4f));
         view.addSpan(new ForegroundColorSpan(Color.BLUE));
     }
 }

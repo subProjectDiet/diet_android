@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:mcv_showOtherDates="all" />
+            app:mcv_showOtherDates="defaults" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,6 +48,12 @@
                     android:layout_marginRight="7dp"
                     android:textSize="17sp"
                     android:text="0000년 00월 0일" />
+
+                <Button
+                    android:id="@+id/btnMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="월별통계" />
 
                 <LinearLayout
                     android:id="@+id/btndiary"
