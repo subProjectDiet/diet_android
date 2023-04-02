@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/backgroundpink"
             android:orientation="vertical">
 
 
@@ -48,14 +49,17 @@
                 <ImageButton
                     android:id="@+id/imgSearch"
                     android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:backgroundTint="#2C3E50"
+                    android:layout_height="60dp"
+                    android:backgroundTint="#FF7285"
                     android:src="@drawable/baseline_search_24" />
 
                 <Spinner
                     android:id="@+id/spinner"
+                    android:layout_marginTop="6dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#98fcefe3"
+                    android:paddingLeft="7dp"
                     android:layout_marginLeft="8dp"
 
                     />
@@ -70,13 +74,15 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="7dp"
                 android:layout_marginBottom="7dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="5dp">
+                app:cardCornerRadius="7dp"
+                android:backgroundTint="#fff5f5"
+                >
 
                 <LinearLayout
                     android:layout_marginTop="7dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
                     android:orientation="vertical">
 
                     <TextView
@@ -87,8 +93,9 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
                         android:text="OOO님을 위한 추천 포스팅"
+                        android:fontFamily="@font/nanumeb"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="16.5sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -99,20 +106,26 @@
 
                         <ImageView
                             android:id="@+id/imgPhoto"
-                            android:layout_width="140dp"
-                            android:layout_height="140dp"
-                            android:layout_margin="10dp"
-                            android:src="@drawable/outline_insert_photo_24" />
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:scaleType="fitXY"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="7dp"
+                            android:src="@drawable/getimg" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginLeft="10dp"
                             android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="25dp"
+                                android:layout_marginTop="14dp"
                                 android:orientation="horizontal">
 
 
@@ -125,33 +138,31 @@
                                         android:id="@+id/txtNickName"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_margin="10dp"
+                                        android:layout_marginTop="7dp"
+                                        android:layout_marginBottom="3dp"
                                         android:text="닉네임"
+                                        android:fontFamily="@font/nanumb"
+
                                         android:textColor="@color/black"
-                                        android:textSize="19sp"
+                                        android:textSize="16sp"
                                         android:textStyle="bold" />
 
-                                    <TextView
-                                        android:id="@+id/txtDate"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:text="0000-00-00 00:00"
-                                        android:textSize="11sp" />
+
                                 </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="60dp"
+                                    android:layout_marginLeft="140dp"
                                     android:orientation="vertical">
 
                                     <ImageButton
                                         android:id="@+id/imgLike"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="40dp"
-                                        android:layout_gravity="center"
+                                        android:layout_height="35dp"
+                                        android:layout_gravity="right"
                                         android:backgroundTint="#00FFFFFF"
+
                                         android:src="@drawable/baseline_favorite_border_24" />
 
                                     <TextView
@@ -160,8 +171,10 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:text="0"
+                                        android:fontFamily="@font/nanumeb"
+
                                         android:textColor="@color/black"
-                                        android:textSize="12sp"
+                                        android:textSize="10sp"
                                         android:textStyle="bold" />
                                 </LinearLayout>
 
@@ -173,8 +186,14 @@
                                 android:id="@+id/txtContent"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_margin="5dp"
                                 android:text="게시글 내용"
+                                android:layout_marginLeft="3dp"
+                                android:layout_marginRight="17dp"
+                                android:layout_marginBottom="14dp"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:fontFamily="@font/nanumr"
+
                                 android:textColor="@color/black" />
 
 
@@ -188,7 +207,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="7dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="7dp">
 
@@ -211,10 +229,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="45dp"
+            android:background="@android:color/transparent"
             android:clickable="true"
-            app:srcCompat="@drawable/baseline_add_circle_24" />
+            android:outlineProvider="none"
+            android:scaleType="centerCrop"
+            app:backgroundTint="@android:color/transparent"
+            app:fabCustomSize="80dp"
+            app:fabSize="auto"
+            app:maxImageSize="80dp"
+            app:srcCompat="@drawable/baseline_add_circle_24"
+            app:tint="#ffb5b6"
+            />
     </RelativeLayout>
 
 </FrameLayout>

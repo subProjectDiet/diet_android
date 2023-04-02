@@ -2,6 +2,8 @@ package com.cookandroid.subdietapp;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -99,6 +101,39 @@ public class FoodAddActivity extends AppCompatActivity {
                 editKcal.setText(String.valueOf(timeplus));
             }
         });
+
+
+        //실시간 텍스트와치
+        editKcal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                try{
+                    //칼로리 계산
+                    Double Setkcal =  Double.parseDouble(editKcal.getText().toString().trim());
+//                    long excutekcal2 = Math.round(excutekcal1 * 100);
+                    editCarbs.setText(Math.round(Setkcal * 0.5 / 4) + "");
+                    editProtein.setText(Math.round(Setkcal * 0.3 / 4) + "");
+                    editFat.setText(Math.round(Setkcal * 0.2 / 9 )+ "");
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
+
+
 
         // 버튼 눌렀을 때 저장
         btnSave.setOnClickListener(new View.OnClickListener() {

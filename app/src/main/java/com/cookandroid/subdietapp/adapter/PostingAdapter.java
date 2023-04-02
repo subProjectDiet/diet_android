@@ -65,7 +65,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
         holder.txtLike.setText(posting.getLikeCnt() +"");
 
 //        2023-03-08T14:55:10
-        holder.txtDate.setText( posting.getCreatedAt().substring(0, 9+1) + " " + posting.getCreatedAt().substring(11, 18+1) );
+//        holder.txtDate.setText( posting.getCreatedAt().substring(0, 9+1) + " " + posting.getCreatedAt().substring(11, 18+1) );
 
         Glide.with(context).load(posting.getImgurl().replace("http","https"))
                 .placeholder(R.drawable.outline_insert_photo_24)
@@ -90,7 +90,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
 
 
         ImageView imgPhoto, imgLike;
-        TextView txtLike, txtNickName, txtContent, txtDate;
+        TextView txtLike, txtNickName, txtContent;
         CardView cardView;
 
 
@@ -104,7 +104,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
             txtLike = itemView.findViewById(R.id.txtLike);
             txtNickName = itemView.findViewById(R.id.txtNickName);
             txtContent = itemView.findViewById(R.id.txtContent);
-            txtDate = itemView.findViewById(R.id.txtDate);
+//            txtDate = itemView.findViewById(R.id.txtDate);
             cardView = itemView.findViewById(R.id.cardView);
 
 

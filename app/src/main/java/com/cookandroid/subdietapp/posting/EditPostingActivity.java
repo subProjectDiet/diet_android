@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,7 @@ public class EditPostingActivity extends AppCompatActivity {
     int postingId;
 
     EditText editContent;
-
+//    TextView txtEdit1;
     ImageButton txtSave;
     ImageView imgPhoto, imgBack;
     File photoFile;
@@ -60,6 +61,11 @@ public class EditPostingActivity extends AppCompatActivity {
         txtSave = findViewById(R.id.txtSave);
         imgPhoto = findViewById(R.id.imgPhoto);
         imgBack = findViewById(R.id.imgBack);
+//        txtEdit1 = findViewById(R.id.txtEdit1);
+
+
+//        txtEdit1.setText("포스팅 수정");
+        imgPhoto.setScaleType(ImageView.ScaleType.FIT_XY);
 
         // 사진은 수정 불가능
         // 콘텐츠만 수정 가능
