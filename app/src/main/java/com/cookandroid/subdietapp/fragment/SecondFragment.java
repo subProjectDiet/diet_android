@@ -314,7 +314,11 @@ public class SecondFragment extends Fragment {
         return rootView;
     }
 
-
+    public void onResume() {
+        super.onResume();
+        // 네트워크로부터 변경된 오늘 운동리스트와 토탈칼로리 가저오기
+        getNetworkData();
+    }
 
 // 월별 내 운동 몸무게 체중 데이터 가저오기 api
     void getNetworkData() {
