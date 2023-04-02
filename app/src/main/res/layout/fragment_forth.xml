@@ -17,7 +17,9 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
 
@@ -37,9 +39,10 @@
             <ImageButton
                 android:id="@+id/btnLogout"
                 android:layout_width="45dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginLeft="270dp"
                 android:backgroundTint="#00FFFFFF"
+                android:scaleType="fitXY"
                 android:src="@drawable/baseline_logout_24" />
 
         </LinearLayout>
@@ -196,6 +199,8 @@
                     android:layout_marginBottom="15dp"
                     android:text="탄단지"
                     android:textStyle="bold"
+                    android:fontFamily="@font/nanumeb"
+
                     android:textSize="16sp" />
 
                 <TextView

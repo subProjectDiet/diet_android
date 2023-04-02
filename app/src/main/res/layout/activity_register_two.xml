@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundpink"
     tools:context=".login.RegisterTwoActivity">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/background_blue"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:text="성별"
+            android:fontFamily="@font/nanumeb"
+
             android:textSize="16sp" />
 
         <LinearLayout
@@ -75,7 +77,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -86,6 +88,8 @@
 
                 <TextView
                     android:id="@+id/textView9"
+                    android:fontFamily="@font/nanumeb"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -94,6 +98,8 @@
 
                 <EditText
                     android:id="@+id/editAge"
+                    android:fontFamily="@font/nanumeb"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -101,7 +107,7 @@
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
                     android:ems="8"
-                    android:hint="  0                        세"
+                    android:hint="  0                      세"
                     android:inputType="textPersonName"
                     android:paddingLeft="8dp"
                     android:paddingTop="15dp"
@@ -122,6 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:text="키"
+                    android:fontFamily="@font/nanumeb"
+
                     android:textSize="16sp" />
 
                 <EditText
@@ -133,8 +141,9 @@
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
                     android:ems="8"
+                    android:fontFamily="@font/nanumeb"
 
-                    android:hint="  0                      cm"
+                    android:hint="  0                    cm"
                     android:inputType="textPersonName"
                     android:paddingLeft="8dp"
                     android:paddingTop="15dp"
@@ -164,10 +173,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:text="현재 체중"
+                    android:fontFamily="@font/nanumeb"
+
                     android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/editNowWeight"
+                    android:fontFamily="@font/nanumeb"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
@@ -175,7 +188,7 @@
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
                     android:ems="8"
-                    android:hint="  00.0                  kg"
+                    android:hint="  00.0                kg"
                     android:inputType="textPersonName"
 
                     android:paddingLeft="8dp"
@@ -197,6 +210,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:text="목표 체중"
+                    android:fontFamily="@font/nanumeb"
+
                     android:textSize="16sp" />
 
                 <EditText
@@ -207,8 +222,10 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/nanumeb"
+
                     android:ems="8"
-                    android:hint="  00.0                  kg"
+                    android:hint="  00.0                kg"
                     android:inputType="textPersonName"
 
                     android:paddingLeft="8dp"
@@ -227,6 +244,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="30dp"
             android:text="평소 활동량"
+            android:fontFamily="@font/nanumeb"
 
             android:textSize="16sp" />
 
@@ -234,7 +252,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
 
             android:orientation="horizontal">
 
@@ -279,13 +297,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="60dp"
             android:layout_marginRight="40dp"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#FF7285"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:text="다음"
             android:textSize="16sp"
+            android:fontFamily="@font/nanumeb"
+
             android:textStyle="bold"
             app:cornerRadius="20dp"
             tools:layout_editor_absoluteX="341dp"

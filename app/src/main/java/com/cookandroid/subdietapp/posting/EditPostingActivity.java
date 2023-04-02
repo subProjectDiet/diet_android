@@ -55,7 +55,7 @@ public class EditPostingActivity extends AppCompatActivity {
         Log.i("POSTINGINFOTEST", postingId+"");
 
 
-        setContentView(R.layout.activity_add_posting);
+        setContentView(R.layout.activity_edit_posting);
 
         editContent = findViewById(R.id.editContent);
         txtSave = findViewById(R.id.txtSave);

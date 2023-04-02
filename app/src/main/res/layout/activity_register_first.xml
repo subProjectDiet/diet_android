@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundpink"
     tools:context=".login.RegisterFirstActivity">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +17,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_blue"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="90dp"
             android:text="회원가입"
+            android:fontFamily="@font/nanumeb"
+
             android:textColor="#000000"
             android:textSize="26sp"
             android:textStyle="bold" />
@@ -38,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
@@ -49,6 +51,9 @@
                 android:gravity="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/nanumb"
+                android:textColor="@color/black"
+
                 android:text="아이디" />
 
             <EditText
@@ -61,6 +66,8 @@
                 android:hint="아이디입력 (email형식)"
                 android:inputType="textEmailAddress"
                 android:paddingLeft="10dp"
+                android:fontFamily="@font/nanumb"
+
                 android:paddingTop="13dp"
                 android:paddingBottom="13dp"
                 android:shadowColor="#EAEAEA"
@@ -72,13 +79,15 @@
             android:id="@+id/txtViewCheckEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
+            android:layout_marginLeft="120dp"
             android:layout_marginTop="3dp"
             android:layout_marginRight="23dp"
+            android:fontFamily="@font/nanumb"
+
             android:text="이미 사용 중인 아이디입니다."
             android:visibility="invisible"
             android:textStyle="bold"
-            android:textColor="#B61111" />
+            android:textColor="#bc5253" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,6 +102,9 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:fontFamily="@font/nanumb"
+                android:textColor="@color/black"
+
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="닉네임" />
@@ -109,6 +121,8 @@
                 android:inputType="text"
                 android:paddingLeft="15dp"
                 android:paddingTop="13dp"
+                android:fontFamily="@font/nanumb"
+
                 android:paddingBottom="13dp"
                 android:shadowColor="#EAEAEA"
                 android:textSize="18sp" />
@@ -119,13 +133,13 @@
             android:id="@+id/txtViewCheckName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
+            android:layout_marginLeft="120dp"
             android:layout_marginTop="3dp"
             android:layout_marginRight="23dp"
             android:text="이미 사용 중인 닉네임입니다."
             android:textStyle="bold"
             android:visibility="invisible"
-            android:textColor="#B61111" />
+            android:textColor="#bc5253" />
 
         <EditText
             android:id="@+id/editPassword"
@@ -138,6 +152,8 @@
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="비밀번호 입력"
+            android:fontFamily="@font/nanumb"
+
             android:inputType="text|textPassword"
             android:paddingLeft="15dp"
             android:paddingTop="13dp"
@@ -149,9 +165,9 @@
             android:id="@+id/txtViewCheckPassword1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
+            android:layout_marginLeft="25dp"
             android:text="4~12자 사이로 입력해 주세요."
-            android:textColor="#B61111"
+            android:textColor="#bc5253"
             android:visibility="invisible" />
 
         <EditText
@@ -165,6 +181,8 @@
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="비밀번호 확인"
+            android:fontFamily="@font/nanumb"
+
             android:inputType="text|textPassword"
             android:paddingLeft="15dp"
             android:paddingTop="13dp"
@@ -176,10 +194,10 @@
             android:id="@+id/txtViewCheckPassword2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginRight="15dp"
             android:text="비밀번호가 일치하지 않습니다."
-            android:textColor="#B61111"
+            android:textColor="#bc5253"
             android:visibility="invisible" />
 
         <Button
@@ -187,11 +205,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="120dp"
             android:layout_marginRight="40dp"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#FF7285"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
+            android:fontFamily="@font/nanumeb"
             android:text="다음"
             android:textSize="16sp"
             android:textStyle="bold"

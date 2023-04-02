@@ -4,24 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundpink"
+
     tools:context=".login.RegisterThreeActivity">
 
     <LinearLayout
-        android:layout_width="412dp"
-        android:layout_height="679dp"
+        android:layout_width="410dp"
+        android:layout_height="736dp"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#DAEFFE">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="80dp"
+            android:fontFamily="@font/nanumeb"
+            android:layout_marginTop="110dp"
             android:text="목표 칼로리를"
             android:textColor="#000000"
             android:textSize="22sp"
@@ -30,6 +33,8 @@
         <TextView
             android:id="@+id/textView15"
             android:layout_width="match_parent"
+            android:fontFamily="@font/nanumeb"
+
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
@@ -39,14 +44,16 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nanumb"
+
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="일일권장 섭취량은 "
@@ -57,7 +64,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textColor="#E74C3C"
+                android:fontFamily="@font/nanumeb"
+
+                android:textColor="#bc5253"
                 android:textStyle="bold" />
 
             <TextView
@@ -65,6 +74,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" 예요"
+                android:fontFamily="@font/nanumb"
+
                 android:textColor="#000000" />
         </LinearLayout>
 
@@ -74,6 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/nanumb"
+
             android:text="다이어트를 위한 목표량을 직접 입력할 수도 있어요"
             android:textColor="#000000" />
 
@@ -84,6 +97,8 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="70dp"
             android:text="목표 섭취 열량"
+            android:fontFamily="@font/nanumb"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <EditText
@@ -95,6 +110,8 @@
 
             android:layout_marginRight="30dp"
             android:background="@drawable/border"
+            android:fontFamily="@font/nanumb"
+
             android:backgroundTint="#FFFFFF"
             android:ems="10"
             android:hint="kcal"
@@ -106,10 +123,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="240dp"
             android:layout_marginRight="40dp"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#FF7285"
             android:paddingTop="12dp"
+            android:fontFamily="@font/nanumb"
+
             android:paddingBottom="12dp"
             android:text="다음"
             android:textSize="16sp"

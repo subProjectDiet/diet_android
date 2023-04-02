@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroundpink"
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DAEFFE"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +25,7 @@
             android:layout_marginRight="23dp"
             android:background="@drawable/border"
             android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/nanumb"
             android:ems="10"
             android:hint="아이디"
             android:inputType="textEmailAddress"
@@ -43,6 +44,8 @@
             android:layout_marginRight="23dp"
             android:background="@drawable/border"
             android:backgroundTint="#FFFFFF"
+            android:fontFamily="@font/nanumb"
+
             android:ems="10"
             android:hint="비밀번호"
             android:inputType="textPassword"
@@ -57,9 +60,11 @@
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#E74C3C"
+            android:backgroundTint="#FF7285"
             android:text="로그인"
             android:textSize="18sp"
+            android:fontFamily="@font/nanumeb"
+
             android:textStyle="bold" />
 
         <ImageButton
@@ -79,6 +84,8 @@
             android:text="@string/txt_register_btn"
             android:textColor="#0A0CB3"
             android:textColorHint="#FFFFFF"
+            android:fontFamily="@font/nanumb"
+
             android:textSize="16sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

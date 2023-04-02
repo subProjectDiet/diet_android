@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundpink"
+
     tools:context=".login.RegisterFourActivity">
 
     <LinearLayout
-        android:layout_width="411dp"
-        android:layout_height="670dp"
+        android:layout_width="414dp"
+        android:layout_height="736dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#DAEFFE"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -21,8 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:text="목표 탄단지 정하기"
+            android:fontFamily="@font/nanumeb"
+
             android:textColor="#000000"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -37,6 +40,8 @@
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/nanumb"
+
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="목표 열량에 맞는 "
@@ -46,8 +51,10 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumeb"
+
                 android:text="추천 섭취량"
-                android:textColor="#E74C3C"
+                android:textColor="#bc5253"
                 android:textStyle="bold" />
 
             <TextView
@@ -55,6 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="을 계산했어요"
+                android:fontFamily="@font/nanumb"
+
                 android:textColor="#000000" />
         </LinearLayout>
 
@@ -62,8 +71,10 @@
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/nanumb"
+
             android:text="목표량을 직접 입력할 수도 있어요"
             android:textColor="#000000" />
 
@@ -77,6 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:fontFamily="@font/nanumb"
+
                 android:layout_marginTop="35dp"
                 android:text="탄수화물"
                 android:textSize="17sp" />
@@ -95,6 +108,8 @@
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
                     android:ems="7"
+                    android:fontFamily="@font/nanumb"
+
                     android:inputType="textPersonName"
                     android:padding="13dp"
                     android:textSize="18sp" />
@@ -102,6 +117,8 @@
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="wrap_content"
+                    android:fontFamily="@font/nanumr"
+
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
@@ -113,6 +130,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/nanumeb"
+
                     android:layout_marginLeft="90dp"
                     android:text="000Kcal"
                     android:textSize="22sp"
@@ -125,6 +144,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/nanumb"
+
                 android:text="단백질"
                 android:textSize="17sp" />
 
@@ -141,6 +162,8 @@
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/nanumb"
+
                     android:ems="7"
                     android:inputType="textPersonName"
                     android:padding="13dp"
@@ -153,12 +176,16 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:text="X 4"
+                    android:fontFamily="@font/nanumr"
+
                     android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/txtProtein"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumeb"
+
                     android:layout_gravity="center"
                     android:layout_marginLeft="90dp"
                     android:text="000Kcal"
@@ -173,6 +200,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/nanumb"
+
                 android:text="지방"
                 android:textSize="17sp" />
 
@@ -189,6 +218,8 @@
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/border"
                     android:backgroundTint="#FFFFFF"
+                    android:fontFamily="@font/nanumb"
+
                     android:ems="7"
                     android:inputType="textPersonName"
                     android:padding="13dp"
@@ -201,6 +232,8 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:text="X 9"
+                    android:fontFamily="@font/nanumr"
+
                     android:textSize="17sp" />
 
                 <TextView
@@ -209,12 +242,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="90dp"
+                    android:fontFamily="@font/nanumeb"
+
                     android:text="000Kcal"
                     android:textSize="22sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
-
 
 
         </LinearLayout>
@@ -223,16 +256,17 @@
             android:id="@+id/imageView"
             android:layout_width="390dp"
             android:layout_height="1dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/line" />
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/line_pink" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginLeft="35dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -240,18 +274,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="목표 섭취 열량"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtKcal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:textColor="#E74C3C"
                 android:layout_marginLeft="120dp"
-                android:text="0000Kcal" />
+                android:text="0000Kcal"
+                android:textColor="#bc5253"
+                android:fontFamily="@font/nanumeb"
+
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -260,14 +296,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="55dp"
             android:layout_marginRight="40dp"
-            android:backgroundTint="#000000"
+            android:backgroundTint="#FF7285"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:text="다음"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:fontFamily="@font/nanumeb"
+
             app:cornerRadius="20dp"
             tools:layout_editor_absoluteX="341dp"
             tools:layout_editor_absoluteY="397dp" />
