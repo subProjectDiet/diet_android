@@ -65,6 +65,8 @@ public class EdaActivity extends AppCompatActivity {
 
         Log.i("NOWMONTH2", nowMonth + "");
 
+        txtMonthReport.setText(nowMonth.substring(5, 6+1) +"월 다이어트 상세 리포트");
+
         // 가장 많이 먹은 음식 및 칼로리 가져오기
         getFoodKcalNetwork(nowMonth);
 
