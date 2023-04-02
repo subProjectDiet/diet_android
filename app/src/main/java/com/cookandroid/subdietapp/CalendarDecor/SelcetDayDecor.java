@@ -9,11 +9,11 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
-public class twoDayDecor implements DayViewDecorator {
+public class SelcetDayDecor implements DayViewDecorator {
     private final CalendarDay date;
     private final Drawable drawable;
 
-    public twoDayDecor(Context context,CalendarDay date) {
+    public SelcetDayDecor(Context context, CalendarDay date) {
         drawable =  context.getResources().getDrawable(R.drawable.pink_circle);
         this.date = date;
     }

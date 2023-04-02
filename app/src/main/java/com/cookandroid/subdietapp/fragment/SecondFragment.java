@@ -25,8 +25,7 @@ import com.cookandroid.subdietapp.CalendarDecor.BoldDecor;
 import com.cookandroid.subdietapp.CalendarDecor.SatDecor;
 import com.cookandroid.subdietapp.CalendarDecor.SundayDecor;
 import com.cookandroid.subdietapp.CalendarDecor.eventDecor;
-import com.cookandroid.subdietapp.CalendarDecor.onDayDecor;
-import com.cookandroid.subdietapp.CalendarDecor.twoDayDecor;
+import com.cookandroid.subdietapp.CalendarDecor.SelcetDayDecor;
 import com.cookandroid.subdietapp.EdaActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SelectedDayActivity;
@@ -84,12 +83,13 @@ public class SecondFragment extends Fragment {
     LinearLayout btndiary;
     private String selectedMonth;
 
-    private twoDayDecor twoDayDecor;
-    private onDayDecor onDayDecor;
+    private SelcetDayDecor SelcetDayDecor;
+
 
 
     TextView txtDate;
     String nowMonth;
+
 
 
     public SecondFragment() {
@@ -143,6 +143,7 @@ public class SecondFragment extends Fragment {
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
 
         nowMonth = sdf1.format(date);
+        Log.i(TAG,"날짜확인"+nowMonth);
 
 
 
@@ -154,10 +155,8 @@ public class SecondFragment extends Fragment {
         SatDecor satDecor = new SatDecor(context);
         calendarView.addDecorator(satDecor);
 
-        // 선택 원 바꾸기
 
-
-        //평일 진하게
+        //평일 진하게(
         BoldDecor boldDecor = new BoldDecor(context);
         calendarView.addDecorator(boldDecor);
 
@@ -186,8 +185,39 @@ public class SecondFragment extends Fragment {
         });
 
 
-        // 오늘 날짜 디폴트로 보이게 설정
+        // 달력에 처음 진입시 오늘날짜 나오게
         calendarView.setSelectedDate(CalendarDay.today());
+        SelcetDayDecor = new SelcetDayDecor(getContext(),CalendarDay.today());
+        calendarView.addDecorator(SelcetDayDecor);
+        //날짜 바로나오게
+        CalendarDay selday = calendarView.getSelectedDate();
+        if (selday != null) {
+            int year = selday.getYear();
+            int month = selday.getMonth() + 1;
+            int day = selday.getDay();
+            String dateselc = null;
+
+            if (month < 10) {
+                if (day < 10) {
+                    dateselc = String.valueOf(year + "년0" + month + "월0" + day + "일");
+                } else if (day >= 10) {
+                    dateselc = String.valueOf(year + "년0" + month + "월" + day + "일");
+                }
+
+            } else if (month >= 10) {
+                if (day < 10) {
+
+                } else if (day >= 10) {
+                    dateselc = String.valueOf(year + "년" + month + "월0" + day + "일");
+                }
+                dateselc = String.valueOf(year + "년" + month + "월" + day + "일");
+            }
+
+            txtDate.setText(dateselc);
+
+
+        }
+        //설정된 날짜로 데이터
         getNetworkData();
 
 
@@ -199,19 +229,32 @@ public class SecondFragment extends Fragment {
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-                //다음달 넘기면 무조건 1일 설정
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(date.getYear(), date.getMonth(), 1); // 새로운 달의 첫번째 날짜로 Calendar 객체 설정
-                CalendarDay firstDayOfNewMonth = CalendarDay.from(calendar); // Calendar 객체로부터 CalendarDay 객체 생성
-                calendarView.setSelectedDate(firstDayOfNewMonth);
+                // 달력에 표시 남아있으면 무조건 초기화
+                calendarView.removeDecorator(SelcetDayDecor);
 
-                calendarView.removeDecorator(onDayDecor);
-                calendarView.removeDecorator(twoDayDecor);
-                twoDayDecor = new twoDayDecor(getContext(), date);
-                calendarView.addDecorator(twoDayDecor);
+                if (date.getMonth() == Calendar.getInstance().get(Calendar.MONTH)) {
+                    // 현재 월이면 바로 getNetworkData() 호출 (디폴트가 오늘이라..)
+                    calendarView.setSelectedDate(CalendarDay.today());
+                    SelcetDayDecor = new SelcetDayDecor(getContext(),CalendarDay.today());
+                    calendarView.addDecorator(SelcetDayDecor);
+                    getNetworkData();
+                } else {
+
+                    //다음달 넘기면 무조건 1일 설정
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(date.getYear(), date.getMonth(), 1); // 새로운 달의 첫번째 날짜로 Calendar 객체 설정
+                    CalendarDay firstDay = CalendarDay.from(calendar); // Calendar 객체로부터 CalendarDay 객체 생성
+                    calendarView.setSelectedDate(firstDay);
 
 
-                getNetworkData();
+                    SelcetDayDecor = new SelcetDayDecor(getContext(), firstDay);
+                    calendarView.addDecorator(SelcetDayDecor);
+
+                    getNetworkData();
+                }
+
+
+
             }
         });
 
@@ -306,7 +349,8 @@ public class SecondFragment extends Fragment {
 
                 if (response.isSuccessful()) {
 
-
+                    // 리스폰받은 데이터중 기록이 있으면 점찍기
+                    //addDecor
                     for (int i = 0; i < response.body().getItems().size(); i++) {
                         String dateString = response.body().getItems().get(i).getDate();
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -401,21 +445,18 @@ public class SecondFragment extends Fragment {
                         }
                     }
 
-                    onDayDecor onDayDecor = new onDayDecor(getContext());
-                    calendarView.addDecorator((onDayDecor));
-
-                    //이제부턴 유저가 선택하는 날짜 데이터 찾기
+                    //이제부턴 유저가 선택하는 날짜에 맞는 데이터 찾기
                     calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
                         @Override
                         public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
                             //기존 날짜 체크 지우기
-                            calendarView.removeDecorator(onDayDecor);
-                            calendarView.removeDecorator(twoDayDecor);
-                            twoDayDecor = new twoDayDecor(getContext(), date);
-                            calendarView.addDecorator(twoDayDecor);
+                            //선택한 날짜표시
+                            calendarView.removeDecorator(SelcetDayDecor);
+                            SelcetDayDecor = new SelcetDayDecor(getContext(), date);
+                            calendarView.addDecorator(SelcetDayDecor);
 
-                            //과정은 같음
+                            //내가 선택한 날짜와 데이터가 일치하는지 확인 위에와 과정 똑같음
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                             String selectedDate = dateFormat.format(date.getDate());
 
@@ -472,7 +513,7 @@ public class SecondFragment extends Fragment {
 
                             }
 
-
+                            // 내가 선택할때 마다 날짜 보여주기
                             CalendarDay selday = calendarView.getSelectedDate();
                             if (selday != null) {
                                 int year = selday.getYear();
