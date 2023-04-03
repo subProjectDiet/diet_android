@@ -4,55 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundpink"
+
     tools:context=".posting.SearchPostingActivity">
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="675dp"
+        android:layout_width="411dp"
+        android:layout_height="739dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="15dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/editSearch"
-            android:layout_width="330dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#99FFFFFF"
-            android:ems="10"
-            android:hint="검색어를 입력하세요"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal">
 
-            android:layout_gravity="center"
-            android:background="@drawable/border_outline"
-            android:padding="15dp"
-            android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/editSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#99FFFFFF"
+                android:ems="18"
+                android:hint="검색어를 입력하세요"
+                android:fontFamily="@font/nanumb"
+
+                android:layout_gravity="center"
+                android:background="@drawable/border_outline"
+                android:padding="15dp"
+                android:inputType="textPersonName" />
 
 
-        <ImageButton
-            android:id="@+id/imgSearch"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:backgroundTint="#2C3E50"
-            android:src="@drawable/baseline_search_24" />
+            <ImageButton
+                android:id="@+id/imgSearch"
+                android:layout_width="55dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#FF7285"
+                android:src="@drawable/baseline_search_24" />
 
-    </LinearLayout>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="7dp"
-            android:layout_marginRight="15dp"
             android:layout_marginBottom="7dp" />
 
 

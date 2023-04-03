@@ -120,7 +120,7 @@ public class SelectedDayActivity extends AppCompatActivity {
 
         // 유저 목표 칼로리 (회원가입할때 입력한 kcal 정보임) 텍스트뷰에 나타내기
         SharedPreferences sharedPreferences = getSharedPreferences(Config.PREFERENCE_NAME, SelectedPostingActivity.MODE_PRIVATE); // mode_private : 해당 앱에서만 사용
-        targetKcal = sharedPreferences.getString(Config.TARGET_KCAL, "");
+        targetKcal = sharedPreferences.getString(Config.TARGET_KCAL, "1.1");
         txtTargetKcal.setText("/"+Math.round(Double.parseDouble(targetKcal)));
 
 

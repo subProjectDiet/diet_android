@@ -142,7 +142,6 @@ public class SelectedExerciseActivity extends AppCompatActivity {
                 intent.putExtra("keyword", keyword);
                 intent.putExtra("date",date);
                 startActivity(intent);
-                finish();
 
             }
         });

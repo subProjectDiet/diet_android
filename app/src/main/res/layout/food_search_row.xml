@@ -17,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="14dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="17dp"
+            android:layout_marginBottom="14dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -39,7 +39,7 @@
                     android:padding="7dp"
 
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -61,7 +61,7 @@
 
                     android:textColor="@color/black"
 
-                    android:textSize="20sp" />
+                    android:textSize="19sp" />
 
             </LinearLayout>
         </LinearLayout>

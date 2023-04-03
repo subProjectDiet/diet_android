@@ -140,7 +140,7 @@
                     android:fontFamily="@font/nanumeb"
                     android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/txtHopeWeight"
@@ -172,7 +172,7 @@
                     android:fontFamily="@font/nanumeb"
                     android:textColor="@color/white"
 
-                    android:textSize="16sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/txtTargetKcal"
@@ -204,7 +204,7 @@
                     android:fontFamily="@font/nanumeb"
                     android:textColor="@color/white"
 
-                    android:textSize="16sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/textView620"
