@@ -398,7 +398,7 @@ public class SelectedPostingActivity extends AppCompatActivity {
                         // glide로 이미지 뿌려주기
                         Glide.with(SelectedPostingActivity.this)
                                 .load(postingInfo.getImgurl().replace("http","https"))
-                                .placeholder(R.drawable.outline_insert_photo_24)
+                                .placeholder(R.drawable.getimg)
                                 .into(imgPhoto);
 
 

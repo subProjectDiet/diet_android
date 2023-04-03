@@ -68,7 +68,7 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
 //        holder.txtDate.setText( posting.getCreatedAt().substring(0, 9+1) + " " + posting.getCreatedAt().substring(11, 18+1) );
 
         Glide.with(context).load(posting.getImgurl().replace("http","https"))
-                .placeholder(R.drawable.outline_insert_photo_24)
+                .placeholder(R.drawable.getimg)
                 .into(holder.imgPhoto);
 
         if (posting.getIsLike() == 1){

@@ -69,7 +69,7 @@ public class SecondFragment extends Fragment {
 
 
     TextView txtWeight ,txtKcal, txtExercise;
-    Button btnMonth;
+    LinearLayout btnMonth;
 
 
     MaterialCalendarView calendarView;
