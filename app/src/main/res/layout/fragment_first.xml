@@ -32,7 +32,7 @@
                 android:padding="4dp"
                 android:fontFamily="@font/nanumeb"
                 android:text="      오늘"
-                android:textColor="@color/black"
+                android:textColor="#FF91A0"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -91,7 +91,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/nanumeb"
                         android:text="몸무게"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#FF91A0"
                         android:textSize="18sp" />
 
                     <TextView
@@ -103,7 +103,7 @@
                         android:gravity="center"
                         android:text="00kg"
 
-                        android:textColor="#FFFFFF"
+                        android:textColor="#FF91A0"
                         android:textSize="30sp"
 
                         android:textStyle="bold" />
@@ -144,9 +144,9 @@
                         android:id="@+id/textView363a"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#FF91A0"
                         android:textStyle="bold"
-                        android:fontFamily="@font/nanumb"
+                        android:fontFamily="@font/nanumeb"
 
                         android:text="탄수화물" />
 
@@ -165,9 +165,9 @@
                         android:id="@+id/txtGetCarbs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#FF91A0"
                         android:textStyle="bold"
-                        android:fontFamily="@font/nanumb"
+                        android:fontFamily="@font/nanumeb"
 
                         android:text="00g" />
                 </LinearLayout>
@@ -185,9 +185,9 @@
                         android:id="@+id/textView363"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#FF91A0"
                         android:textStyle="bold"
-                        android:fontFamily="@font/nanumb"
+                        android:fontFamily="@font/nanumeb"
 
                         android:text="단백질" />
 
@@ -205,9 +205,9 @@
                         android:id="@+id/txtGetProtein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#FF91A0"
                         android:textStyle="bold"
-                        android:fontFamily="@font/nanumb"
+                        android:fontFamily="@font/nanumeb"
 
                         android:text="00g" />
                 </LinearLayout>
@@ -225,9 +225,9 @@
                         android:id="@+id/textView363b"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#FF91A0"
                         android:textStyle="bold"
-                        android:fontFamily="@font/nanumb"
+                        android:fontFamily="@font/nanumeb"
 
                         android:text="지방" />
 
@@ -245,9 +245,9 @@
                         android:id="@+id/txtGetFat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
+                        android:textColor="#FF91A0"
                         android:textStyle="bold"
-                        android:fontFamily="@font/nanumb"
+                        android:fontFamily="@font/nanumeb"
 
                         android:text="00g" />
                 </LinearLayout>
