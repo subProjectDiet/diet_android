@@ -61,7 +61,8 @@
                     android:layout_marginTop="6dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:backgroundTint="#98fcefe3"
+                    android:background="#46FF7285"
+                    android:backgroundTint="#FF7285"
                     android:paddingLeft="7dp"
 
                     />
