@@ -73,7 +73,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/nanumeb"
 
-            android:text="여자                                     남자" />
+            android:text="여자                                       남자" />
         <LinearLayout
             android:gravity="center"
 
