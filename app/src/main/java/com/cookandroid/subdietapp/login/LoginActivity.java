@@ -36,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnLogin;
 
+    private int accountType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = editEmail.getText().toString().trim();
                 Pattern pattern = Patterns.EMAIL_ADDRESS;
+                accountType=0;
 
                 if(pattern.matcher(email).matches() == false){
                     Toast.makeText(LoginActivity.this, "이메일 형식이 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -78,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 Retrofit retrofit = NetworkClient.getRetrofitClient(LoginActivity.this);
                 UserApi api = retrofit.create(UserApi.class);
 
-                User user = new User(email, password);
+                User user = new User(email, password,accountType);
 
                 Call<UserLoginRes> call = api.login(user);
                 call.enqueue(new Callback<UserLoginRes>() {

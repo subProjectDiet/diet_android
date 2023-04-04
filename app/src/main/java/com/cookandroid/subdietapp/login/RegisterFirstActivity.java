@@ -41,6 +41,7 @@ public class RegisterFirstActivity extends AppCompatActivity {
     String password2;
 
     Button btnNext;
+    private int accountType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,14 +172,14 @@ public class RegisterFirstActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 showProgress("회원가입 중입니다...");
-
+                accountType=0;
 
                 // 2-1. 레트로핏 변수 생성
                 Retrofit retrofit =
                         NetworkClient.getRetrofitClient(RegisterFirstActivity.this);
                 UserApi api = retrofit.create(UserApi.class); // 레트로핏으로 서버에 요청할 객체 생성
 
-                User user = new User(email, nickName, password); // User 객체 생성
+                User user = new User(email, nickName, password ,accountType); // User 객체 생성
                 Call<UserRes> call = api.register(user); // 서버에 요청
 
                 call.enqueue(new Callback<UserRes>() { // 비동기로 서버에 요청
