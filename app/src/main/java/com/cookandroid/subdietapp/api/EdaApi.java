@@ -4,6 +4,7 @@ import com.cookandroid.subdietapp.model.eda.AvgDataRes;
 import com.cookandroid.subdietapp.model.eda.BurnKcalRes;
 import com.cookandroid.subdietapp.model.eda.EatFoodKcalRes;
 import com.cookandroid.subdietapp.model.eda.EatManydayRes;
+import com.cookandroid.subdietapp.model.eda.EdaDayRes;
 import com.cookandroid.subdietapp.model.eda.ExerciseManydayRes;
 
 import retrofit2.Call;
@@ -39,4 +40,12 @@ public interface EdaApi {
     @GET("/eda/burn/weight")
     Call<BurnKcalRes> getBurnData (@Header("Authorization") String token,
                                    @Query("date") String date);
+
+
+    // 차트 관련
+    // 일간 도표 데이터
+    @GET("/eda/day")
+    Call<EdaDayRes> getEdaDay (@Header("Authorization") String token,
+                               @Query("date") String date);
+
 }
