@@ -28,36 +28,34 @@
         android:theme="@style/Theme.SubDietApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ChartActivity"
+            android:exported="false" />
+        <activity
             android:name=".EdaActivity"
             android:exported="false" />
         <activity
             android:name=".food.SelectedDinnerFoodActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".food.SelectedLunchFoodActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".FoodEditActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".FoodAddActivity"
             android:exported="false" />
         <activity
             android:name=".SearchFoodActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".food.SelectedBreakfastFoodActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".AddKcalDirectActivity"
             android:exported="false" />
@@ -69,9 +67,8 @@
             android:exported="false" />
         <activity
             android:name=".posting.SearchPostingActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".posting.MyLikePostingActivity"
             android:exported="false" />
@@ -88,67 +85,55 @@
 
         <activity
             android:name=".posting.SelectedPostingActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".posting.AddPostingActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".exercise.ExerciseSearchEditActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".exercise.ExerciseSearchAddActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".exercise.SelectedExerciseSearchActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".exercise.SelectedExerciseActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SelectedDayActivity"
             android:exported="false" />
         <activity
             android:name=".login.RegisterFiveActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.RegisterFourActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.RegisterThreeActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.RegisterTwoActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.RegisterFirstActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".login.LoginActivity"
-            android:windowSoftInputMode="adjustPan"
-
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

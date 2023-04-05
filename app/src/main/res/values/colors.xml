@@ -10,4 +10,7 @@
     <color name="background_blue">#DAEFFE</color>
     <color name="userinfo_gender">#3498DB</color>
     <color name="userInfo_gender_no_selected">#F4F4F4</color>
+    <color name="bar_chart_pink">#FF91A0</color>
+
+
 </resources>

@@ -3,6 +3,7 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+
 android {
     compileSdk 33
 
@@ -22,6 +23,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -67,4 +70,8 @@ dependencies {
 
     //카카오 로그인api 설치
     implementation "com.kakao.sdk:v2-user:2.13.0" // 카카오 로그인
+
+    // 도표라이브러리
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }

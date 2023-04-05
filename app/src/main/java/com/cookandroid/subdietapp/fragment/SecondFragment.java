@@ -23,9 +23,10 @@ import androidx.fragment.app.Fragment;
 
 import com.cookandroid.subdietapp.CalendarDecor.BoldDecor;
 import com.cookandroid.subdietapp.CalendarDecor.SatDecor;
+import com.cookandroid.subdietapp.CalendarDecor.SelcetDayDecor;
 import com.cookandroid.subdietapp.CalendarDecor.SundayDecor;
 import com.cookandroid.subdietapp.CalendarDecor.eventDecor;
-import com.cookandroid.subdietapp.CalendarDecor.SelcetDayDecor;
+import com.cookandroid.subdietapp.ChartActivity;
 import com.cookandroid.subdietapp.EdaActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SelectedDayActivity;
@@ -86,7 +87,7 @@ public class SecondFragment extends Fragment {
     private SelcetDayDecor SelcetDayDecor;
 
 
-
+    Button btnChart;
     TextView txtDate;
     String nowMonth;
 
@@ -135,7 +136,7 @@ public class SecondFragment extends Fragment {
         txtDate = rootView.findViewById(R.id.txtDate);
         btnMonth=rootView.findViewById(R.id.btnMonth);
 
-
+        btnChart = rootView.findViewById(R.id.btnChart);
 
         // 날짜를 가져오는 코드
         long now = System.currentTimeMillis();
@@ -165,6 +166,13 @@ public class SecondFragment extends Fragment {
 //        CustomDecorator customDecorator = new CustomDecorator(context);
 //        calendarView.addDecorator((customDecorator));
 
+        btnChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ChartActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
