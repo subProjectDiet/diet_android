@@ -275,6 +275,8 @@
                 android:layout_height="wrap_content"
                 android:text="목표 섭취 열량"
                 android:textSize="18sp"
+                android:fontFamily="@font/nanumb"
+
                 android:textStyle="bold" />
 
             <TextView
