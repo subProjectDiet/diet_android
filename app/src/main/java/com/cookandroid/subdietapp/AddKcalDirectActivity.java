@@ -51,6 +51,7 @@ public class AddKcalDirectActivity extends AppCompatActivity {
     private int visionprotein;
     private String vsionKcal;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +93,9 @@ public class AddKcalDirectActivity extends AppCompatActivity {
         visionprotein = Integer.parseInt(getIntent().getStringExtra("protein"));
         visionfat = Integer.parseInt(getIntent().getStringExtra("fat"));
         vsionKcal = getIntent().getStringExtra("kcal");
+
         Log.i("확인하기", "carbs : " + visioncarbs + " date : "  + date + " mealtime : " + mealtime);
+
 
         editKcal.setText((vsionKcal));
         editGram.setText(Integer.toString(visongram));
