@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,10 +56,9 @@ public class ChartActivity extends AppCompatActivity {
 
     ArrayList<Entry> dataList = new ArrayList<>();
 
+    Button btnDate, btnWeek, btnMonth;
 
-//    List<Entry> entries = new ArrayList<>();
-//
-//    XAxis xAxis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +67,38 @@ public class ChartActivity extends AppCompatActivity {
 
         lineChart = findViewById(R.id.lineChart);
 
+        btnDate = findViewById(R.id.btnDate);
+        btnWeek = findViewById(R.id.btnWeek);
+        btnMonth = findViewById(R.id.btnMonth);
+
 
         barWidth = 0.3f;
         barSpace = 0f;
         groupSpace = 0.4f;
 
-        barChart = (BarChart)findViewById(R.id.fragment_bluetooth_chat_barchart);
+        barChart = (BarChart) findViewById(R.id.fragment_bluetooth_chat_barchart);
         barChart.setDescription(null);
         barChart.setPinchZoom(false);
         barChart.setScaleEnabled(false);
         barChart.setDrawBarShadow(false);
         barChart.setDrawGridBackground(false);
 
+        getNetworkWeekData();
+
+        btnWeek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
 
 
 
+    }
 
+    private void getNetworkWeekData() {
 
         int groupCount = 5;
 
@@ -93,7 +108,6 @@ public class ChartActivity extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
         String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
-
 
 
         Call<EdaDayRes> call = api.getEdaDay(accessToken, "2023-04");
@@ -112,8 +126,8 @@ public class ChartActivity extends AppCompatActivity {
 
                         dayList = (ArrayList<EdaDay>) response.body().getItems();
 
-                        for (int i = 0; i <6; i++){
-                            EdaDate = dayList.get(i).getDate().substring(5, 9+1);
+                        for (int i = 0; i < 6; i++) {
+                            EdaDate = dayList.get(i).getDate().substring(5, 9 + 1);
                             xVals.add(EdaDate);
                             Log.i("EDADATETEST", EdaDate + " " + i);
                         }
@@ -127,8 +141,8 @@ public class ChartActivity extends AppCompatActivity {
                     // 바차트
 
                     try {
-                        for (int i=1; i<6; i++){
-                            for (int j=0; j<5; j++){
+                        for (int i = 1; i < 6; i++) {
+                            for (int j = 0; j < 5; j++) {
                                 EdaDateWeight = dayList.get(j).getNowWeight();
                                 EdaDateBurnKcal = dayList.get(j).getTotalKcalBurn();
                                 EdaDateKcal = dayList.get(j).getTotalKcal();
@@ -151,7 +165,6 @@ public class ChartActivity extends AppCompatActivity {
 
                     set2 = new BarDataSet(yVals2, "섭취 칼로리");
                     set2.setColor(Color.rgb(255, 145, 160));
-
 
 
                     BarData data = new BarData(set1, set2);
@@ -199,13 +212,11 @@ public class ChartActivity extends AppCompatActivity {
                     // 라인차트
 
 
-
-
 //                    dataList.add(new Entry(1, 15));
 //                    dataList.add(new Entry(2, 20));
 
                     try {
-                        for (int i = 0; i <6; i++){
+                        for (int i = 0; i < 6; i++) {
                             EdaDateWeight = dayList.get(i).getNowWeight();
 
                             dataList.add(new Entry(i, EdaDateWeight.floatValue()));
@@ -254,17 +265,6 @@ public class ChartActivity extends AppCompatActivity {
                     // 차트 초기화
                     lineChart.invalidate();
 
-
-
-
-
-
-
-
-
-
-
-
                 } else {
 
                 }
@@ -276,68 +276,6 @@ public class ChartActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-    }
-
-    private ArrayList<Entry> data1() {
-        ArrayList<Entry> dataList = new ArrayList<>();
-
-
-        return dataList;
-    }
-
-    private void getNetworkData() {
-
-        Retrofit retrofit = NetworkClient.getRetrofitClient(ChartActivity.this);
-
-        EdaApi api = retrofit.create(EdaApi.class);
-
-        SharedPreferences sp = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
-        String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
-
-
-
-        Call<EdaDayRes> call = api.getEdaDay(accessToken, "2023-04");
-        call.enqueue(new Callback<EdaDayRes>() {
-            @Override
-            public void onResponse(Call<EdaDayRes> call, Response<EdaDayRes> response) {
-
-                // getNetworkData 함수는, 항상 처음에 데이터를 가져오는 동작이므로
-                // 초기화 코드가 필요.
-                dayList.clear();
-
-
-                if (response.isSuccessful()) {
-
-
-                    dayList.addAll(response.body().getItems());
-
-//                    postingAdapter = new PostingAdapter(getActivity(), postingList);
-//                    recyclerView.setAdapter(postingAdapter);
-
-
-                } else {
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<EdaDayRes> call, Throwable t) {
-
-            }
-        });
-
-
     }
 
 
