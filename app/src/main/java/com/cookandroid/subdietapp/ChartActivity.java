@@ -68,6 +68,8 @@ public class ChartActivity extends AppCompatActivity {
 
     Button btnDate, btnWeek, btnMonth;
 
+    String nowMonth;
+
 
 
     @Override
@@ -81,7 +83,9 @@ public class ChartActivity extends AppCompatActivity {
         btnWeek = findViewById(R.id.btnWeek);
         btnMonth = findViewById(R.id.btnMonth);
 
+        nowMonth = getIntent().getStringExtra("nowMonth");
 
+        Log.i("nowMonth", "차트액티비티 :" + nowMonth);
 
         barWidth = 0.3f;
         barSpace = 0f;
@@ -111,7 +115,7 @@ public class ChartActivity extends AppCompatActivity {
                 btnWeek.setSelected(false);
                 btnMonth.setSelected(false);
 
-                getNetworkDayData();
+                getNetworkDayData(nowMonth);
 
             }
         });
@@ -526,7 +530,7 @@ public class ChartActivity extends AppCompatActivity {
         });
     }
 
-    private void getNetworkDayData() {
+    private void getNetworkDayData(String month) {
 
         int groupCount = 5;
 
@@ -538,7 +542,7 @@ public class ChartActivity extends AppCompatActivity {
         String accessToken = "Bearer " + sp.getString(Config.ACCESS_TOKEN, "");
 
 
-        Call<EdaDayRes> call = api.getEdaDay(accessToken, "2023-04");
+        Call<EdaDayRes> call = api.getEdaDay(accessToken, nowMonth);
         call.enqueue(new Callback<EdaDayRes>() {
             @Override
             public void onResponse(Call<EdaDayRes> call, Response<EdaDayRes> response) {

@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,7 +26,6 @@ import com.cookandroid.subdietapp.CalendarDecor.SelcetDayDecor;
 import com.cookandroid.subdietapp.CalendarDecor.SundayDecor;
 import com.cookandroid.subdietapp.CalendarDecor.eventDecor;
 import com.cookandroid.subdietapp.ChartActivity;
-import com.cookandroid.subdietapp.EdaActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SelectedDayActivity;
 import com.cookandroid.subdietapp.api.DiaryApi;
@@ -86,8 +84,6 @@ public class SecondFragment extends Fragment {
 
     private SelcetDayDecor SelcetDayDecor;
 
-
-    Button btnChart;
     TextView txtDate;
     String nowMonth;
 
@@ -136,7 +132,6 @@ public class SecondFragment extends Fragment {
         txtDate = rootView.findViewById(R.id.txtDate);
         btnMonth=rootView.findViewById(R.id.btnMonth);
 
-        btnChart = rootView.findViewById(R.id.btnChart);
 
         // 날짜를 가져오는 코드
         long now = System.currentTimeMillis();
@@ -165,16 +160,6 @@ public class SecondFragment extends Fragment {
 //        달력 디자인 원하는걸로 바꾸기 가능(레이아웃만 바꿔주면됨)
 //        CustomDecorator customDecorator = new CustomDecorator(context);
 //        calendarView.addDecorator((customDecorator));
-
-        btnChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ChartActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
 
 
         // 연/월 순서 바꾸기
@@ -311,7 +296,7 @@ public class SecondFragment extends Fragment {
         btnMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EdaActivity.class);
+                Intent intent = new Intent(getActivity(), ChartActivity.class);
                 intent.putExtra("nowMonth", nowMonth);
                 startActivity(intent);
             }

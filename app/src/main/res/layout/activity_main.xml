@@ -16,6 +16,7 @@
         app:itemIconSize="32dp"
         app:itemIconTint="@drawable/menu_selector_color"
         app:itemTextColor="@drawable/menu_selector_color"
+        android:background="@color/white"
         app:labelVisibilityMode="unlabeled"/>
 
     <androidx.fragment.app.FragmentContainerView
