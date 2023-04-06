@@ -1,5 +1,7 @@
 package com.cookandroid.subdietapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -74,10 +76,18 @@ public class FoodAddActivity extends AppCompatActivity {
         date = getIntent().getStringExtra("date");
         mealtime = Integer.parseInt(getIntent().getStringExtra("mealtime"));
 
+
         Log.i("GETDATATEST", "foodID : " + foodId + " date : "  + date + " mealtime : " + mealtime);
 
 
-        getNetworkData();
+
+
+
+            getNetworkData();
+
+
+
+
 
         //마이너스버튼
         imgBtnMinus.setOnClickListener(new View.OnClickListener() {

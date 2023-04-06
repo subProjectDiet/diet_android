@@ -45,6 +45,12 @@ public class AddKcalDirectActivity extends AppCompatActivity {
     String date;
     int mealtime;
     int mealtimeLunch;
+    private int visionfat;
+    private int visioncarbs;
+    private int visongram;
+    private int visionprotein;
+    private String vsionKcal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,23 @@ public class AddKcalDirectActivity extends AppCompatActivity {
         foodName = editFoodName.getText().toString().trim();
         gram = editGram.getText().toString().trim();
         kcal = editKcal.getText().toString().trim();
+
+
+        visioncarbs = Integer.parseInt(getIntent().getStringExtra("carbs"));
+        visongram = Integer.parseInt(getIntent().getStringExtra("gram"));
+        visionprotein = Integer.parseInt(getIntent().getStringExtra("protein"));
+        visionfat = Integer.parseInt(getIntent().getStringExtra("fat"));
+        vsionKcal = getIntent().getStringExtra("kcal");
+        Log.i("확인하기", "carbs : " + visioncarbs + " date : "  + date + " mealtime : " + mealtime);
+
+        editKcal.setText((vsionKcal));
+        editGram.setText(Integer.toString(visongram));
+        txtCarbs.setText(Integer.toString(visioncarbs));
+        txtProtein.setText(Integer.toString(visionprotein));
+        txtFat.setText(Integer.toString(visionfat));
+
+
+
 
         //마이너스버튼
         imgBtnMinus.setOnClickListener(new View.OnClickListener() {

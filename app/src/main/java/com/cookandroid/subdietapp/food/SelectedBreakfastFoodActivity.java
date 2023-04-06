@@ -1,35 +1,74 @@
 package com.cookandroid.subdietapp.food;
 
+import static android.content.ContentValues.TAG;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.subdietapp.AddKcalDirectActivity;
+import com.cookandroid.subdietapp.FoodAddActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SearchFoodActivity;
 import com.cookandroid.subdietapp.adapter.FoodAdapter;
 import com.cookandroid.subdietapp.api.FoodApi;
 import com.cookandroid.subdietapp.api.NetworkClient;
+import com.cookandroid.subdietapp.api.VisionNetworkClient;
+import com.cookandroid.subdietapp.api.VsionApi;
 import com.cookandroid.subdietapp.config.Config;
 import com.cookandroid.subdietapp.model.food.Food;
 import com.cookandroid.subdietapp.model.food.FoodRes;
 import com.cookandroid.subdietapp.model.food.TotalKcal;
 import com.cookandroid.subdietapp.model.food.TotalKcalRes;
+import com.cookandroid.subdietapp.model.food.Vision;
+import com.cookandroid.subdietapp.model.food.VisionRes;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +76,7 @@ import retrofit2.Retrofit;
 
 public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
-    ImageView imgBack;
+    ImageView imgBack ,imgKcal;
     Button btnAdd, btnSearch, btnEnd;
     TextView txtTotalKcal;
     EditText editSearch;
@@ -59,6 +98,13 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
     public static Context mContext;
 
     private boolean isloading = false;
+    private File photoFile;
+    private String vkcal;
+    private String vgram;
+    private String vprotein;
+    private String vfat;
+    private String vcarb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +115,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAdd);
         btnSearch = findViewById(R.id.btnSearch);
         btnEnd = findViewById(R.id.btnEnd);
-
+        imgKcal=findViewById(R.id.imgKcal);
         imgBack = findViewById(R.id.imgBack);
 
         editSearch = findViewById(R.id.editSearch);
@@ -127,8 +173,15 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
 
 
-        // 아침 총합 칼로리 가져오기
+        // 사진
+        imgKcal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                showDialog();
+
+            }
+        });
 
 
 
@@ -154,6 +207,253 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
 
     }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SelectedBreakfastFoodActivity.this);
+        builder.setTitle(R.string.alert_title);
+        builder.setItems(R.array.alert_photo, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    // todo : 사진찍는 코드 실행
+                    camera();
+
+                } else if (i == 1) {
+                    // todo : 앨범에서 사진 가져오는 코드 실행
+                    album();
+                }
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void album() {
+
+        if(checkPermission()){
+            displayFileChoose();
+        }else{
+            requestPermission();
+        }
+
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(SelectedBreakfastFoodActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if(result == PackageManager.PERMISSION_DENIED){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    private void requestPermission() {
+        if(ActivityCompat.shouldShowRequestPermissionRationale(SelectedBreakfastFoodActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            Toast.makeText(SelectedBreakfastFoodActivity.this, "권한 수락이 필요합니다.",
+                    Toast.LENGTH_SHORT).show();
+        }else{
+            ActivityCompat.requestPermissions(SelectedBreakfastFoodActivity.this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 500);
+        }
+
+    }
+
+    private void displayFileChoose() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "SELECT IMAGE"), 300);
+
+    }
+
+    private void camera() {
+        int permissionCheck = ContextCompat.checkSelfPermission(
+                SelectedBreakfastFoodActivity.this, android.Manifest.permission.CAMERA);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(SelectedBreakfastFoodActivity.this,
+                    new String[]{Manifest.permission.CAMERA},
+                    1000);
+            Toast.makeText(SelectedBreakfastFoodActivity.this, "카메라 권한이 필요합니다.",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (i.resolveActivity(SelectedBreakfastFoodActivity.this.getPackageManager()) != null) {
+
+                // 사진의 파일명을 만들기
+                String fileName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                photoFile = getPhotoFile(fileName);
+
+                Uri fileProvider = FileProvider.getUriForFile(SelectedBreakfastFoodActivity.this,
+                        "com.leopard4.alcoholrecipe.fileprovider", photoFile);
+                i.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
+                startActivityForResult(i, 100);
+
+            } else {
+                Toast.makeText(SelectedBreakfastFoodActivity.this, "카메라 앱이 필요합니다.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    private File getPhotoFile(String fileName) {
+        File storageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        try{
+            return File.createTempFile(fileName, ".jpg", storageDirectory);
+        }catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
+        if(requestCode == 100 && resultCode == RESULT_OK){
+
+            Bitmap photo = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+
+            ExifInterface exif = null;
+            try {
+                exif = new ExifInterface(photoFile.getAbsolutePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+            photo = rotateBitmap(photo, orientation);
+
+            // 압축시킨다. 해상도 낮춰서
+            OutputStream os;
+            try {
+                os = new FileOutputStream(photoFile);
+                photo.compress(Bitmap.CompressFormat.JPEG, 50, os);
+                os.flush();
+                os.close();
+            } catch (Exception e) {
+                Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+            }
+
+            photo = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+
+            visionNetwokData();
+
+
+            // 네트워크로 데이터 보낸다.
+
+
+
+        }else if(requestCode == 300 && resultCode == RESULT_OK && data != null &&
+                data.getData() != null){
+
+            Uri albumUri = data.getData( );
+            String fileName = getFileName( albumUri );
+            try {
+
+                ParcelFileDescriptor parcelFileDescriptor = getContentResolver( ).openFileDescriptor( albumUri, "r" );
+                if ( parcelFileDescriptor == null ) return;
+                FileInputStream inputStream = new FileInputStream( parcelFileDescriptor.getFileDescriptor( ) );
+                photoFile = new File( this.getCacheDir( ), fileName );
+                FileOutputStream outputStream = new FileOutputStream( photoFile );
+                IOUtils.copy( inputStream, outputStream );
+
+//                //임시파일 생성
+//                File file = createImgCacheFile( );
+//                String cacheFilePath = file.getAbsolutePath( );
+
+
+                // 압축시킨다. 해상도 낮춰서
+                Bitmap photo = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                OutputStream os;
+                try {
+                    os = new FileOutputStream(photoFile);
+                    photo.compress(Bitmap.CompressFormat.JPEG, 60, os);
+                    os.flush();
+                    os.close();
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), "Error writing bitmap", e);
+                }
+
+                visionNetwokData();
+
+//                imageView.setImageBitmap( getBitmapAlbum( imageView, albumUri ) );
+
+            } catch ( Exception e ) {
+                e.printStackTrace( );
+            }
+
+            // 네트워크로 보낸다.
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private String getFileName(Uri albumUri) {
+        Cursor cursor = getContentResolver( ).query( albumUri, null, null, null, null );
+        try {
+            if ( cursor == null ) return null;
+            cursor.moveToFirst( );
+            @SuppressLint("Range") String fileName = cursor.getString( cursor.getColumnIndex( OpenableColumns.DISPLAY_NAME ) );
+            cursor.close( );
+            return fileName;
+
+        } catch ( Exception e ) {
+            e.printStackTrace( );
+            cursor.close( );
+            return null;
+        }
+    }
+
+    public static Bitmap rotateBitmap(Bitmap bitmap, int orientation) {
+
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_NORMAL:
+                return bitmap;
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
+                matrix.setScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                matrix.setRotate(180);
+                break;
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL:
+                matrix.setRotate(180);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_TRANSPOSE:
+                matrix.setRotate(90);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                matrix.setRotate(90);
+                break;
+            case ExifInterface.ORIENTATION_TRANSVERSE:
+                matrix.setRotate(-90);
+                matrix.postScale(-1, 1);
+                break;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                matrix.setRotate(-90);
+                break;
+            default:
+                return bitmap;
+        }
+        try {
+            Bitmap bmRotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            bitmap.recycle();
+            return bmRotated;
+        }
+        catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 
     @Override
     protected void onResume() {
@@ -214,6 +514,94 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    private void visionNetwokData(){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), photoFile);
+        MultipartBody.Part photo = MultipartBody.Part.createFormData("photo", photoFile.getName(), requestBody);
+
+        Retrofit retrofit = VisionNetworkClient.getRetrofitClient(SelectedBreakfastFoodActivity.this);
+        VsionApi visionApi = retrofit.create(VsionApi.class);
+
+        Call<VisionRes> call = visionApi.visionResult(photo);
+        call.enqueue(new Callback<VisionRes>() {
+            @Override
+            public void onResponse(Call<VisionRes> call, Response<VisionRes> response) {
+
+
+
+                if(response.isSuccessful()){
+//
+
+                     for(int i = 0; i < response.body().getItems().size(); i++) {
+                            vkcal =response.body().getItems().get(i).getKcal();
+                         Log.i(TAG, "확인쓰" + vkcal);
+                         if(vkcal != null){
+                             break;
+                         }
+                     }
+                    for(int i = 0; i < response.body().getItems().size(); i++) {
+
+                        vcarb = response.body().getItems().get(i).get탄수화물();
+                        Log.i(TAG, "확인쓰" + vcarb);
+                        if(vcarb != null){
+                            break;
+                        }
+
+                    }
+                    for(int i = 0; i < response.body().getItems().size(); i++) {
+
+                        vprotein = response.body().getItems().get(i).get단백질();
+                        Log.i(TAG, "확인쓰" + vprotein);
+                        if(vprotein != null){
+                            break;
+                        }
+
+                    }
+                    for(int i = 0; i < response.body().getItems().size(); i++) {
+                        vfat = response.body().getItems().get(i).get지방();
+                        Log.i(TAG, "확인쓰" + vfat);
+                        if(vfat != null){
+                            break;
+                        }
+
+                    }
+                    for(int i = 0; i < response.body().getItems().size(); i++) {
+
+                       vgram = response.body().getItems().get(i).getGram();
+                        Log.i(TAG, "확인쓰" + vgram);
+                        if(vgram != null){
+                            break;
+                        }
+                    }
+
+
+
+
+                    Intent intent = new Intent(SelectedBreakfastFoodActivity.this, AddKcalDirectActivity.class);
+                    intent.putExtra("date", date);
+                    intent.putExtra("mealtime", mealtime + "");
+                    intent.putExtra("carbs", vcarb);
+                    intent.putExtra("gram", vgram);
+                    intent.putExtra("protein", vprotein);
+                    intent.putExtra("fat", vfat);
+                    intent.putExtra("kcal", vkcal);
+                    intent.putExtra("camera",1);
+
+
+                    startActivity(intent);
+
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VisionRes> call, Throwable t) {
+                Log.d("TAG", "onFailure: " + t.getMessage());
+            }
+        });
 
     }
 
