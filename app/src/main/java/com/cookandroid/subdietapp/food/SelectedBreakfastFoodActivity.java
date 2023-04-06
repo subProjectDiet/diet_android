@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -86,7 +87,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
     public String date;
 
     TotalKcal totalKcal = new TotalKcal();
-
+    private ProgressDialog dialog;
 
     // 페이징 처리를 위한 변수
     int count;
@@ -518,6 +519,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
     }
 
     private void visionNetwokData(){
+        showProgress("영양정보를 불러오는 중입니다");
         RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"), photoFile);
         MultipartBody.Part photo = MultipartBody.Part.createFormData("photo", photoFile.getName(), requestBody);
 
@@ -532,7 +534,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
 
 
                 if(response.isSuccessful()){
-//
+                    dismissProgress();
 
                      for(int i = 0; i < response.body().getItems().size(); i++) {
                             vkcal =response.body().getItems().get(i).getKcal();
@@ -603,6 +605,17 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showProgress(String message) {
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage(message);
+        dialog.show();
+
+    }
+    void dismissProgress(){
+        dialog.dismiss();
     }
 
     private void getNetworkData() {
