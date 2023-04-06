@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:fontFamily="@font/nanumeb"
-                android:textColor="#252424"
+                android:textColor="#686565"
 
                 android:text="나의 통계 결과" />
 
@@ -49,7 +49,7 @@
                     android:textSize="15sp"
                     android:text="상세리포트 보러가기"
                     android:fontFamily="@font/nanumeb"
-                    android:textColor="#252424"
+                    android:textColor="#686565"
 
                     />
 
