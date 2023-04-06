@@ -39,7 +39,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cookandroid.subdietapp.AddKcalDirectActivity;
-import com.cookandroid.subdietapp.FoodAddActivity;
 import com.cookandroid.subdietapp.R;
 import com.cookandroid.subdietapp.SearchFoodActivity;
 import com.cookandroid.subdietapp.adapter.FoodAdapter;
@@ -52,7 +51,6 @@ import com.cookandroid.subdietapp.model.food.Food;
 import com.cookandroid.subdietapp.model.food.FoodRes;
 import com.cookandroid.subdietapp.model.food.TotalKcal;
 import com.cookandroid.subdietapp.model.food.TotalKcalRes;
-import com.cookandroid.subdietapp.model.food.Vision;
 import com.cookandroid.subdietapp.model.food.VisionRes;
 
 import org.apache.commons.io.IOUtils;
@@ -65,7 +63,6 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -291,7 +288,7 @@ public class SelectedBreakfastFoodActivity extends AppCompatActivity {
                 photoFile = getPhotoFile(fileName);
 
                 Uri fileProvider = FileProvider.getUriForFile(SelectedBreakfastFoodActivity.this,
-                        "com.leopard4.alcoholrecipe.fileprovider", photoFile);
+                        "com.cookandroid.subdietapp.fileprovider", photoFile);
                 i.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
                 startActivityForResult(i, 100);
 
