@@ -1,11 +1,13 @@
 package com.cookandroid.subdietapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +48,8 @@ public class ChartActivity extends AppCompatActivity {
 
     LineChart lineChart;
 
+    TextView txtEda;
+
     float barWidth;
     float barSpace;
     float groupSpace;
@@ -82,10 +86,22 @@ public class ChartActivity extends AppCompatActivity {
         btnDate = findViewById(R.id.btnDate);
         btnWeek = findViewById(R.id.btnWeek);
         btnMonth = findViewById(R.id.btnMonth);
+        txtEda = findViewById(R.id.txtEda);
+
 
         nowMonth = getIntent().getStringExtra("nowMonth");
 
         Log.i("nowMonth", "차트액티비티 :" + nowMonth);
+
+        txtEda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChartActivity.this, EdaActivity.class);
+                intent.putExtra("nowMonth", nowMonth);
+                startActivity(intent);
+
+            }
+        });
 
         barWidth = 0.3f;
         barSpace = 0f;
@@ -192,7 +208,7 @@ public class ChartActivity extends AppCompatActivity {
 
                         for (int i = 0; i < 6; i++) {
                             EdaDate = monthList.get(i).getMonth();
-                            xVals.add(EdaDate);
+                            xVals.add(EdaDate.replace("-", "/"));
                             Log.i("EDADATETEST", EdaDate + " " + i);
                         }
 
@@ -379,8 +395,8 @@ public class ChartActivity extends AppCompatActivity {
                         weekList = (ArrayList<EdaWeek>) response.body().getItems();
 
                         for (int i = 0; i < 6; i++) {
-                            EdaDateStart = weekList.get(i).getStart().substring(5, 9 + 1);
-                            EdaDateEnd = weekList.get(i).getEnd().substring(5, 9 + 1);
+                            EdaDateStart = weekList.get(i).getStart().substring(5, 9 + 1).replace("-", "/");
+                            EdaDateEnd = weekList.get(i).getEnd().substring(5, 9 + 1).replace("-", "/");
 
                             WeekxVals.add(EdaDateStart + "~" + EdaDateEnd);
                             Log.i("EDADATESETEST", EdaDateStart + " ~\n" + EdaDateEnd);
@@ -565,7 +581,7 @@ public class ChartActivity extends AppCompatActivity {
                         dayList = (ArrayList<EdaDay>) response.body().getItems();
 
                         for (int i = 0; i < 6; i++) {
-                            EdaDate = dayList.get(i).getDate().substring(5, 9 + 1);
+                            EdaDate = dayList.get(i).getDate().substring(5, 9 + 1).replace("-", "/");
                             xVals.add(EdaDate);
                             Log.i("EDADATETEST", EdaDate + " " + i);
                         }
