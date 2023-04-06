@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             SharedPreferences sp = getApplication().getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sp.edit();
-                            editor.putString(Config.TARGET_KCAL, userLoginRes.getUserLogin().getTargetCarbs() + "" );
+                            editor.putString(Config.TARGET_KCAL, userLoginRes.getUserLogin().getTargetKcal() + "" );
                             editor.putString(Config.HOPE_WEIGHT, userLoginRes.getUserLogin().getHopeWeight() + "" );
                             editor.putString(Config.NICKNAME, userLoginRes.getUserLogin().getNickName() );
                             editor.putString(Config.ACCESS_TOKEN, userLoginRes.getAccess_token() );
