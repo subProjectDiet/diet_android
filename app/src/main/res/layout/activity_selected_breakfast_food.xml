@@ -80,7 +80,7 @@
 
             android:textSize="16sp" />
             <ImageButton
-                android:id="@+id/imageButton9"
+                android:id="@+id/imgKcal"
                 android:layout_width="75dp"
                 android:layout_height="55dp"
                 android:scaleType="fitCenter"
