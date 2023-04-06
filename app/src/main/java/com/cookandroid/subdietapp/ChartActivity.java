@@ -21,11 +21,13 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,9 +52,12 @@ public class ChartActivity extends AppCompatActivity {
 
     ArrayList yVals3 = new ArrayList();
 
-    List<Entry> entries = new ArrayList<>();
+    ArrayList<Entry> dataList = new ArrayList<>();
 
-    XAxis xAxis;
+
+//    List<Entry> entries = new ArrayList<>();
+//
+//    XAxis xAxis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,11 @@ public class ChartActivity extends AppCompatActivity {
         barChart.setScaleEnabled(false);
         barChart.setDrawBarShadow(false);
         barChart.setDrawGridBackground(false);
+
+
+
+
+
 
 
 
@@ -186,6 +196,70 @@ public class ChartActivity extends AppCompatActivity {
                     leftAxis.setAxisMinimum(0f);
 
 
+                    // 라인차트
+
+
+
+
+//                    dataList.add(new Entry(1, 15));
+//                    dataList.add(new Entry(2, 20));
+
+                    try {
+                        for (int i = 0; i <6; i++){
+                            EdaDateWeight = dayList.get(i).getNowWeight();
+
+                            dataList.add(new Entry(i, EdaDateWeight.floatValue()));
+
+                            Log.i("EDADATETEST", EdaDate + " " + i);
+                        }
+
+                    } catch (Exception e) {
+
+                    }
+
+
+                    LineDataSet lineDataSet1 = new LineDataSet(dataList, "몸무게(kg)");
+
+                    ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+                    dataSets.add(lineDataSet1);
+
+                    // 커스텀
+                    // 라인 굵기
+                    lineDataSet1.setLineWidth(4);
+
+                    // 라인 색상
+                    lineDataSet1.setColor(Color.rgb(187, 227, 255));
+
+                    // 데이터 원 표시 여부
+                    lineDataSet1.setDrawCircles(true);
+
+                    // 데이터 원 색상
+//                    lineDataSet1.setCircleColor(Color.GRAY);
+
+                    // 데이터 원 홀 색상
+                    lineDataSet1.setCircleHoleColor(Color.rgb(187, 227, 255));
+
+                    // 데이터 원 홀 반지름
+//                    lineDataSet1.setCircleRadius(10);
+
+                    // 데이터 숫자 색상
+                    lineDataSet1.setValueTextColor(Color.BLACK);
+
+                    lineDataSet1.setValueTextSize(10);
+                    // 라인데이터에 리스트 추가
+                    LineData lineData = new LineData(dataSets);
+
+                    // 차트에 라인 데이터 추가
+                    lineChart.setData(lineData);
+                    // 차트 초기화
+                    lineChart.invalidate();
+
+
+
+
+
+
+
 
 
 
@@ -213,6 +287,14 @@ public class ChartActivity extends AppCompatActivity {
 
 
     }
+
+    private ArrayList<Entry> data1() {
+        ArrayList<Entry> dataList = new ArrayList<>();
+
+
+        return dataList;
+    }
+
     private void getNetworkData() {
 
         Retrofit retrofit = NetworkClient.getRetrofitClient(ChartActivity.this);
