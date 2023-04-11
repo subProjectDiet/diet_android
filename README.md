@@ -85,12 +85,12 @@
 #### Android Studio에서 개발하고 실행한 화면입니다..<br/>
 |영양정보 글자인식|유저별 포스팅 추천|나의 건강기록 도식화|
 |---|---|---|
-|&nbsp;&nbsp;![Screen_Recording_20220914_213944_MatchRun_6](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EA%B1%B4%EB%B0%B0%EC%82%AC_AdobeExpress.gif)|![Screen_Recording_jooinjang](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EC%96%BC%EA%B5%B4%EC%9D%B8%EC%8B%9D_AdobeExpress.gif)|![Screen_Recording_jooinjang]()|
+|&nbsp;&nbsp;![Screen_Recording_20220914_213944_MatchRun_6](https://github.com/subProjectDiet/design/blob/Develop/%EB%B9%84%EC%A0%84%EC%9B%80%EC%A7%A4.gif)|![Screen_Recording_jooinjang](https://github.com/subProjectDiet/design/blob/Develop/%EC%B6%94%EC%B2%9C%ED%8F%AC%EC%8A%A4%ED%8C%85.png)|![Screen_Recording_jooinjang](https://github.com/subProjectDiet/design/blob/Develop/%EB%8F%84%EC%8B%9D%ED%99%94.gif)|
 <br/>
 
 |캘린더를 활용한 기록관리|포스팅 관리|기록 작성하기|
 |---|---|---|
-|![Screen_Recording_jooinjang](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EB%A0%88%EC%8B%9C%ED%94%BC%EC%9E%91%EC%84%B1_AdobeExpress.gif)|![Screen_Recording_jooinjang_](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EC%88%A0%EB%8F%84%EA%B0%90_AdobeExpress.gif)|![Screen_Recording_jooinjang](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EB%A0%88%EC%8B%9C%ED%94%BC%EC%9E%91%EC%84%B1_AdobeExpress.gif)|
+|![Screen_Recording_jooinjang](https://github.com/subProjectDiet/design/blob/Develop/%EC%BA%98%EB%A6%B0%EB%8D%94.gif)|![Screen_Recording_jooinjang_](https://github.com/subProjectDiet/design/blob/Develop/%ED%8F%AC%EC%8A%A4%ED%8C%85%20%EC%9B%80%EC%A7%A4.gif)|![Screen_Recording_jooinjang](https://github.com/subProjectDiet/design/blob/Develop/%EC%9E%91%EC%84%B1.gif)|
 <br/>
 ## 기술 특장점<br/>
 - Google Vision을 이용한 영양정보입력 : 이미지내 문자인식 인공지능을 통해 영양정보를 자동으로 입력하게 했습니다.<br/>
