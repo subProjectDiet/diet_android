@@ -76,41 +76,40 @@
 ## 프로젝트 소개<br/>
 - 하루어트는 자신의 건강상태와 운동,식습관을 직접 하루하루 기록하며 자신의 건강을 꾸준하게 관리하게 도와줍니다.  .<br/>
 
-|:+1: SNS 기능|:pencil: 다이어리|:chart_with_upwards_trend: 기록 분석|
+|:+1: SNS 기능|:pencil: 다이어리|:chart_with_upwards_trend: 기록 분석 및 캘린더|
 |---|---|---|
-|- 이미지와 텍스트 업로드 기능<br/>- 포스팅 좋아요|- 오늘 먹은 영양정보 입력<br/>- 오늘 한 운동기록 입력 <br/>- 오늘 나의 신체기록 입력 |- 일자별 기록보기  
-<br/>- 차트제공 <br/>- 결산 기능|
+|- 이미지와 텍스트 업로드 기능<br/>- 포스팅 좋아요|- 오늘 먹은 영양정보 입력<br/>- 오늘 한 운동기록 입력 <br/>- 오늘 나의 신체기록 입력 |- 일자별 기록 보기<br/>- 차트 제공 <br/>- 결산 기능|
 <br/>
 
 ## 실행 화면 <br/>
 #### Android Studio에서 개발하고 실행한 화면입니다..<br/>
-|건배사|얼굴인식|Gpt 기반 실시간 채팅|
+|영양정보 글자인식|유저별 포스팅 추천|나의 건강기록 도식화|
 |---|---|---|
 |&nbsp;&nbsp;![Screen_Recording_20220914_213944_MatchRun_6](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EA%B1%B4%EB%B0%B0%EC%82%AC_AdobeExpress.gif)|![Screen_Recording_jooinjang](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EC%96%BC%EA%B5%B4%EC%9D%B8%EC%8B%9D_AdobeExpress.gif)|![Screen_Recording_jooinjang]()|
 <br/>
 
-|레시피 작성|술 도감 조회|레시피 조회|
+|캘린더를 활용한 기록관리|포스팅 관리|기록 작성하기|
 |---|---|---|
 |![Screen_Recording_jooinjang](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EB%A0%88%EC%8B%9C%ED%94%BC%EC%9E%91%EC%84%B1_AdobeExpress.gif)|![Screen_Recording_jooinjang_](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EC%88%A0%EB%8F%84%EA%B0%90_AdobeExpress.gif)|![Screen_Recording_jooinjang](https://github.com/V3690/Design/blob/develop/%EC%98%81%EC%83%81/gif/%EB%A0%88%EC%8B%9C%ED%94%BC%EC%9E%91%EC%84%B1_AdobeExpress.gif)|
 <br/>
 ## 기술 특장점<br/>
-- Rulebase-chat bot을 활용한 건배사 추천 : 유저가 특정 키워드를 입력하면 그와 관련된 건배사를 제시합니다.<br/>
-- 인공지능 AWS Recognition 얼굴 인식 :얼굴에서 인식된 감정 데이터를 기반으로 유저에게 어울리는 술과 멘트를 제시합니다.<br/>
-- ChatGPT 통한 실시간 채팅 - 인공지능 언어모델 GPT-3 를 이용하여 유저가 대화를 즐길 수 있습니다.<br/>
-- Naver Clova TTS :오락실에서 실행 결과로 나온 텍스트를 AI가 음성으로 읽어줍니다.<br/>
-- SNS 공유 - 추천된 건배사와 얼굴 인식 결과를 바로 SNS(카카오톡, 인스타그램, 페이스북 등)에 공유할 수 있습니다.<br/>
-- 주류 사이트에서 수집한 수천개의 주류 데이터를 검색할 수 있습니다. <br/>
+- Google Vision을 이용한 영양정보입력 : 이미지내 문자인식 인공지능을 통해 영양정보를 자동으로 입력하게 했습니다.<br/>
+- K-means를 활용한 유저 추천 포스팅 : 인공지능을 이용한 유저별 맞춤 추천기능을 통해 비슷한 사람들끼리 추천합니다.<br/>
+- 도표를 통한 데이터 도식화 - 유저가 입력한 데이터를 시각화하여 객관적으로 자신의 건강상황을 판단합니다.<br/>
+- 캘린더 :시각적으로 동기를 부여하고, 매일 쓰는 건강일기를 구현했습니다.<br/>
+- 칼로리 자동계산 - 해리스-베네딕트 방정식 활용해서 신체를 건강하게 유지하는데 필요한 일일 칼로리를 계산하여 제공해 줍니다.<br/>
+
 
 <br/>
 
 ## [화면기획서(Kakao Oven) 보러가기]<br/>
-[화면기획서(Kakao Oven) 보러가기]: https://ovenapp.io/project/paZcyXQ1Q0lx7gyCZaebUyzliBt10tiS#UHkgY
+[화면기획서(Kakao Oven) 보러가기]: [https://ovenapp.io/project/paZcyXQ1Q0lx7gyCZaebUyzliBt10tiS#UHkgY](https://ovenapp.io/view/2WfzUMopgXuWCfZti4a4yf12wU9ri0R5/3LSGN)
 
 ## [BackEnd 보러가기]<br/>
-[BackEnd 보러가기]: https://github.com/V3690/AlcoholServer
+[BackEnd 보러가기]: https://github.com/subProjectDiet/aws_diet_severless
 
 ## [Table Reference 보러가기]<br/>
-[Table Reference 보러가기]: https://www.erdcloud.com/d/cp2BH3T4pAQvAFZAX
+[Table Reference 보러가기]: [https://github.com/V3690/AlcoholServer](https://www.erdcloud.com/d/EcqFpAeexdMZx5ec3)
 
 ## [API Reference 보러가기]<br/>
-[API Reference 보러가기]: https://v369-0.gitbook.io/alcohol-docs/
+[API Reference 보러가기]: [https://www.erdcloud.com/d/cp2BH3T4pAQvAFZAX](https://documenter.getpostman.com/view/26477701/2s93RZM9sd)
