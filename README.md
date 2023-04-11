@@ -110,4 +110,4 @@
 [Table Reference 보러가기]: https://www.erdcloud.com/d/EcqFpAeexdMZx5ec3
 
 ## [API Reference 보러가기]<br/>
-[API Reference 보러가기]: https://documenter.getpostman.com/view/26477701/2s93RZM9sd
+[API Reference 보러가기]: https://harudiet.gitbook.io/haru-diet-docs/quick-start
