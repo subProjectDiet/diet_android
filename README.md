@@ -56,9 +56,7 @@
 |![유경](https://github.com/V3690/Design/blob/develop/%EC%A0%9C%EC%9E%91/%EC%9C%A0%EA%B2%BD%20%ED%94%84%EB%A1%9C%ED%95%84.png)|![건희](https://github.com/V3690/Design/blob/develop/%EC%A0%9C%EC%9E%91/%EA%B1%B4%ED%9D%AC%20%ED%94%84%EB%A1%9C%ED%95%84.png)|
 |거침없이 도전하는<br/>개발자|새로움을 찾아가는<br/>개발자|
 
-[김지은]:https://github.com/kimjieun990525
 [장유경]:https://github.com/yugyeong1
-[장만희]:https://github.com/leopard4
 [한건희]:https://github.com/zzanggeonui
 
 <br/>
