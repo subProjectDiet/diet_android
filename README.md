@@ -101,13 +101,13 @@
 <br/>
 
 ## [화면기획서(Kakao Oven) 보러가기]<br/>
-[화면기획서(Kakao Oven) 보러가기]: [https://ovenapp.io/project/paZcyXQ1Q0lx7gyCZaebUyzliBt10tiS#UHkgY](https://ovenapp.io/view/2WfzUMopgXuWCfZti4a4yf12wU9ri0R5/3LSGN)
+[화면기획서(Kakao Oven) 보러가기]: https://ovenapp.io/view/2WfzUMopgXuWCfZti4a4yf12wU9ri0R5/3LSGN
 
 ## [BackEnd 보러가기]<br/>
 [BackEnd 보러가기]: https://github.com/subProjectDiet/aws_diet_severless
 
 ## [Table Reference 보러가기]<br/>
-[Table Reference 보러가기]: [https://github.com/V3690/AlcoholServer](https://www.erdcloud.com/d/EcqFpAeexdMZx5ec3)
+[Table Reference 보러가기]: https://www.erdcloud.com/d/EcqFpAeexdMZx5ec3
 
 ## [API Reference 보러가기]<br/>
-[API Reference 보러가기]: [https://www.erdcloud.com/d/cp2BH3T4pAQvAFZAX](https://documenter.getpostman.com/view/26477701/2s93RZM9sd)
+[API Reference 보러가기]: https://documenter.getpostman.com/view/26477701/2s93RZM9sd
