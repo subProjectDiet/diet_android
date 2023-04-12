@@ -107,7 +107,7 @@
 [BackEnd 보러가기]: https://github.com/subProjectDiet/aws_diet_severless
 
 ## [Table Reference 보러가기]<br/>
-[Table Reference 보러가기]: https://www.erdcloud.com/d/EcqFpAeexdMZx5ec3
+[Table Reference 보러가기]: https://www.erdcloud.com/d/vaC6AwwtnRza8BEi4
 
 ## [API Reference 보러가기]<br/>
 [API Reference 보러가기]: https://harudiet.gitbook.io/haru-diet-docs/quick-start
